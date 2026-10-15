@@ -54,11 +54,11 @@
   .etiq{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:2px solid var(--tinta);border-radius:999px;padding:5px 14px;background:var(--parede);transition:background .6s}
   .hero h1{font-weight:800;font-size:clamp(54px,9.6vw,150px);line-height:.88;letter-spacing:-.05em;margin:22px 0 22px}
   .hero h1 .linha{display:block;overflow:hidden;padding-bottom:.06em}
-  .hero h1 .linha > span{display:inline-block;transform:translateY(110%);animation:sobe .9s cubic-bezier(.2,1,.3,1) forwards}
+  .hero h1 .linha > span{display:inline-block;animation:sobe .9s cubic-bezier(.2,1,.3,1) backwards}
   .hero h1 .linha:nth-child(2) > span{animation-delay:.12s}
   .marca{display:inline-block;background:var(--amarelo);border:.05em solid var(--tinta);border-radius:.12em;padding:0 .12em;rotate:-2.5deg;transition:rotate .3s,background .3s}
   .marca:hover{rotate:2deg;background:var(--azul)}
-  @keyframes sobe{to{transform:none}}
+  @keyframes sobe{from{transform:translateY(110%)}}
   .hero p.sub{font-size:clamp(18px,2.2vw,26px);max-width:30ch;line-height:1.25;font-weight:500}
   .hero p.sub b{background:linear-gradient(transparent 62%, var(--salmao) 62%)}
   .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
@@ -181,17 +181,17 @@
   .hero h1 .linha > span{animation-delay:1.45s}
   .hero h1 .linha:nth-child(2) > span{animation-delay:1.57s}
   .hero h1 .linha:nth-child(3) > span{animation-delay:1.69s}
-  .hero .etiq,.hero p.sub,.hero .ctas{animation:surge .8s ease 1.95s both}
+  .hero .etiq,.hero p.sub,.hero .ctas{animation:surge .8s ease 1.95s backwards}
   @keyframes surge{from{opacity:0;transform:translateY(22px)}}
 
   /* marca-texto que desenha */
   .marca,.titulo h2 em,.fim h2 em{background:none;border:0;position:relative;isolation:isolate}
   .marca::before,.titulo h2 em::before,.fim h2 em::before{content:"";position:absolute;inset:0;z-index:-1;border:.05em solid var(--tinta);border-radius:.12em;background:var(--emc,var(--amarelo));transform:scaleX(0);transform-origin:left center;transition:transform .8s cubic-bezier(.7,0,.2,1) .35s,background .3s}
-  .marca::before{animation:marcaIn .8s cubic-bezier(.7,0,.2,1) 2.2s forwards;transition:background .3s}
+  .marca::before{transform:scaleX(1);animation:marcaIn .8s cubic-bezier(.7,0,.2,1) 2.2s backwards;transition:background .3s}
   .marca:hover{background:none}
   .marca:hover::before{background:var(--azul)}
   .titulo h2 em{--emc:var(--azul)} .fim h2 em{--emc:var(--salmao)}
-  @keyframes marcaIn{to{transform:scaleX(1)}}
+  @keyframes marcaIn{from{transform:scaleX(0)}}
   .rev.dentro em::before{transform:scaleX(1)}
 
   /* entrada dos títulos e textos */
@@ -423,60 +423,60 @@
   }
 
   /* ===== abertura dividida: Sites | Anúncios (só no computador) ===== */
-  .lado-sites,.lado-ads{display:none}
+  .lado-sites,.lado-anun{display:none}
   @media (min-width:861px){
     .hero{--s:56%}
     .hero.h-sites{--s:63%}
-    .hero.h-ads{--s:38%}
+    .hero.h-anun{--s:38%}
 
     /* lado esquerdo (Sites): o texto deixa o clique passar para a área "ver os trabalhos" */
     .hero-txt{pointer-events:none;transition:opacity .6s,transform .75s cubic-bezier(.22,.8,.2,1)}
     .hero-txt .btn{pointer-events:auto}
-    .hero.h-ads .hero-txt{opacity:.25;transform:translateX(-5%) scale(.96)}
+    .hero.h-anun .hero-txt{opacity:.25;transform:translateX(-5%) scale(.96)}
     .fio{display:none}    /* PC: sem a bola de espelhos (ela fica só no celular) */
     .lado-sites{display:block;position:absolute;top:0;bottom:0;left:0;width:var(--s);z-index:4;cursor:pointer;clip-path:polygon(0 0,100% 0,calc(100% - var(--dx,4vw)) 100%,0 100%);transition:width .75s cubic-bezier(.22,.8,.2,1)}
     .faixa{pointer-events:none}   /* a faixa não "rouba" o mouse das duas metades */
 
     /* lado direito (Anúncios) */
     /* o painel é um retângulo comum que começa na divisória; o fundo dele é inclinado por skew (a diagonal) e leva uma sombra comum */
-    .lado-ads{display:block;position:absolute;top:0;bottom:0;right:0;left:var(--s);z-index:4;color:#EDE7DB;text-decoration:none;cursor:pointer;
-      transition:left .75s cubic-bezier(.22,.8,.2,1);animation:adsEntra .9s cubic-bezier(.2,1,.3,1) 1.45s both}
-    @keyframes adsEntra{from{transform:translateX(40%);opacity:0}}
-    .ads-fundo{position:absolute;top:0;bottom:0;left:0;right:-6vw;overflow:hidden;transform-origin:0 0;transform:skewX(calc(-1 * var(--sk,.065rad)));box-shadow:-14px 0 26px rgba(22,19,15,.3);
+    .lado-anun{display:block;position:absolute;top:0;bottom:0;right:0;left:var(--s);z-index:4;color:#EDE7DB;text-decoration:none;cursor:pointer;
+      transition:left .75s cubic-bezier(.22,.8,.2,1);animation:anEntra .9s cubic-bezier(.2,1,.3,1) 1.45s backwards}
+    @keyframes anEntra{from{transform:translateX(40%);opacity:0}}
+    .an-fundo{position:absolute;top:0;bottom:0;left:0;right:-6vw;overflow:hidden;transform-origin:0 0;transform:skewX(calc(-1 * var(--sk,.065rad)));box-shadow:-14px 0 26px rgba(22,19,15,.3);
       background:radial-gradient(60% 55% at 90% 8%,rgba(255,106,19,.22),transparent 62%),radial-gradient(50% 45% at 12% 96%,rgba(240,135,122,.1),transparent 60%),#12100D}
-    .ads-fundo::before{content:"";position:absolute;inset:-64px;pointer-events:none;
+    .an-fundo::before{content:"";position:absolute;inset:-64px;pointer-events:none;
       background-image:linear-gradient(rgba(237,231,219,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(237,231,219,.05) 1px,transparent 1px);background-size:64px 64px}
-    .ads-conteudo{position:absolute;right:clamp(28px,4.5vw,72px);top:50%;transform:translateY(-50%);width:min(500px,calc(100% - 4vw - 40px));display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:16px;transition:opacity .5s,transform .6s cubic-bezier(.22,.8,.2,1)}
-    .hero.h-sites .ads-conteudo{opacity:.35;transform:translateY(-50%) translateX(6%)}
-    .ads-etq{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);display:flex;align-items:center;gap:12px}
-    .ads-etq::after{content:"";width:34px;height:1px;background:var(--laranja)}
-    .ads-t{font-weight:800;font-size:clamp(34px,3.9vw,62px);line-height:1;letter-spacing:-.045em;margin:0}
-    .ads-t em{font-style:normal;color:var(--laranja)}
-    .ads-lead{margin:0;font-size:17px;line-height:1.5;color:rgba(237,231,219,.72);max-width:44ch}
-    .ads-busca{width:100%;display:flex;align-items:center;gap:12px;background:rgba(237,231,219,.08);border:1px solid rgba(237,231,219,.18);border-radius:999px;padding:12px 18px;font-size:17px;min-height:50px;text-align:left;transition:border-color .4s,box-shadow .4s}
-    .ads-busca svg{width:18px;height:18px;opacity:.7;flex:none}
-    .ads-busca i{width:2px;height:20px;background:var(--laranja);animation:pisca 1s steps(1) infinite}
+    .an-conteudo{position:absolute;right:clamp(28px,4.5vw,72px);top:50%;transform:translateY(-50%);width:min(500px,calc(100% - 4vw - 40px));display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:16px;transition:opacity .5s,transform .6s cubic-bezier(.22,.8,.2,1)}
+    .hero.h-sites .an-conteudo{opacity:.35;transform:translateY(-50%) translateX(6%)}
+    .an-etq{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);display:flex;align-items:center;gap:12px}
+    .an-etq::after{content:"";width:34px;height:1px;background:var(--laranja)}
+    .an-t{font-weight:800;font-size:clamp(34px,3.9vw,62px);line-height:1;letter-spacing:-.045em;margin:0}
+    .an-t em{font-style:normal;color:var(--laranja)}
+    .an-lead{margin:0;font-size:17px;line-height:1.5;color:rgba(237,231,219,.72);max-width:44ch}
+    .an-busca{width:100%;display:flex;align-items:center;gap:12px;background:rgba(237,231,219,.08);border:1px solid rgba(237,231,219,.18);border-radius:999px;padding:12px 18px;font-size:17px;min-height:50px;text-align:left;transition:border-color .4s,box-shadow .4s}
+    .an-busca svg{width:18px;height:18px;opacity:.7;flex:none}
+    .an-busca i{width:2px;height:20px;background:var(--laranja);animation:pisca 1s steps(1) infinite}
     @keyframes pisca{50%{opacity:0}}
-    .ads-res{width:100%;text-align:left;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,106,19,.35);background:rgba(255,106,19,.08);transition:background .4s,border-color .4s,transform .5s cubic-bezier(.2,1.4,.4,1)}
-    .ads-res small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;opacity:.85}
-    .ads-res small b{background:var(--laranja);color:#12100D;padding:1px 7px;border-radius:4px;margin-right:8px;font-weight:700}
-    .ads-res strong{display:block;font-size:18px;letter-spacing:-.02em;color:#fff;font-weight:600;margin-top:4px}
-    .ads-cta{margin-top:6px;border:1.5px solid var(--laranja);color:var(--laranja);padding:14px 26px;border-radius:4px;font-weight:700;transition:background .3s,color .3s,transform .4s cubic-bezier(.2,1.5,.4,1)}
-    .hero.h-ads .ads-busca{border-color:var(--laranja);box-shadow:0 0 0 6px rgba(255,106,19,.18)}
-    .hero.h-ads .ads-res{background:rgba(255,106,19,.18);border-color:var(--laranja);transform:translateX(-6px) scale(1.03)}
-    .hero.h-ads .ads-cta{background:var(--laranja);color:#12100D;transform:translateX(-8px)}
+    .an-res{width:100%;text-align:left;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,106,19,.35);background:rgba(255,106,19,.08);transition:background .4s,border-color .4s,transform .5s cubic-bezier(.2,1.4,.4,1)}
+    .an-res small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;opacity:.85}
+    .an-res small b{background:var(--laranja);color:#12100D;padding:1px 7px;border-radius:4px;margin-right:8px;font-weight:700}
+    .an-res strong{display:block;font-size:18px;letter-spacing:-.02em;color:#fff;font-weight:600;margin-top:4px}
+    .an-cta{margin-top:6px;border:1.5px solid var(--laranja);color:var(--laranja);padding:14px 26px;border-radius:4px;font-weight:700;transition:background .3s,color .3s,transform .4s cubic-bezier(.2,1.5,.4,1)}
+    .hero.h-anun .an-busca{border-color:var(--laranja);box-shadow:0 0 0 6px rgba(255,106,19,.18)}
+    .hero.h-anun .an-res{background:rgba(255,106,19,.18);border-color:var(--laranja);transform:translateX(-6px) scale(1.03)}
+    .hero.h-anun .an-cta{background:var(--laranja);color:#12100D;transform:translateX(-8px)}
 
     /* clique: a porta de Anúncios abre até ocupar a tela, depois a página muda */
-    .lado-ads.abre{left:0;z-index:20;transition-duration:.75s}
+    .lado-anun.abre{left:0;z-index:20;transition-duration:.75s}
   }
-  @media (min-width:861px) and (max-height:760px){ .ads-res{display:none} }
+  @media (min-width:861px) and (max-height:760px){ .an-res{display:none} }
   /* telas baixas (notebooks): o texto continua, só fica mais compacto */
   @media (min-width:861px) and (max-height:760px){
-    .ads-conteudo{gap:11px}
-    .ads-t{font-size:clamp(30px,min(3.9vw,6.2vh),62px)}
-    .ads-lead{font-size:15.5px;line-height:1.42}
-    .ads-busca{min-height:44px;padding:9px 16px;font-size:16px}
-    .ads-cta{padding:11px 22px;margin-top:2px}
+    .an-conteudo{gap:11px}
+    .an-t{font-size:clamp(30px,min(3.9vw,6.2vh),62px)}
+    .an-lead{font-size:15.5px;line-height:1.42}
+    .an-busca{min-height:44px;padding:9px 16px;font-size:16px}
+    .an-cta{padding:11px 22px;margin-top:2px}
   }
 
   /* texto da abertura e do "Prazer, Caio" */
@@ -485,7 +485,10 @@
   .sobre-txt p.destaque{font-weight:800;color:var(--tinta);font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;max-width:34ch}
 
   /* o alto da pagina para de animar quando sai da tela */
-  .hero.fora .luzes i,.hero.fora .faixa .corre,.hero.fora .planta .p-folhas,.hero.fora .fio,.hero.fora .fio .bola::before,.hero.fora .ads-busca i{animation-play-state:paused}
+  .hero.fora .luzes i,.hero.fora .faixa .corre,.hero.fora .planta .p-folhas,.hero.fora .fio,.hero.fora .fio .bola::before,.hero.fora .an-busca i{animation-play-state:paused}
+
+  /* depois que a entrada termina, nenhuma animação de entrada continua "viva" (nada fica preso num estado) */
+  .hero.hero-pronto .etiq,.hero.hero-pronto p.sub,.hero.hero-pronto .ctas,.hero.hero-pronto h1 .linha > span,.hero.hero-pronto .marca::before,.hero.hero-pronto .lado-anun{animation:none}
 
   :focus-visible{outline:3px solid var(--azul);outline-offset:3px}
 
@@ -552,21 +555,21 @@
 
   <!-- abertura dividida (só no computador): Sites à esquerda, Anúncios à direita -->
   <a class="lado-sites" id="ladoSites" href="#mural" aria-label="Ver os trabalhos"></a>
-  <a class="lado-ads" id="ladoAds" href="anuncios.html" aria-label="Ir para a página de Anúncios (Google Ads)">
-    <div class="ads-fundo"></div>
-    <div class="ads-conteudo">
-        <span class="ads-etq">Anúncios · Google Ads</span>
-        <p class="ads-t">Eu te coloco no <em>jogo!</em></p>
-        <p class="ads-lead">Design chama atenção. Anúncio traz as pessoas certas até ele. Eu cuido da parte que coloca o seu negócio na frente do seu nicho.</p>
-        <div class="ads-busca" aria-hidden="true">
+  <a class="lado-anun" id="ladoAnun" href="anuncios.html" aria-label="Ir para a página de Anúncios (Google Ads)">
+    <div class="an-fundo"></div>
+    <div class="an-conteudo">
+        <span class="an-etq">Anúncios · Google Ads</span>
+        <p class="an-t">Eu te coloco no <em>jogo!</em></p>
+        <p class="an-lead">Design chama atenção. Anúncio traz as pessoas certas até ele. Eu cuido da parte que coloca o seu negócio na frente do seu nicho.</p>
+        <div class="an-busca" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
-          <span id="adsDigita"></span><i></i>
+          <span id="anDigita"></span><i></i>
         </div>
-        <div class="ads-res" aria-hidden="true">
+        <div class="an-res" aria-hidden="true">
           <small><b>Anúncio</b>www.seunegocio.com.br</small>
           <strong>Seu Negócio | Sua Área de Atuação</strong>
         </div>
-        <span class="ads-cta">Ver anúncios <span aria-hidden="true">→</span></span>
+        <span class="an-cta">Ver anúncios <span aria-hidden="true">→</span></span>
     </div>
   </a>
 
@@ -1218,6 +1221,7 @@
       no.parentNode.replaceChild(frag, no);
     });
     setTimeout(function(){ h1.classList.add('pronto'); }, 2600);
+    setTimeout(function(){ var hh = $('.hero'); if (hh) hh.classList.add('hero-pronto'); }, 3600);
     var letras = $$('.l', h1), centros = [], medidas = false, ultX = 0, ultY = 0, quadroPendente = false, heroEl0 = $('.hero');
     function medirLetras(){
       var sy = window.scrollY;
@@ -1239,7 +1243,7 @@
       }
     }
     window.addEventListener('pointermove', function(e){
-      if (!medidas || window.scrollY > window.innerHeight || (heroEl0 && heroEl0.classList.contains('h-ads'))) return;
+      if (!medidas || window.scrollY > window.innerHeight || (heroEl0 && heroEl0.classList.contains('h-anun'))) return;
       ultX = e.clientX; ultY = e.clientY;
       if (!quadroPendente){ quadroPendente = true; requestAnimationFrame(pintarLetras); }   // no máximo 1 vez por quadro
     }, {passive:true});
@@ -1264,9 +1268,11 @@
   window.addEventListener('scroll', function(){ if (!parPend){ parPend = true; requestAnimationFrame(parallax); } }, {passive:true});
   parallax();
 
+  setTimeout(function(){ var hh = $('.hero'); if (hh) hh.classList.add('hero-pronto'); }, 3600);   /* garante também no celular */
+
   /* ---------- abertura dividida (computador) ---------- */
   (function(){
-    var heroEl = $('.hero'), ads = $('#ladoAds'), sites = $('#ladoSites');
+    var heroEl = $('.hero'), ads = $('#ladoAnun'), sites = $('#ladoSites');
     if (!heroEl || !ads || !sites || !window.matchMedia) return;
     var larga = window.matchMedia('(min-width:861px)');
     /* a diagonal desloca a divisória 4vw ao longo da altura real do alto: calcula o ângulo exato */
@@ -1277,13 +1283,13 @@
     }
     ajustarDiagonal(); window.addEventListener('resize', ajustarDiagonal);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarDiagonal);
-    function estado(c){ heroEl.classList.remove('h-ads','h-sites'); if (c) heroEl.classList.add(c); }
+    function estado(c){ heroEl.classList.remove('h-anun','h-sites'); if (c) heroEl.classList.add(c); }
     /* o lado de Anúncios só abre quando o mouse encosta na parte preta (e fica ali um instante) */
     var espera = 0;
     ads.addEventListener('pointerenter', function(e){
       if (!larga.matches || e.pointerType === 'touch') return;
       clearTimeout(espera);
-      espera = setTimeout(function(){ estado('h-ads'); }, 140);
+      espera = setTimeout(function(){ estado('h-anun'); }, 140);
     });
     ads.addEventListener('pointerleave', function(){ clearTimeout(espera); });
     sites.addEventListener('pointerenter', function(e){
@@ -1291,7 +1297,7 @@
       clearTimeout(espera); estado('h-sites');
     });
     heroEl.addEventListener('pointerleave', function(){ clearTimeout(espera); estado(''); });
-    ads.addEventListener('focus', function(){ estado('h-ads'); });
+    ads.addEventListener('focus', function(){ estado('h-anun'); });
     sites.addEventListener('focus', function(){ estado('h-sites'); });
     ads.addEventListener('blur', function(){ estado(''); });
     sites.addEventListener('blur', function(){ estado(''); });
@@ -1299,7 +1305,7 @@
       if (!larga.matches || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       try { sessionStorage.setItem('sa_veio_do_mural', '1'); } catch(err){}   /* a página de Anúncios pula a própria abertura */
-      estado('h-ads'); ads.classList.add('abre');
+      estado('h-anun'); ads.classList.add('abre');
       setTimeout(function(){ window.location.href = ads.getAttribute('href'); }, 760);
     });
     window.addEventListener('pageshow', function(){ ads.classList.remove('abre'); estado(''); });
@@ -1309,7 +1315,7 @@
     if ('IntersectionObserver' in window){
       new IntersectionObserver(function(es){ es.forEach(function(e){ visivelHero = e.isIntersecting; heroEl.classList.toggle('fora', !e.isIntersecting); }); }).observe(heroEl);
     }
-    var dig = $('#adsDigita');
+    var dig = $('#anDigita');
     if (dig){
       var frases = ['psicólogo perto de mim', 'nutricionista online', 'dentista de urgência', 'advogado trabalhista', 'personal trainer perto de mim'];
       var fi = 0, ci = 0, apagando = false;
