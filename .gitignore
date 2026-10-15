@@ -1,0 +1,15 @@
+# Vercel e Node
+.vercel
+node_modules
+
+# Segredos (nunca subir)
+.env
+.env.*
+
+# Lixo do sistema
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Imagens de celular que não são usadas em nenhuma página
+prints/m_*.jpg

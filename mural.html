@@ -1,0 +1,1314 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sites | Sites e anúncios</title>
+<meta name="description" content="O mural de trabalho do Caio Martins, designer gráfico e gestor de tráfego. Sites e anúncios para profissionais e prestadores de serviço.">
+<meta property="og:title" content="Caio Martins | Portfólio">
+<meta property="og:description" content="Entre no meu mural: cartazes, sites no ar e um jeito de montar o seu.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F1EDE4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700&family=Montserrat:wght@800&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Space+Mono:wght@700&family=Abril+Fatface&display=swap" rel="stylesheet">
+<script>
+  /* animações sempre ligadas, mesmo se o aparelho pedir menos movimento (a pedido do Caio) */
+  document.documentElement.classList.add('animar');
+</script>
+<style>
+  :root{
+    --parede:#F1EDE4;
+    --tinta:#16130F;
+    --salmao:#F0877A; --laranja:#FF6A13; --amarelo:#F4C430; --azul:#58C0E8;
+    --lilas:#C8A6E6; --rosa:#E9B6DA; --verde:#1E7B4B; --marinho:#1C2330; --jeans:#A9C3E1;
+    --sans:"Bricolage Grotesque",system-ui,sans-serif;
+    --mao:"Caveat",cursive;
+    --mono:"DM Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--parede);color:var(--tinta);font-family:var(--sans);font-size:17px;line-height:1.45;overflow-x:hidden;transition:background .6s ease;-webkit-font-smoothing:antialiased}
+  body.com-cursor, body.com-cursor a, body.com-cursor button{cursor:none}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  ::selection{background:var(--amarelo)}
+
+  /* grão de papel por cima de tudo */
+  .grao{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.35;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+  /* cursor */
+  .cursor{position:fixed;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--laranja);mix-blend-mode:multiply;pointer-events:none;z-index:100;opacity:0;transition:width .2s,height .2s,opacity .3s,background .2s;margin:-11px 0 0 -11px}
+  .cursor.on{opacity:.9}
+  .cursor.grande{width:56px;height:56px;margin:-28px 0 0 -28px;background:var(--azul)}
+
+  /* barra do topo */
+  .barra{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,3vw,36px);pointer-events:none}
+  .barra > *{pointer-events:auto}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.03em;text-decoration:none;background:var(--parede);padding:4px 12px;border:2.5px solid var(--tinta);border-radius:999px;transition:background .6s}
+  .logo span{color:var(--laranja)}
+  .tintas{display:flex;gap:7px;align-items:center;background:var(--parede);border:2.5px solid var(--tinta);border-radius:999px;padding:6px 10px;transition:background .6s}
+  .tintas small{font-family:var(--mono);font-size:11px;margin-right:4px;letter-spacing:.04em}
+  .tintas button{width:20px;height:20px;border-radius:50%;border:2px solid var(--tinta);transition:transform .2s}
+  .tintas button:hover{transform:scale(1.25) rotate(8deg)}
+  .tintas button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--parede),0 0 0 5px var(--tinta)}
+  .topo-zap{font-weight:700;font-size:14px;text-decoration:none;background:var(--tinta);color:var(--parede);padding:9px 16px;border-radius:999px;transition:background .25s,transform .25s}
+  .topo-zap:hover{background:var(--laranja);color:var(--tinta);transform:rotate(-3deg) scale(1.05)}
+
+  /* ---------- herói ---------- */
+  .hero{position:relative;min-height:100svh;padding:120px clamp(18px,5vw,72px) 150px;display:flex;align-items:center;overflow:hidden}
+  .hero-txt{position:relative;z-index:5;max-width:820px}
+  .etiq{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:2px solid var(--tinta);border-radius:999px;padding:5px 14px;background:var(--parede);transition:background .6s}
+  .hero h1{font-weight:800;font-size:clamp(54px,9.6vw,150px);line-height:.88;letter-spacing:-.05em;margin:22px 0 22px}
+  .hero h1 .linha{display:block;overflow:hidden;padding-bottom:.06em}
+  .hero h1 .linha > span{display:inline-block;transform:translateY(110%);animation:sobe .9s cubic-bezier(.2,1,.3,1) forwards}
+  .hero h1 .linha:nth-child(2) > span{animation-delay:.12s}
+  .marca{display:inline-block;background:var(--amarelo);border:.05em solid var(--tinta);border-radius:.12em;padding:0 .12em;rotate:-2.5deg;transition:rotate .3s,background .3s}
+  .marca:hover{rotate:2deg;background:var(--azul)}
+  @keyframes sobe{to{transform:none}}
+  .hero p.sub{font-size:clamp(18px,2.2vw,26px);max-width:30ch;line-height:1.25;font-weight:500}
+  .hero p.sub b{background:linear-gradient(transparent 62%, var(--salmao) 62%)}
+  .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-weight:700;text-decoration:none;font-size:16px;padding:14px 24px;border:2.5px solid var(--tinta);border-radius:999px;background:var(--parede);transition:transform .25s cubic-bezier(.2,1.6,.4,1),background .25s,box-shadow .25s;box-shadow:4px 4px 0 var(--tinta)}
+  .btn:hover{transform:translate(-2px,-3px) rotate(-1.5deg);box-shadow:7px 8px 0 var(--tinta)}
+  .btn.cheio{background:var(--laranja)}
+  .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--tinta)}
+
+  /* arte flutuante */
+  .flut{position:absolute;width:var(--w);z-index:2;transform:translate(0,0) rotate(var(--r,0deg));transition:transform .3s ease-out}
+  .flut .papel{padding:.45rem}
+  .flut-a{--w:clamp(130px,17vw,260px);--r:-7deg;right:21%;bottom:17%}
+  .flut-b{--w:clamp(110px,13vw,200px);--r:6deg;right:27%;top:14%}
+  .flut-c{--w:clamp(130px,16vw,250px);--r:4deg;right:3%;bottom:20%}
+  .flut-d{--w:clamp(90px,10vw,150px);--r:-5deg;left:49%;bottom:15%}
+
+  /* globo de espelhos */
+  .fio{position:absolute;right:11%;top:0;width:3px;height:clamp(90px,17vh,170px);background:var(--tinta);z-index:3;transform-origin:top center;animation:balanca 5s ease-in-out infinite alternate}
+  .fio .bola{position:absolute;left:50%;top:100%;margin-left:-60px;width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,#fff 0,#dfe5ec 14%,#9aa5b2 52%,#4b535d 100%);box-shadow:0 18px 30px -12px rgba(0,0,0,.5);overflow:hidden}
+  .fio .bola::before{content:"";position:absolute;inset:0;border-radius:50%;
+    background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.34) 0 1.5px,transparent 1.5px 13px),repeating-linear-gradient(90deg,rgba(0,0,0,.34) 0 1.5px,transparent 1.5px 13px);
+    animation:roda 5s linear infinite}
+  .fio .bola::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.95) 0,rgba(255,255,255,0) 22%),radial-gradient(circle at 72% 78%,rgba(88,192,232,.5),transparent 30%),radial-gradient(circle at 20% 70%,rgba(240,135,122,.5),transparent 28%)}
+  body.festa .fio .bola::before{animation-duration:.9s}
+  @keyframes roda{to{background-position:26px 0,26px 0}}
+  @keyframes balanca{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+  .dica-bola{position:absolute;right:calc(11% + 78px);top:clamp(130px,24vh,230px);font-family:var(--mao);font-size:22px;rotate:8deg;z-index:3;pointer-events:none}
+  .dica-bola svg{display:inline-block;width:40px;vertical-align:middle}
+  .luz{position:fixed;border-radius:50%;pointer-events:none;z-index:70;mix-blend-mode:multiply;filter:blur(2px)}
+
+  /* planta */
+  .planta{position:absolute;left:clamp(-30px,1vw,10px);bottom:-6px;width:clamp(110px,12vw,190px);z-index:4;pointer-events:none}
+  .planta .folhas{transform-origin:50% 100%;animation:vento 6s ease-in-out infinite alternate}
+  @keyframes vento{from{transform:rotate(-1.6deg)}to{transform:rotate(1.8deg)}}
+
+  /* faixa rolando */
+  .faixa{position:absolute;left:-3%;right:-3%;bottom:34px;z-index:6;rotate:-2deg;background:var(--laranja);border-block:3px solid var(--tinta);overflow:hidden;white-space:nowrap}
+  .faixa .corre{display:inline-flex;animation:corre 120s linear infinite;will-change:transform}
+  .faixa span{font-weight:800;font-size:clamp(20px,3vw,32px);letter-spacing:-.02em;text-transform:uppercase;padding:10px 0;white-space:nowrap}
+  .faixa i{font-style:normal;margin:0 .6em}
+  @keyframes corre{to{transform:translateX(-50%)}}
+
+  /* ---------- seções ---------- */
+  section{position:relative}
+  .titulo{padding:clamp(70px,10vw,130px) clamp(18px,5vw,72px) 30px;max-width:1280px;margin:0 auto}
+  .titulo h2{font-weight:800;font-size:clamp(40px,8vw,112px);line-height:.92;letter-spacing:-.045em}
+  .titulo h2 em{font-style:normal;display:inline-block;background:var(--azul);border:.04em solid var(--tinta);padding:0 .12em;border-radius:.1em;rotate:1.8deg}
+  .titulo p{margin-top:16px;font-size:19px;max-width:44ch;font-weight:500}
+  .titulo p .mao{font-family:var(--mao);font-size:1.3em;color:var(--laranja);font-weight:700}
+
+  /* mural de cartazes */
+  .mural{position:relative;width:min(1200px,100% - 32px);margin:0 auto;height:1620px}
+  .cartaz{position:absolute;left:var(--l);top:var(--t);width:var(--w);rotate:var(--r,0deg);translate:var(--dx,0px) var(--dy,0px);
+    transform:translateY(50px) scale(.9);opacity:0;transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s);will-change:transform;user-select:none;-webkit-user-select:none}
+  .cartaz.dentro{transform:none;opacity:1}
+  .cartaz.pegado{z-index:50}
+  .cartaz .papel{background:#fff;padding:.5rem .5rem .75rem;position:relative;box-shadow:1px 2px 0 rgba(22,19,15,.12),0 16px 26px -14px rgba(22,19,15,.55);
+    transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,box-shadow .25s}
+  .cartaz:hover .papel{box-shadow:1px 2px 0 rgba(22,19,15,.12),0 26px 34px -14px rgba(22,19,15,.6)}
+  .cartaz.pegado .papel{box-shadow:0 36px 40px -16px rgba(22,19,15,.6);transition:box-shadow .2s}
+  .fita{position:absolute;top:-11px;left:50%;width:78px;height:24px;margin-left:-39px;rotate:-4deg;background:var(--fita,var(--amarelo));opacity:.82;z-index:3;
+    clip-path:polygon(0 8%,4% 0,8% 10%,13% 0,100% 0,97% 50%,100% 100%,92% 92%,86% 100%,0 100%,3% 50%)}
+  .cartaz.arte .papel{padding:.4rem}
+  .cartaz.arte svg{width:100%;height:auto;aspect-ratio:3/4}
+
+  .tela{display:flex;flex-direction:column;background:var(--marinho);overflow:hidden;text-decoration:none;color:inherit;border:2px solid var(--tinta)}
+  .tela .bar{height:15px;display:flex;align-items:center;gap:4px;padding:0 6px;background:var(--tinta)}
+  .tela .bar i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45)}
+  .tela .vp{position:relative;aspect-ratio:4/5;overflow:hidden;background:#fff}
+  .rolante{position:absolute;left:0;top:0;width:100%;height:auto;animation:rolar var(--dur,20s) ease-in-out .3s infinite alternate;animation-play-state:paused}
+  .cartaz:hover .rolante,.cartaz.pegado .rolante{animation-play-state:running}
+  @media (hover:none){.cartaz.ativa .rolante{animation-play-state:running}}
+  @keyframes rolar{from{transform:translateY(0)}to{transform:translateY(var(--dy2,0px))}}
+  .leg{display:flex;flex-direction:column;gap:2px;padding:.65rem .2rem 0}
+  .leg b{font-weight:800;font-size:1.05rem;letter-spacing:-.025em;line-height:1.1}
+  .leg span{font-family:var(--mono);font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;opacity:.7}
+  .leg a{margin-top:6px;align-self:flex-start;font-weight:700;font-size:.8rem;text-decoration:none;background:var(--tag,var(--amarelo));border:2px solid var(--tinta);border-radius:999px;padding:3px 12px;transition:transform .2s cubic-bezier(.2,1.6,.4,1)}
+  .leg a:hover{transform:rotate(-4deg) scale(1.08)}
+
+  .recado{position:absolute;left:var(--l);top:var(--t);width:var(--w);rotate:var(--r);background:var(--c,var(--amarelo));padding:16px 16px 22px;font-family:var(--mao);font-size:clamp(20px,2.1vw,27px);line-height:1.05;font-weight:700;
+    box-shadow:0 12px 18px -10px rgba(22,19,15,.5);transform:translateY(40px);opacity:0;transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s);
+    clip-path:polygon(0 0,100% 0,100% 88%,92% 100%,0 100%)}
+  .recado.dentro{transform:none;opacity:1}
+
+  /* o que eu faço */
+  .faco{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;width:min(1200px,100% - 32px);margin:10px auto 0;padding-bottom:30px}
+  .nota{position:relative;background:var(--c);padding:26px 22px 30px;border:2.5px solid var(--tinta);border-radius:6px;box-shadow:6px 7px 0 var(--tinta);rotate:var(--r);
+    transform:translateY(40px);opacity:0;transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s),rotate .3s}
+  .nota.dentro{transform:none;opacity:1}
+  .nota:hover{rotate:0deg}
+  .nota .n{font-family:var(--mao);font-size:30px;font-weight:700}
+  .nota h3{font-weight:800;font-size:clamp(26px,3vw,38px);letter-spacing:-.04em;line-height:1;margin:2px 0 10px}
+  .nota p{font-weight:500;font-size:17px;max-width:28ch}
+  .nota svg{position:absolute;right:14px;top:14px;width:60px;transition:transform .5s cubic-bezier(.2,1.6,.4,1)}
+  .nota:hover svg{transform:rotate(25deg) scale(1.2)}
+
+  /* gerador de cartaz */
+  .gerador{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,5vw,70px);align-items:center;width:min(1200px,100% - 32px);margin:0 auto;padding:10px 0 clamp(70px,9vw,120px)}
+  .campos{display:flex;flex-direction:column;gap:16px}
+  .campos label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:flex;flex-direction:column;gap:6px}
+  .campos input{font:inherit;font-family:var(--sans);font-weight:700;font-size:26px;letter-spacing:-.03em;padding:12px 16px;border:3px solid var(--tinta);border-radius:14px;background:#fff;color:var(--tinta);outline:none;transition:box-shadow .2s,transform .2s}
+  .campos input:focus{box-shadow:6px 6px 0 var(--azul);transform:translate(-2px,-2px)}
+  .cores{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .cores button{width:38px;height:38px;border-radius:50%;border:3px solid var(--tinta);transition:transform .25s cubic-bezier(.2,1.6,.4,1)}
+  .cores button:hover{transform:scale(1.18) rotate(10deg)}
+  .cores button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--parede),0 0 0 6px var(--tinta)}
+  .gc-palco{display:flex;justify-content:center}
+  .gc{width:min(100%,340px);rotate:3deg;transition:rotate .4s cubic-bezier(.2,1.6,.4,1)}
+  .gc:hover{rotate:-1deg}
+  .gc .papel{background:#fff;padding:.6rem;box-shadow:0 26px 34px -16px rgba(22,19,15,.6);position:relative}
+  .gc svg{width:100%;height:auto;aspect-ratio:3/4}
+  .gc-txt{position:absolute;left:.6rem;right:.6rem;bottom:.6rem;background:#fff;border-top:3px solid var(--tinta);padding:12px 14px 14px}
+  .gc-txt small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+  .gc-txt h3{font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.045em;line-height:.95;word-break:break-word}
+  .gc-txt p{font-weight:600;font-size:17px;margin-top:2px}
+  .gc .fita{--fita:var(--laranja)}
+
+  /* rodapé */
+  .fim{position:relative;overflow:hidden;padding-top:clamp(70px,10vw,130px)}
+  .fim .cartao{width:min(1200px,100% - 32px);margin:0 auto;position:relative;z-index:3}
+  .fim h2{font-weight:800;font-size:clamp(46px,10vw,150px);line-height:.88;letter-spacing:-.05em;max-width:12ch}
+  .fim h2 em{font-style:normal;background:var(--salmao);border:.04em solid var(--tinta);padding:0 .1em;border-radius:.1em;display:inline-block;rotate:-2deg}
+  .fim p{margin:20px 0 28px;font-size:20px;max-width:34ch;font-weight:500}
+  .zap{display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(20px,2.6vw,30px);letter-spacing:-.02em;text-decoration:none;background:var(--verde);color:#fff;border:3px solid var(--tinta);border-radius:999px;padding:18px 34px;box-shadow:6px 6px 0 var(--tinta);transition:transform .25s cubic-bezier(.2,1.6,.4,1),box-shadow .25s}
+  .zap:hover{transform:translate(-3px,-4px) rotate(-1.5deg);box-shadow:10px 11px 0 var(--tinta)}
+  .zap svg{width:1.2em;height:1.2em}
+  .mesa{position:relative;margin-top:clamp(190px,17vw,250px);height:150px;background:linear-gradient(#D9A066,#C28A52);border-top:5px solid var(--tinta)}
+  .mesa::after{content:"";position:absolute;inset:0;opacity:.35;background:repeating-linear-gradient(90deg,transparent 0 90px,rgba(90,50,10,.35) 90px 92px,transparent 92px 230px)}
+  .copo{position:absolute;left:50%;bottom:calc(100% - 4px);margin-left:-40px;width:80px;z-index:2}
+  .vapor path{stroke-dasharray:60;animation:vapor 3s ease-in-out infinite;opacity:.0}
+  .vapor path:nth-child(2){animation-delay:.8s}.vapor path:nth-child(3){animation-delay:1.6s}
+  @keyframes vapor{0%{stroke-dashoffset:60;opacity:0}30%{opacity:.8}100%{stroke-dashoffset:-60;opacity:0}}
+  .assina{position:absolute;right:clamp(16px,4vw,60px);top:50%;transform:translateY(-50%);font-family:var(--mao);font-size:26px;font-weight:700;z-index:2;text-align:right;line-height:1}
+  .assina small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;font-weight:400;margin-top:6px}
+
+  /* ===================== evolução: mais movimento ===================== */
+  /* cortina de entrada */
+  .cortina{position:fixed;inset:0;z-index:200;display:flex;pointer-events:none}
+  .cortina i{flex:1;background:var(--c);animation:cortina .85s cubic-bezier(.75,0,.2,1) forwards;animation-delay:calc(.5s + var(--i) * .08s)}
+  .cortina b{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:clamp(38px,8vw,110px);letter-spacing:-.05em;color:var(--tinta);animation:cortinaTxt .5s ease .32s forwards}
+  .cortina b span{color:var(--laranja)}
+  @keyframes cortina{to{transform:translateY(-101%)}}
+  @keyframes cortinaTxt{to{opacity:0;transform:translateY(-34px)}}
+  .hero h1 .linha > span{animation-delay:1.45s}
+  .hero h1 .linha:nth-child(2) > span{animation-delay:1.57s}
+  .hero h1 .linha:nth-child(3) > span{animation-delay:1.69s}
+  .hero .etiq,.hero p.sub,.hero .ctas{animation:surge .8s ease 1.95s both}
+  @keyframes surge{from{opacity:0;transform:translateY(22px)}}
+
+  /* marca-texto que desenha */
+  .marca,.titulo h2 em,.fim h2 em{background:none;border:0;position:relative;isolation:isolate}
+  .marca::before,.titulo h2 em::before,.fim h2 em::before{content:"";position:absolute;inset:0;z-index:-1;border:.05em solid var(--tinta);border-radius:.12em;background:var(--emc,var(--amarelo));transform:scaleX(0);transform-origin:left center;transition:transform .8s cubic-bezier(.7,0,.2,1) .35s,background .3s}
+  .marca::before{animation:marcaIn .8s cubic-bezier(.7,0,.2,1) 2.2s forwards;transition:background .3s}
+  .marca:hover{background:none}
+  .marca:hover::before{background:var(--azul)}
+  .titulo h2 em{--emc:var(--azul)} .fim h2 em{--emc:var(--salmao)}
+  @keyframes marcaIn{to{transform:scaleX(1)}}
+  .rev.dentro em::before{transform:scaleX(1)}
+
+  /* entrada dos títulos e textos */
+  .rev{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .9s cubic-bezier(.2,1.3,.4,1)}
+  .rev.dentro{opacity:1;transform:none}
+
+  /* luzes de fundo e cartazes que flutuam */
+  .luzes{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none}
+  .luzes i{position:absolute;width:42vw;height:42vw;border-radius:50%;filter:blur(64px);opacity:.34;mix-blend-mode:multiply;background:var(--c);animation:orbita var(--t,20s) ease-in-out infinite alternate}
+  @keyframes orbita{from{transform:translate(-8vw,-4vw) scale(.9)}to{transform:translate(10vw,6vw) scale(1.14)}}
+  .flut-a{--i:1}.flut-b{--i:2}.flut-c{--i:3}.flut-d{--i:4}
+  .flut .papel{animation:flutua 6.5s ease-in-out infinite alternate;animation-delay:calc(var(--i,0) * -1.7s)}
+  @keyframes flutua{from{translate:0 -7px;rotate:-1deg}to{translate:0 9px;rotate:1.4deg}}
+  .hero h1 .l{display:inline-block;transition:transform .2s cubic-bezier(.2,1.5,.4,1),color .2s}
+  .hero h1.pronto .linha{overflow:visible}
+
+  /* parallax dos cartazes */
+  .cartaz .papel,.cartaz .fita{translate:0 var(--par,0px)}
+  .cartaz{transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s),filter .3s ease}
+  .mural:has(.cartaz.site:hover) .cartaz:not(:hover){filter:saturate(.7) brightness(.97)}
+
+  /* sobre mim (foto) */
+  .sobre{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:clamp(28px,6vw,90px);align-items:center;width:min(1100px,100% - 32px);margin:clamp(60px,9vw,120px) auto}
+  .foto-caio{position:relative;margin:0;background:#fff;padding:.7rem .7rem 2.2rem;rotate:-3deg;box-shadow:0 28px 38px -18px rgba(22,19,15,.6);transition:rotate .45s cubic-bezier(.2,1.6,.4,1),opacity .7s ease,transform .9s cubic-bezier(.2,1.3,.4,1)}
+  .foto-caio:hover{rotate:0deg}
+  .foto-caio img{width:100%;height:auto;aspect-ratio:1125/1330;object-fit:cover}
+  .foto-caio figcaption{position:absolute;left:0;right:0;bottom:.75rem;text-align:center;font-family:var(--mao);font-size:26px;font-weight:700;line-height:1}
+  .foto-caio .fita{--fita:var(--azul)}
+  .sobre-txt .etiq{margin-bottom:6px}
+  .sobre-txt h2{font-weight:800;font-size:clamp(40px,7vw,96px);line-height:.92;letter-spacing:-.045em;margin:14px 0 20px}
+  .sobre-txt h2 em{font-style:normal;display:inline-block;position:relative;isolation:isolate;rotate:-2deg;--emc:var(--amarelo)}
+  .sobre-txt h2 em::before{content:"";position:absolute;inset:0;z-index:-1;border:.05em solid var(--tinta);border-radius:.1em;background:var(--emc);transform:scaleX(0);transform-origin:left center;transition:transform .8s cubic-bezier(.7,0,.2,1) .35s}
+  .sobre-txt p{font-size:clamp(17px,1.8vw,21px);font-weight:500;max-width:36ch;margin-bottom:14px}
+  .sobre-txt .tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-top:18px}
+  .sobre-txt .tags li{border:2.5px solid var(--tinta);border-radius:999px;padding:6px 16px;font-weight:700;font-size:15px;background:var(--parede);transition:transform .25s cubic-bezier(.2,1.6,.4,1),background .25s}
+  .sobre-txt .tags li:hover{transform:rotate(-4deg) scale(1.06);background:var(--amarelo)}
+
+  /* rodapé */
+  .fim h2{max-width:17ch;font-size:clamp(40px,8vw,118px)}
+  .hero .ctas .btn{min-width:min(100%,340px);justify-content:center;padding:17px 64px;font-size:18px}
+  .rodape{background:var(--tinta);color:#F1EDE4;padding:clamp(48px,6vw,80px) clamp(18px,5vw,72px) 22px}
+  .rodape a{text-decoration:none;transition:color .2s}
+  .rodape a:hover{color:var(--amarelo)}
+  .rodape-grade{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr 1.2fr;gap:clamp(24px,4vw,56px);max-width:1200px;margin:0 auto}
+  .rodape-marca .logo-r{font-weight:800;font-size:28px;letter-spacing:-.04em}
+  .rodape-marca .logo-r span{color:var(--laranja)}
+  .rodape-marca p{margin-top:12px;font-size:15px;line-height:1.5;color:rgba(241,237,228,.72);max-width:32ch}
+  .rodape h4{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amarelo);margin-bottom:14px}
+  .rodape ul{list-style:none;display:grid;gap:9px;font-size:15px}
+  .rodape li{color:rgba(241,237,228,.85)}
+  .rodape-zap{display:inline-grid;place-items:center;margin-top:16px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff!important;border:2px solid #F1EDE4;transition:transform .25s cubic-bezier(.2,1.6,.4,1),background .2s}
+  .rodape-zap svg{width:30px;height:30px}
+  .rodape-zap:hover{background:var(--laranja);color:#fff!important;transform:scale(1.1) rotate(-6deg)}
+  .rodape-base{max-width:1200px;margin:clamp(34px,5vw,56px) auto 0;padding-top:18px;border-top:1px solid rgba(241,237,228,.2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(241,237,228,.6)}
+  @media (max-width:860px){
+    .sobre{grid-template-columns:1fr}
+    .foto-caio{width:min(78%,340px);margin:0 auto}
+    .rodape-grade{grid-template-columns:1fr 1fr}
+    .rodape-marca{grid-column:1 / -1}
+  }
+
+  /* sites rolando dentro dos cartazes (motor em JavaScript) */
+  .rolante{animation:none;will-change:transform}
+  .vp::after{content:"";position:absolute;right:3px;top:4px;width:4px;height:calc(var(--bar,0) * 1px);border-radius:4px;background:rgba(22,19,15,.42);transform:translateY(calc(var(--p,0) * var(--trk,0) * 1px));pointer-events:none}
+
+  /* cursor com texto */
+  .cursor{display:grid;place-items:center}
+  .cursor span{font:700 11px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--tinta);opacity:0;transition:opacity .2s}
+  .cursor.rotulo{width:84px;height:84px;margin:-42px 0 0 -42px;background:var(--amarelo)}
+  .cursor.rotulo span{opacity:1}
+
+  /* rabisco do mouse */
+  #rabisco{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:85;mix-blend-mode:multiply}
+  .tintas .lapis[aria-pressed]{width:auto;height:20px;padding:0 7px;border-radius:999px;font-size:12px;line-height:1;background:var(--amarelo);box-shadow:none}
+  .tintas .lapis[aria-pressed="false"]{background:transparent;text-decoration:line-through;opacity:.6}
+  @media (hover:none){.lapis{display:none}}
+
+  /* gerador e botão final */
+  .gc .papel.pop{animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes pop{0%{transform:scale(.94) rotate(-2deg)}60%{transform:scale(1.04) rotate(1deg)}100%{transform:none}}
+  .zap{position:relative}
+  .zap::after{content:"";position:absolute;inset:-7px;border-radius:999px;border:3px solid var(--verde);opacity:0;animation:pulso 2.4s ease-out infinite;pointer-events:none}
+  @keyframes pulso{0%{transform:scale(.96);opacity:.75}100%{transform:scale(1.14);opacity:0}}
+
+  @media (prefers-reduced-motion:reduce){
+    html:not(.animar) .rev{opacity:1;transform:none}
+    html:not(.animar) .marca::before,html:not(.animar) .titulo h2 em::before,html:not(.animar) .fim h2 em::before{transform:none;animation:none}
+    html:not(.animar) .cortina{display:none}
+    html:not(.animar) .hero .etiq,html:not(.animar) .hero p.sub,html:not(.animar) .hero .ctas{animation:none}
+    html:not(.animar) .zap::after{display:none}
+  }
+
+  /* título "Trabalhos no ar." centralizado */
+  #mural .titulo{text-align:center}
+  img[hidden],button[hidden]{display:none!important}
+  .gerador .gc-palco{position:sticky;top:96px;align-self:start}
+  @media (max-width:860px){ .gerador .gc-palco{position:static} }
+
+  /* protótipo (base visual do site) */
+  .grupo{display:flex;flex-direction:column;gap:10px}
+  .rotulo{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+  .rotulo em{font-style:normal;opacity:.6;text-transform:none;letter-spacing:0}
+  .campos input.so-leitor{position:absolute;width:1px;height:1px;padding:0;border:0;opacity:0;overflow:hidden;pointer-events:none}
+  .upl{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .campos label.upl-btn{display:inline-flex;flex-direction:row;font-family:var(--sans);font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;background:#fff;border:2.5px dashed var(--tinta);border-radius:12px;padding:12px 18px;cursor:pointer;transition:background .2s,transform .2s}
+  .campos label.upl-btn:hover{background:var(--amarelo);transform:rotate(-1.5deg)}
+  .upl:focus-within .upl-btn{outline:3px solid var(--azul);outline-offset:3px}
+  .upl-nome{font-size:14px;max-width:34ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .upl-x{font-size:13px;font-weight:700;text-decoration:underline}
+  .upl-x[hidden]{display:none}
+  .nota-p{font-size:13px;opacity:.7;max-width:46ch}
+  .paleta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+  .paleta button{width:46px;height:46px;border-radius:12px;border:2.5px solid var(--tinta);transition:transform .25s cubic-bezier(.2,1.6,.4,1)}
+  .paleta button:hover{transform:translateY(-3px) rotate(-4deg)}
+  .paleta button[aria-checked="true"]{box-shadow:0 0 0 3px var(--parede),0 0 0 6px var(--tinta)}
+  .fontes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .fontes button{background:#fff;border:2.5px solid var(--tinta);border-radius:14px;padding:10px 6px 8px;text-align:center;transition:transform .25s cubic-bezier(.2,1.6,.4,1),background .2s,box-shadow .2s}
+  .fontes button:hover{transform:translateY(-3px)}
+  .fontes button b{display:block;font-size:32px;line-height:1.1}
+  .fontes button span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;margin-top:2px}
+  .fontes button[aria-checked="true"]{background:var(--amarelo);box-shadow:3px 3px 0 var(--tinta)}
+  .gc{width:min(100%,440px)}
+  .gc .papel{padding:.7rem}
+  .base{position:relative;aspect-ratio:1/1;container-type:inline-size;overflow:hidden;background:var(--claro,#E8DFCF);color:var(--escuro,#1C2B45);transition:background .4s}
+  .gc .base svg{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto}
+  .base-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12cqw 12cqw;gap:3.2cqw;font-family:var(--fonte,"DM Sans",sans-serif);color:var(--escuro,#1C2B45);transition:color .4s}
+  .base-txt h3{font-size:calc(var(--ns,11.4cqw) * var(--k,1));line-height:1.05;font-weight:var(--peso,700);letter-spacing:-.01em;overflow-wrap:anywhere}
+  .base-txt p{font-size:4.8cqw;letter-spacing:var(--ls,.16em);text-transform:var(--up,uppercase);font-weight:var(--peso,700);opacity:.9;overflow-wrap:anywhere;margin:0;color:inherit}
+  .base-fio{width:14cqw;height:.8cqw;background:var(--escuro,#1C2B45);opacity:.75}
+  .base-txt img{max-width:30cqw;max-height:22cqw;object-fit:contain}
+  @media (max-width:860px){ .fontes{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+
+  /* cabeçalho: logo + menu (Sites · Anúncios · Contato) */
+  .menu{display:flex;align-items:center;gap:clamp(12px,2.6vw,28px);background:var(--parede);border:2.5px solid var(--tinta);border-radius:999px;padding:6px 6px 6px 20px;transition:background .6s}
+  .menu a{font-weight:700;font-size:15px;text-decoration:none;position:relative;padding:4px 0}
+  .menu a:not(.menu-zap)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2.5px;background:var(--laranja);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .menu a:not(.menu-zap):hover::after,.menu a[aria-current="page"]::after{transform:scaleX(1)}
+  .menu .menu-zap{background:var(--tinta);color:var(--parede);padding:9px 18px;border-radius:999px;transition:background .25s,color .25s}
+  .menu .menu-zap:hover{background:var(--laranja);color:var(--tinta)}
+  @media (max-width:860px){
+    .menu{gap:12px;padding:5px 5px 5px 14px}
+    .menu a{font-size:13px}
+    .menu .menu-zap{padding:8px 12px}
+    .logo{font-size:15px!important}
+  }
+
+  /* protótipo: a arte anexada vira o fundo e o nome/área saem do quadro */
+  .base.com-arte{background:var(--claro) var(--arte) center / cover no-repeat}
+  .gc .base.com-arte svg,.base.com-arte .base-txt{display:none}
+  .campos.tem-arte .grupo-estilo{opacity:.4}
+  .campos input.invalido{border-color:#B3261E;box-shadow:5px 5px 0 rgba(179,38,30,.3)}
+  .erro-p{color:#B3261E;font-weight:700;font-size:14px}
+  .erro-p[hidden]{display:none}
+  .baixar{font-weight:700;text-decoration:underline}
+
+  /* link da caixa "Google Ads" para a página de anúncios */
+  .nota .nota-link{display:inline-block;margin-top:12px;font-weight:700;font-size:15px;text-decoration:none;border-bottom:2.5px solid var(--tinta);transition:color .2s,border-color .2s}
+  .nota .nota-link:hover{color:var(--parede);border-color:var(--parede)}
+
+  /* cortina vermelha de teatro (abre para os lados) */
+  .cortina .painel{flex:1;position:relative;will-change:transform;
+    background:
+      linear-gradient(to bottom,rgba(40,3,7,.85) 0,rgba(40,3,7,0) 90px),
+      repeating-linear-gradient(90deg,#6A0B13 0,#A91C27 13px,#D8343F 24px,#A91C27 35px,#6A0B13 48px);
+    box-shadow:inset 0 -120px 140px -70px rgba(0,0,0,.6)}
+  .cortina .painel::after{content:"";position:absolute;top:0;bottom:0;width:7px;background:linear-gradient(to right,#B8902F,#F2D27A,#B8902F)}
+  .cortina .esq::after{right:0}
+  .cortina .dir::after{left:0}
+  .cortina .esq{animation:abreEsq 1.25s cubic-bezier(.7,0,.2,1) .8s forwards}
+  .cortina .dir{animation:abreDir 1.25s cubic-bezier(.7,0,.2,1) .8s forwards}
+  @keyframes abreEsq{to{transform:translateX(-101%)}}
+  @keyframes abreDir{to{transform:translateX(101%)}}
+  .cortina b{z-index:2;color:#F6DFA8;text-shadow:0 3px 18px rgba(0,0,0,.55);animation:cortinaTxt .55s ease .5s forwards}
+  .cortina b span{color:#fff}
+
+  /* escala única de títulos: mesmos tamanhos e alinhamento em toda a página */
+  .hero h1{font-size:clamp(36px,4.9vw,74px);line-height:1.02;letter-spacing:-.045em;margin:0 0 24px;text-wrap:balance}
+  .hero-txt{max-width:860px}
+  .hero p.sub{font-size:clamp(17px,1.6vw,21px);max-width:40ch;line-height:1.4}
+  .titulo{text-align:center}
+  .titulo h2,.sobre-txt h2,.fim h2{font-size:clamp(30px,4vw,56px);line-height:1.06;letter-spacing:-.035em;text-wrap:balance}
+  .titulo h2{max-width:24ch;margin-inline:auto}
+  .titulo p{max-width:50ch;margin:16px auto 0;font-size:clamp(17px,1.5vw,20px)}
+  .sobre-txt h2{margin:14px 0 18px}
+  .fim .cartao{text-align:center}
+  .fim h2{max-width:24ch;margin-inline:auto}
+  .fim p{max-width:46ch;margin:18px auto 28px}
+  .campos .ctas #p-zap{min-width:min(100%,380px);justify-content:center;padding:18px 64px;font-size:18px}
+
+  /* abertura: folhas de cartaz coloridas são arrancadas da parede, uma por uma */
+  .cortina{display:block;overflow:hidden}
+  .cortina .fl{position:absolute;inset:-7%;background:var(--c);border:14px solid #fff;box-shadow:0 30px 80px rgba(22,19,15,.35);transform:rotate(var(--r));animation:folhaSai .85s cubic-bezier(.65,0,.25,1) var(--d) forwards;display:grid;place-items:center}
+  .cortina .fl::before{content:"";position:absolute;top:9%;left:50%;width:130px;height:34px;margin-left:-65px;background:rgba(244,196,48,.85);rotate:-3deg;clip-path:polygon(0 8%,4% 0,8% 10%,13% 0,100% 0,97% 50%,100% 100%,92% 92%,86% 100%,0 100%,3% 50%)}
+  @keyframes folhaSai{to{transform:translate(var(--x),var(--y)) rotate(calc(var(--r) + var(--g)))}}
+  .cortina .papel-i b{position:static;inset:auto;display:block;font-weight:800;font-size:clamp(64px,13vw,200px);letter-spacing:-.05em;line-height:1;color:var(--tinta);text-shadow:none;animation:none}
+  .cortina .papel-i b span{color:var(--laranja)}
+
+  /* prototipo mais compacto (menos rolagem) */
+  #seu-cartaz .titulo{padding-top:clamp(50px,6vw,84px);padding-bottom:4px}
+  #seu-cartaz .titulo h2{max-width:none}
+  #seu-cartaz .titulo p{margin-top:10px;max-width:none}
+  .gerador{grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:clamp(20px,3vw,44px);padding:16px 0 clamp(50px,6vw,80px)}
+  .campos{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;align-content:start}
+  .campos > .grupo,.campos > .ctas,.campos > small{grid-column:1 / -1}
+  .campos label{gap:4px;font-size:11px}
+  .campos input{font-size:19px;padding:9px 14px;border-width:2.5px;border-radius:12px}
+  .campos label.upl-btn{font-size:14px;padding:9px 16px}
+  .grupo{gap:7px}
+  .grupo.duas{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+  .grupo.duas .rotulo{display:block;margin-bottom:7px}
+  .paleta{gap:6px;margin-bottom:0}
+  .paleta button{width:30px;height:30px;border-radius:9px;border-width:2px}
+  .paleta button[aria-checked="true"]{box-shadow:0 0 0 2px var(--parede),0 0 0 4px var(--tinta)}
+  .fontes{gap:8px}
+  .fontes button{padding:6px 4px 5px;border-radius:12px;border-width:2px}
+  .fontes button b{font-size:24px}
+  .fontes button span{font-size:9.5px}
+  .nota-p{font-size:12.5px}
+  .gc{width:min(100%,400px)}
+
+  /* balões do "Prazer, Caio": no PC, tudo em 1 linha; no celular, 2 x 2 */
+  .sobre-txt .tags{flex-wrap:nowrap;gap:8px}
+  .sobre-txt .tags li{white-space:nowrap;font-size:14px;padding:6px 14px}
+  @media (max-width:860px){
+    .sobre-txt .tags{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:420px}
+    .sobre-txt .tags li{text-align:center;font-size:15px;padding:9px 10px}
+  }
+
+  /* só no computador */
+  @media (max-width:860px){
+    .cartaz.so-pc{display:none}
+    .mural > .cartaz:last-child{grid-column:1 / -1;justify-self:center;width:46%}
+    .cartaz[data-sp="gisela"]{order:-1}   /* no celular: Gisela à esquerda, figurinha à direita */
+    /* celular: mais respiro sob o título, inclinações suaves e cartões alinhados ao centro de cada linha */
+    #mural .titulo{padding-bottom:46px}
+    .mural{padding-top:30px;row-gap:46px;column-gap:18px;align-items:center}
+    .cartaz.site .leg b{font-size:clamp(.78rem,3.7vw,.9rem);white-space:nowrap}
+    .cartaz.site .leg span{font-size:.54rem}
+    .cartaz{rotate:calc(var(--r,0deg) * .4)}
+    .recado{rotate:calc(var(--r,0deg) * .5)}
+    .cartaz.site .leg span{line-height:1.35}
+    #sobre .sobre{margin-top:130px}
+    .mural{padding-bottom:30px}
+    /* prototipo no celular: campos, depois a prévia, depois o botão */
+    .gerador{grid-template-columns:1fr;gap:16px}
+    .campos{display:contents}
+    .gerador .gc-palco{order:5}
+    .gerador .ctas{order:6}
+    .gerador #p-erro{order:7}
+    .gerador #p-aviso{order:8}
+    .grupo.duas{grid-template-columns:1fr;gap:12px}
+    .paleta{gap:8px}
+    .paleta button{width:38px;height:38px}
+    .fontes{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .fontes button b{font-size:26px}
+    .campos input{font-size:20px}
+  }
+
+  /* texto da abertura e do "Prazer, Caio" */
+  .hero p.sub{max-width:46ch}
+  .hero p.sub .sub-titulo{display:block;font-weight:800;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.025em;line-height:1.15;margin-bottom:8px}
+  .sobre-txt p.destaque{font-weight:800;color:var(--tinta);font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;max-width:34ch}
+
+  :focus-visible{outline:3px solid var(--azul);outline-offset:3px}
+
+  /* ---------- celular ---------- */
+  @media (max-width:860px){
+    body{font-size:16px}
+    .tintas small{display:none}
+    .logo{font-size:16px;padding:4px 10px;white-space:nowrap}
+    .tintas{gap:5px;padding:5px 8px}
+    .tintas button{width:16px;height:16px}
+    .topo-zap{padding:7px 11px;font-size:12px}
+    .hero{padding:100px 18px 130px;align-items:flex-start}
+    .flut-a{left:auto;right:-5%;top:auto;bottom:150px;--w:32vw}
+    .flut-b,.flut-c,.flut-d{display:none}
+    .fio{right:9%;height:84px}
+    .fio .bola{width:64px;height:64px;margin-left:-32px}
+    .dica-bola{display:none}
+    .planta{opacity:.95;width:150px}
+    .mural{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:34px 16px;padding:14px 0 20px}
+    .cartaz,.recado{position:relative;left:auto;top:auto;width:auto}
+    .cartaz.grande-m{grid-column:span 2;width:80%;justify-self:center}
+    .recado{font-size:21px;align-self:center}
+    .leg b{font-size:.92rem}.leg span{font-size:.58rem}
+    .faco{grid-template-columns:1fr;gap:22px}
+    .nota{rotate:0deg!important}
+    .gerador{grid-template-columns:1fr}
+    .assina{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html:not(.animar) *{animation:none!important;transition:none!important}
+    html:not(.animar) .hero h1 .linha > span{transform:none}
+    html:not(.animar) .cartaz,html:not(.animar) .recado,html:not(.animar) .nota{opacity:1;transform:none}
+    html:not(.animar){scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="grao" aria-hidden="true"></div>
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="fl" style="--c:#58C0E8;--r:-2deg;--x:120%;--y:-110%;--g:20deg;--d:1.25s"></div>
+  <div class="fl" style="--c:#F4C430;--r:2.5deg;--x:-130%;--y:30%;--g:-22deg;--d:1.05s"></div>
+  <div class="fl" style="--c:#FF6A13;--r:-1.5deg;--x:10%;--y:130%;--g:-15deg;--d:.85s"></div>
+  <div class="fl" style="--c:#F0877A;--r:2deg;--x:130%;--y:-20%;--g:18deg;--d:.65s"></div>
+  <div class="fl papel-i" style="--c:#F1EDE4;--r:-1deg;--x:-130%;--y:-70%;--g:-20deg;--d:.45s"><b>Sites<span>.</span></b></div>
+</div>
+
+<div class="barra">
+  <a class="logo" href="#topo">Sites e anúncios<span>.</span></a>
+  <nav class="menu" aria-label="Principal">
+    <a href="#topo" aria-current="page">Sites</a>
+    <a href="anuncios.html">Anúncios</a>
+    <a class="menu-zap" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20site." target="_blank" rel="noopener">Contato</a>
+  </nav>
+</div>
+
+<!-- ======== HERÓI ======== -->
+<header class="hero" id="topo">
+  <div class="luzes" aria-hidden="true">
+    <i style="--c:#F0877A;--t:22s;left:-10vw;top:-8vw"></i>
+    <i style="--c:#58C0E8;--t:27s;right:-12vw;top:6vw"></i>
+    <i style="--c:#F4C430;--t:24s;left:30vw;bottom:-18vw"></i>
+    <i style="--c:#C8A6E6;--t:30s;right:8vw;bottom:-14vw"></i>
+  </div>
+  <div class="fio" aria-hidden="true">
+    <div class="bola" id="bola"></div>
+  </div>
+
+  <div class="flut flut-a" data-prof="22"><div class="papel"><svg class="arte" data-seed="7" data-bg="#F0877A" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em tons de salmão"></svg></div></div>
+  <div class="flut flut-b" data-prof="-30"><div class="papel"><svg class="arte" data-seed="21" data-bg="#58C0E8" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em azul"></svg></div></div>
+  <div class="flut flut-c" data-prof="34"><div class="papel"><svg class="arte" data-seed="13" data-bg="#F4C430" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em amarelo"></svg></div></div>
+  <div class="flut flut-d" data-prof="-18"><div class="papel"><svg class="arte" data-seed="3" data-bg="#E9B6DA" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em rosa"></svg></div></div>
+
+  <div class="hero-txt">
+    <h1>
+      <span class="linha"><span>Seu site próprio,</span></span>
+      <span class="linha"><span>profissional e</span></span>
+      <span class="linha"><span><span class="marca">100% otimizado!</span></span></span>
+    </h1>
+    <p class="sub"><span class="sub-titulo">A primeira impressão é a que fica</span>Não tem muito pra onde fugir. Ter um site próprio traz <b>autoridade, seriedade e confiança</b>, e são esses detalhes que mudam o jogo!</p>
+    <div class="ctas">
+      <a class="btn cheio" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20site." target="_blank" rel="noopener">Falar comigo</a>
+    </div>
+  </div>
+
+  <svg class="planta" viewBox="0 0 300 380" aria-hidden="true">
+    <g class="folhas">
+      <path d="M150 300 C 90 250, 40 170, 60 90 C 120 120, 150 200, 150 300Z" fill="#1E7B4B" stroke="#16130F" stroke-width="4"/>
+      <path d="M150 300 C 210 250, 262 170, 240 90 C 180 120, 150 200, 150 300Z" fill="#2A9560" stroke="#16130F" stroke-width="4"/>
+      <path d="M150 300 C 120 220, 100 130, 130 40 C 170 100, 175 200, 150 300Z" fill="#1E7B4B" stroke="#16130F" stroke-width="4"/>
+      <path d="M150 300 C 60 290, 10 240, 8 190 C 70 190, 130 230, 150 300Z" fill="#2A9560" stroke="#16130F" stroke-width="4"/>
+      <path d="M150 300 C 240 290, 290 240, 292 190 C 230 190, 170 230, 150 300Z" fill="#1E7B4B" stroke="#16130F" stroke-width="4"/>
+      <path d="M150 300 C 98 240, 78 170, 66 100 M150 300 C 205 240, 224 170, 236 100 M150 300 C 132 220, 130 120, 130 48" fill="none" stroke="#16130F" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+    </g>
+    <path d="M78 296 L222 296 L206 372 L94 372Z" fill="#C86B3C" stroke="#16130F" stroke-width="4" stroke-linejoin="round"/>
+    <rect x="70" y="284" width="160" height="22" rx="5" fill="#D9824F" stroke="#16130F" stroke-width="4"/>
+  </svg>
+
+  <div class="faixa" id="faixa" aria-hidden="true">
+    <div class="corre">
+      <span>Design gráfico<i>✺</i>Google Ads<i>✺</i>Site profissional e estratégico<i>✺</i>Presença digital<i>✺</i>Design gráfico<i>✺</i>Google Ads<i>✺</i>Site profissional e estratégico<i>✺</i>Presença digital<i>✺</i></span>
+      <span>Design gráfico<i>✺</i>Google Ads<i>✺</i>Site profissional e estratégico<i>✺</i>Presença digital<i>✺</i>Design gráfico<i>✺</i>Google Ads<i>✺</i>Site profissional e estratégico<i>✺</i>Presença digital<i>✺</i></span>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ======== MURAL ======== -->
+<section id="mural">
+  <div class="titulo">
+    <h2>Trabalhos <em>no ar.</em></h2>
+  </div>
+
+  <div class="mural" id="paredao">
+    <article class="cartaz arte" style="--l:1%;--t:30px;--w:19%;--r:-4deg;--d:.05s"><i class="fita" style="--fita:#58C0E8"></i><div class="papel"><svg class="arte" data-seed="41" data-bg="#F0877A" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado salmão"></svg></div></article>
+
+    <article class="cartaz site" style="--l:22%;--t:70px;--w:25%;--r:2deg;--d:.1s;--tag:#F4C430" data-sp="gisela">
+      <i class="fita" style="--fita:#58C0E8"></i>
+      <div class="papel">
+        <a class="tela" href="https://www.giselamottin.com.br" target="_blank" rel="noopener" aria-label="Abrir o site da Gisela Mottin"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="gisela" data-src="prints/full_gisela.jpg" alt="Página inteira do site da psicóloga Gisela Mottin" loading="lazy" decoding="async"></div></a>
+        <div class="leg"><b>Gisela Mottin</b><span>Psicologia · Porto Alegre, RS</span><a href="https://www.giselamottin.com.br" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
+      </div>
+    </article>
+
+    <article class="cartaz arte" style="--l:51%;--t:10px;--w:17%;--r:-2deg;--d:.15s"><i class="fita" style="--fita:#F0877A"></i><div class="papel"><svg class="arte" data-seed="58" data-bg="#FF6A13" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado laranja"></svg></div></article>
+
+    <article class="cartaz site so-pc" style="--l:72%;--t:90px;--w:25%;--r:-2.5deg;--d:.2s;--tag:#58C0E8" data-sp="balbino">
+      <i class="fita"></i>
+      <div class="papel">
+        <a class="tela" href="https://www.dreduardobalbino.com.br" target="_blank" rel="noopener" aria-label="Abrir o site do Dr. Eduardo Balbino"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="balbino" data-src="prints/full_balbino.jpg" alt="Página inteira do site do Dr. Eduardo Balbino" loading="lazy" decoding="async"></div></a>
+        <div class="leg"><b>Dr. Eduardo Balbino</b><span>Odontologia · Recreio, RJ</span><a href="https://www.dreduardobalbino.com.br" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
+      </div>
+    </article>
+
+    <article class="cartaz site" style="--l:5%;--t:600px;--w:25%;--r:-1.5deg;--d:.05s;--tag:#E9B6DA" data-sp="porto">
+      <i class="fita" style="--fita:#C8A6E6"></i>
+      <div class="papel">
+        <a class="tela" href="https://www.drmarceloporto.com" target="_blank" rel="noopener" aria-label="Abrir o site do Dr. Marcelo Porto"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="porto" data-src="prints/full_porto.jpg" alt="Página inteira do site do Dr. Marcelo Porto" loading="lazy" decoding="async"></div></a>
+        <div class="leg"><b>Dr. Marcelo Porto</b><span>Odontologia estética · Florianópolis, SC</span><a href="https://www.drmarceloporto.com" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
+      </div>
+    </article>
+
+    <div class="recado" style="--l:34%;--t:640px;--w:17%;--r:-5deg;--c:#F4C430;--d:.1s">Nenhum cartaz aqui é print solto: todos abrem o site de verdade.</div>
+
+    <article class="cartaz arte" style="--l:35%;--t:900px;--w:16%;--r:4deg;--d:.1s"><i class="fita" style="--fita:#58C0E8"></i><div class="papel"><svg class="arte" data-seed="77" data-bg="#C8A6E6" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado lilás"></svg></div></article>
+
+    <article class="cartaz site" style="--l:56%;--t:560px;--w:25%;--r:2.5deg;--d:.2s;--tag:#F0877A" data-sp="mauricio">
+      <i class="fita" style="--fita:#FF6A13"></i>
+      <div class="papel">
+        <a class="tela" href="https://www.mauriciodamasceno.com.br" target="_blank" rel="noopener" aria-label="Abrir o site do Maurício Damasceno"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="mauricio" data-src="prints/full_mauricio.jpg" alt="Página inteira do site do psicólogo Maurício Damasceno" loading="lazy" decoding="async"></div></a>
+        <div class="leg"><b>Maurício Damasceno</b><span>Psicologia · Belo Horizonte, MG</span><a href="https://www.mauriciodamasceno.com.br" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
+      </div>
+    </article>
+
+    <article class="cartaz arte" style="--l:85%;--t:640px;--w:13%;--r:5deg;--d:.25s"><i class="fita" style="--fita:#F0877A"></i><div class="papel"><svg class="arte" data-seed="92" data-bg="#F4C430" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado amarelo"></svg></div></article>
+
+    <article class="cartaz arte" style="--l:1%;--t:1150px;--w:15%;--r:3deg;--d:.05s"><i class="fita" style="--fita:#F4C430"></i><div class="papel"><svg class="arte" data-seed="105" data-bg="#58C0E8" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado azul"></svg></div></article>
+
+    <article class="cartaz site so-pc" style="--l:20%;--t:1130px;--w:25%;--r:2deg;--d:.1s;--tag:#F4C430" data-sp="ana">
+      <i class="fita" style="--fita:#58C0E8"></i>
+      <div class="papel">
+        <a class="tela" href="https://draanaclarafonseca.com/" target="_blank" rel="noopener" aria-label="Abrir o site da Dra. Ana Clara"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="ana" data-src="prints/full_ana.jpg" alt="Página inteira do site da psiquiatra Dra. Ana Clara" loading="lazy" decoding="async"></div></a>
+        <div class="leg"><b>Dra. Ana Clara</b><span>Psiquiatria · Online e presencial</span><a href="https://draanaclarafonseca.com/" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
+      </div>
+    </article>
+
+    <article class="cartaz site" style="--l:72%;--t:1150px;--w:25%;--r:-2deg;--d:.15s;--tag:#C8A6E6" data-sp="jennifer">
+      <i class="fita" style="--fita:#F4C430"></i>
+      <div class="papel">
+        <a class="tela" href="https://www.jenniferlago.com" target="_blank" rel="noopener" aria-label="Abrir o site da Jennifer Lago"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="jennifer" data-src="prints/full_jennifer.jpg" alt="Página inteira do site da psicóloga Jennifer Lago" loading="lazy" decoding="async"></div></a>
+        <div class="leg"><b>Jennifer Lago</b><span>Psicologia · Brasília, DF</span><a href="https://www.jenniferlago.com" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
+      </div>
+    </article>
+
+    <article class="cartaz arte" style="--l:50%;--t:1175px;--w:16%;--r:4deg;--d:.2s"><i class="fita" style="--fita:#F4C430"></i><div class="papel"><svg class="arte" data-seed="133" data-bg="#E9B6DA" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado rosa"></svg></div></article>
+  </div>
+</section>
+
+<!-- ======== SOBRE ======== -->
+<section id="sobre">
+  <div class="sobre">
+    <figure class="foto-caio">
+      <i class="fita"></i>
+      <img src="prints/caio.jpg" alt="Caio Martins sentado na mesa de trabalho, com cartazes ilustrados na parede ao fundo" width="1125" height="1330" loading="lazy" decoding="async">
+    </figure>
+    <div class="sobre-txt">
+      <span class="etiq">Quem faz</span>
+      <h2>Prazer, <em>Caio.</em></h2>
+      <p>Trabalho com design gráfico e tráfego pago. Faço sites profissionais, com as melhores otimizações do mercado.</p>
+      <p>Configuro também, incluso no site: Google Search, Google Meu Negócio, SEO, AEO/GEO e +.</p>
+      <p class="destaque">Para o seu site ser queridinho pelo Google!</p>
+      <ul class="tags"><li>Design gráfico</li><li>Tráfego orgânico</li><li>Tráfego pago</li><li>Copyright</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======== O QUE EU FAÇO ======== -->
+<section id="faco">
+  <div class="titulo">
+    <h2>O que eu <em>faço.</em></h2>
+  </div>
+  <div class="faco">
+    <div class="nota" style="--c:#F0877A;--r:-1.5deg;--d:0s">
+      <svg viewBox="0 0 60 60" aria-hidden="true"><rect x="8" y="12" width="44" height="32" rx="5" fill="#C8A6E6" stroke="#16130F" stroke-width="3"/><path d="M20 52 H40 M30 44 V52" stroke="#16130F" stroke-width="4" stroke-linecap="round"/></svg>
+      <span class="n">1.</span><h3>Sites</h3>
+      <p>Rápidos, bonitos, bons no celular e com o WhatsApp sempre à vista.</p>
+    </div>
+    <div class="nota" style="--c:#F4C430;--r:1.5deg;--d:.1s">
+      <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="22" fill="#F0877A" stroke="#16130F" stroke-width="3"/><path d="M14 40 Q 30 10 46 40" fill="none" stroke="#16130F" stroke-width="4" stroke-linecap="round"/></svg>
+      <span class="n">2.</span><h3>Presença digital</h3>
+      <p>Configuro Google Search, Google Meu Negócio, SEO, sitemap, indexação e muito mais...</p>
+    </div>
+    <div class="nota" style="--c:#58C0E8;--r:-1deg;--d:.2s">
+      <svg viewBox="0 0 60 60" aria-hidden="true"><rect x="10" y="10" width="40" height="40" rx="8" fill="#F4C430" stroke="#16130F" stroke-width="3"/><path d="M18 40 L28 28 L34 34 L44 18" fill="none" stroke="#16130F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="n">3.</span><h3>Google Ads</h3>
+      <p>Anúncios para aparecer quando o cliente procura por você.</p>
+      <a class="nota-link" href="anuncios.html">Ver como funciona →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== PROTÓTIPO ======== -->
+<section id="seu-cartaz">
+  <div class="titulo">
+    <h2>Solicite o seu <em>protótipo</em> sem compromisso!</h2>
+    <p>Crie ou anexe sua arte/logo e solicite um protótipo hoje mesmo, de graça!</p>
+  </div>
+  <div class="gerador">
+    <div class="campos">
+      <label for="p-nome">Nome completo<input id="p-nome" type="text" maxlength="40" placeholder="Dra. Ana Souza" autocomplete="off"></label>
+      <label for="p-area">Sua área<input id="p-area" type="text" maxlength="40" placeholder="Nutricionista" autocomplete="off"></label>
+
+      <div class="grupo">
+        <span class="rotulo">Sua logo ou arte <em>(se você tiver)</em></span>
+        <div class="upl">
+          <label for="p-arq" class="upl-btn">Escolher arquivo</label>
+          <input id="p-arq" class="so-leitor" type="file" accept="image/*,.svg,.pdf,.ai,.eps,.psd,.zip">
+          <span id="p-arq-nome" class="upl-nome">Nenhum arquivo escolhido</span>
+          <button type="button" id="p-arq-x" class="upl-x" hidden>remover</button>
+        </div>
+      </div>
+
+      <div class="grupo grupo-estilo duas">
+        <div>
+          <span class="rotulo">Cores claras e neutras</span>
+          <div class="paleta" id="p-claras" data-chave="claro" role="radiogroup" aria-label="Cores claras e neutras"></div>
+        </div>
+        <div>
+          <span class="rotulo">Cores escuras</span>
+          <div class="paleta" id="p-escuras" data-chave="escuro" role="radiogroup" aria-label="Cores escuras"></div>
+        </div>
+      </div>
+
+      <div class="grupo grupo-estilo">
+        <span class="rotulo">Fonte das letras</span>
+        <div class="fontes" id="p-fontes" data-chave="fonte" role="radiogroup" aria-label="Fonte das letras"></div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn cheio" id="p-zap" href="#" target="_blank" rel="noopener">Solicitar protótipo</a>
+      </div>
+      <small class="erro-p" id="p-erro" role="alert" hidden>Preencha o seu nome completo e a sua área para solicitar o protótipo.</small>
+      <small class="nota-p" id="p-aviso">No celular, o botão envia a sua prévia (ou a arte que você anexou) junto com a mensagem. No computador, <a id="p-baixar" class="baixar" href="#" download="previa.png">baixe a prévia</a> e anexe na conversa do WhatsApp.</small>
+    </div>
+    <div class="gc-palco">
+      <div class="gc"><div class="papel"><i class="fita"></i>
+        <div class="base" id="p-base">
+          <svg id="p-arte" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+          <div class="base-txt">
+            <h3 id="p-t-nome">Dra. Ana Souza</h3>
+            <span class="base-fio"></span>
+            <p id="p-t-area">Nutricionista</p>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ======== FIM ======== -->
+<footer class="fim">
+  <div class="cartao">
+    <h2>Comece sua jornada <em>independente</em> na internet!</h2>
+    <p>Me chama no WhatsApp, conta da sua área e eu te explico tudo como funciona.</p>
+    <a class="zap" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20site." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.9-4.5-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
+      Chamar no WhatsApp
+    </a>
+  </div>
+  <div class="mesa">
+    <svg class="copo" viewBox="0 0 80 100" aria-hidden="true">
+      <g class="vapor" fill="none" stroke="#16130F" stroke-width="3" stroke-linecap="round"><path d="M28 36 Q 22 24 30 14 Q 36 6 28 -2"/><path d="M42 36 Q 36 22 44 12 Q 50 4 42 -4"/><path d="M56 36 Q 50 24 58 14 Q 64 6 56 -2"/></g>
+      <path d="M14 42 L66 42 L60 98 L20 98Z" fill="#fff" stroke="#16130F" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="12" y="38" width="56" height="10" rx="3" fill="#F0877A" stroke="#16130F" stroke-width="4"/>
+    </svg>
+    <div class="assina">Caio Martins<small>designer gráfico · gestor de tráfego</small></div>
+  </div>
+  <div class="rodape">
+    <div class="rodape-grade">
+      <div class="rodape-marca">
+        <a class="logo-r" href="#topo">Sites e anúncios<span>.</span></a>
+        <p>Designer gráfico e gestor de tráfego. Sites e anúncios para profissionais e prestadores de serviço que querem ser encontrados.</p>
+      </div>
+      <nav aria-label="Navegar na página">
+        <h4>Navegue</h4>
+        <ul>
+          <li><a href="#mural">Trabalhos</a></li>
+          <li><a href="#sobre">Sobre mim</a></li>
+          <li><a href="#faco">O que eu faço</a></li>
+          <li><a href="#seu-cartaz">Solicite seu protótipo</a></li>
+          <li><a href="anuncios.html">Anúncios</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4>Serviços</h4>
+        <ul>
+          <li>Sites profissionais</li>
+          <li>Design gráfico</li>
+          <li>Tráfego orgânico</li>
+          <li>Tráfego pago (Google Ads)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Presença digital</h4>
+        <ul>
+          <li>Google Search</li>
+          <li>Google Meu Negócio</li>
+          <li>SEO</li>
+          <li>Sitemap e indexação</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li>WhatsApp: (16) 99701-1841</li>
+          <li>Atendimento pelo WhatsApp</li>
+        </ul>
+        <a class="rodape-zap" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20site." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp" title="Chamar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.9-4.5-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg></a>
+      </div>
+    </div>
+    <div class="rodape-base">
+      <span>© 2026 Caio Martins. Todos os direitos reservados.</span>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
+  </div>
+</footer>
+
+<noscript>
+  <p style="position:fixed;inset:auto 0 0 0;background:#16130F;color:#F1EDE4;padding:14px;z-index:200">
+    Sites: <a style="color:#F4C430" href="https://www.dreduardobalbino.com.br">Dr. Eduardo Balbino</a> ·
+    <a style="color:#F4C430" href="https://www.drmarceloporto.com">Dr. Marcelo Porto</a> ·
+    <a style="color:#F4C430" href="https://www.jenniferlago.com">Jennifer Lago</a> ·
+    <a style="color:#F4C430" href="https://www.giselamottin.com.br">Gisela Mottin</a> ·
+    <a style="color:#F4C430" href="https://www.mauriciodamasceno.com.br">Maurício Damasceno</a>
+  </p>
+</noscript>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+  var reduzido = false;   /* animações sempre ligadas, a pedido do Caio */
+  var fino = window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var TINTA = '#16130F';
+  var PAL = ['#F0877A','#FF6A13','#F4C430','#58C0E8','#C8A6E6','#E9B6DA','#1E7B4B','#A9C3E1'];
+
+  /* ---------- imagens dos sites (embutidas no arquivo; se faltarem, usa a pasta prints) ---------- */
+  $$('.rolante').forEach(function(img){
+    var k = img.getAttribute('data-key');
+    img.src = (window.IMGS && window.IMGS[k]) || img.getAttribute('data-src');
+  });
+
+  /* ---------- arte gerada (cartazes ilustrados) ---------- */
+  function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function blob(cx,cy,rad,r){
+    var n = 7, pts = [], i;
+    for (i=0;i<n;i++){ var a = i/n*Math.PI*2, k = rad*(.72+r()*.55); pts.push([cx+Math.cos(a)*k, cy+Math.sin(a)*k]); }
+    var mid = function(a,b){ return [(a[0]+b[0])/2,(a[1]+b[1])/2]; };
+    var d = 'M'+mid(pts[0],pts[1]).join(' ');
+    for (i=1;i<=n;i++){ var p = pts[i%n], q = mid(pts[i%n], pts[(i+1)%n]); d += ' Q'+p.join(' ')+' '+q.join(' '); }
+    return d+'Z';
+  }
+  function risco(x,y,r){
+    var d = 'M'+x.toFixed(0)+' '+y.toFixed(0), n = 3+Math.floor(r()*3), i, s = 1;
+    for (i=0;i<n;i++){ var dx = 24+r()*26, dy = (r()-.5)*70; d += ' q'+(dx*.5).toFixed(0)+' '+(s*(18+r()*30)).toFixed(0)+' '+dx.toFixed(0)+' '+dy.toFixed(0); s = -s; }
+    return d;
+  }
+  function desenharArte(svg, seed, bg){
+    var r = rng(seed);
+    var cores = PAL.filter(function(c){ return c.toLowerCase() !== String(bg).toLowerCase(); });
+    var pick = function(){ return cores[Math.floor(r()*cores.length)]; };
+    var h = '<rect width="300" height="400" fill="'+bg+'"/>';
+    var n = 3 + Math.floor(r()*3), i;
+    for (i=0;i<n;i++){
+      var x = 50+r()*200, y = 70+r()*260, s = 44+r()*84, t = r(), c = pick();
+      if (t < .3) h += '<circle cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="'+(s*.6).toFixed(0)+'" fill="'+c+'" stroke="'+TINTA+'" stroke-width="4"/>';
+      else if (t < .7) h += '<path d="'+blob(x,y,s*.8,r)+'" fill="'+c+'" stroke="'+TINTA+'" stroke-width="4" stroke-linejoin="round"/>';
+      else h += '<rect x="'+(x-s*.5).toFixed(0)+'" y="'+(y-s*.5).toFixed(0)+'" width="'+s.toFixed(0)+'" height="'+(s*(.7+r()*.7)).toFixed(0)+'" rx="'+(10+r()*30).toFixed(0)+'" fill="'+c+'" stroke="'+TINTA+'" stroke-width="4" transform="rotate('+((r()-.5)*70).toFixed(0)+' '+x.toFixed(0)+' '+y.toFixed(0)+')"/>';
+    }
+    var m = 2 + Math.floor(r()*2);
+    for (i=0;i<m;i++) h += '<path d="'+risco(30+r()*180, 60+r()*280, r)+'" fill="none" stroke="'+TINTA+'" stroke-width="'+(5+r()*3).toFixed(1)+'" stroke-linecap="round"/>';
+    h += '<circle cx="'+(40+r()*220).toFixed(0)+'" cy="'+(40+r()*320).toFixed(0)+'" r="'+(7+r()*8).toFixed(0)+'" fill="'+pick()+'" stroke="'+TINTA+'" stroke-width="3"/>';
+    svg.innerHTML = h;
+  }
+  $$('svg.arte').forEach(function(s){ desenharArte(s, parseInt(s.getAttribute('data-seed'),10), s.getAttribute('data-bg')); });
+
+  /* ---------- cor da parede ---------- */
+  var chips = $$('.tintas button[data-cor]');
+  function parede(cor, btn){
+    document.documentElement.style.setProperty('--parede', cor);
+    var meta = $('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', cor);
+    chips.forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+  }
+  chips.forEach(function(b){ b.addEventListener('click', function(){ parede(b.getAttribute('data-cor'), b); }); });
+
+  /* ---------- aparecer ao rolar ---------- */
+  var alvos = $$('.cartaz, .recado, .nota');
+  if ('IntersectionObserver' in window && !reduzido){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('dentro'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+    alvos.forEach(function(a){ io.observe(a); });
+  } else { alvos.forEach(function(a){ a.classList.add('dentro'); }); }
+
+  /* no celular, o site rola sozinho quando o cartaz está na tela */
+  if ('IntersectionObserver' in window){
+    var io2 = new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.target.classList.toggle('ativa', e.isIntersecting); });
+    }, {threshold:.5});
+    $$('.cartaz.site').forEach(function(a){ io2.observe(a); });
+  }
+
+  /* quanto cada print deve rolar dentro da janelinha */
+  function medirPrints(){
+    $$('.rolante').forEach(function(img){
+      var vp = img.parentNode, dy = Math.min(0, vp.clientHeight - img.offsetHeight);
+      img.style.setProperty('--dy2', dy+'px');
+      img.style.setProperty('--dur', Math.max(10, Math.abs(dy)/90)+'s');
+    });
+  }
+  $$('.rolante').forEach(function(i){ i.addEventListener('load', medirPrints); });
+  window.addEventListener('resize', medirPrints);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirPrints);
+  medirPrints();
+
+  /* ---------- cartazes: arrastar e inclinar ---------- */
+  var zTopo = 10, suprimir = false;
+  var limite = $('#paredao');
+  $$('.cartaz').forEach(function(el){
+    var papel = $('.papel', el);
+    el.addEventListener('pointermove', function(e){
+      if (e.pointerType === 'touch' || el.classList.contains('pegado') || !papel) return;
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5;
+      papel.style.setProperty('--ry', (x*12).toFixed(2)+'deg');
+      papel.style.setProperty('--rx', (-y*12).toFixed(2)+'deg');
+    });
+    el.addEventListener('pointerleave', function(){ if (papel){ papel.style.setProperty('--rx','0deg'); papel.style.setProperty('--ry','0deg'); } });
+
+    el.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'touch' || e.button > 0 || window.innerWidth <= 860) return;
+      var cx = e.clientX, cy = e.clientY;
+      var ox = parseFloat(el.getAttribute('data-dx')||0), oy = parseFloat(el.getAttribute('data-dy')||0);
+      var r0 = el.getBoundingClientRect(), L = limite.getBoundingClientRect();
+      var mov = false;
+      function move(ev){
+        var dx = ev.clientX - cx, dy = ev.clientY - cy;
+        if (!mov && Math.hypot(dx,dy) > 7){ mov = true; el.classList.add('pegado'); el.style.zIndex = ++zTopo; if (papel){ papel.style.setProperty('--rx','0deg'); papel.style.setProperty('--ry','0deg'); } }
+        if (!mov) return;
+        var nl = Math.max(L.left-30, Math.min(L.right - r0.width + 30, r0.left + dx)) - r0.left;
+        var nt = Math.max(L.top-20, Math.min(L.bottom - r0.height + 20, r0.top + dy)) - r0.top;
+        el.style.setProperty('--dx', (ox+nl).toFixed(1)+'px');
+        el.style.setProperty('--dy', (oy+nt).toFixed(1)+'px');
+        el.setAttribute('data-dx', ox+nl); el.setAttribute('data-dy', oy+nt);
+      }
+      function up(){
+        window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
+        if (mov){ el.classList.remove('pegado'); suprimir = true; setTimeout(function(){ suprimir = false; }, 80); }
+      }
+      window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+    });
+  });
+  document.addEventListener('click', function(e){ if (suprimir){ e.preventDefault(); e.stopPropagation(); } }, true);
+
+  /* ---------- parallax do herói ---------- */
+  var flut = $$('[data-prof]');
+  window.addEventListener('pointermove', function(e){
+    if (e.pointerType === 'touch' || reduzido) return;
+    var nx = e.clientX/innerWidth - .5, ny = e.clientY/innerHeight - .5;
+    flut.forEach(function(f){
+      var p = parseFloat(f.getAttribute('data-prof'));
+      f.style.transform = 'translate('+(nx*p).toFixed(1)+'px,'+(ny*p).toFixed(1)+'px) rotate(var(--r,0deg))';
+    });
+  });
+
+  /* ---------- confete ---------- */
+  function confete(x, y, qtd, forca){
+    if (reduzido || !document.body.animate) return;
+    for (var i=0;i<qtd;i++){
+      var p = document.createElement('i');
+      var s = 8 + Math.random()*14, c = PAL[Math.floor(Math.random()*PAL.length)], f = Math.random();
+      p.style.cssText = 'position:fixed;left:'+x+'px;top:'+y+'px;width:'+s+'px;height:'+s+'px;background:'+c+';border:2px solid '+TINTA+';pointer-events:none;z-index:95;'+
+        (f<.35 ? 'border-radius:50%' : f<.7 ? 'border-radius:3px' : 'clip-path:polygon(50% 0,100% 100%,0 100%);border:0');
+      document.body.appendChild(p);
+      var ang = Math.random()*Math.PI*2, d = (forca||70) * (.5 + Math.random());
+      var a = p.animate([
+        {transform:'translate(-50%,-50%) scale(.3) rotate(0deg)', opacity:1},
+        {transform:'translate(calc(-50% + '+(Math.cos(ang)*d).toFixed(0)+'px), calc(-50% + '+(Math.sin(ang)*d + 30).toFixed(0)+'px)) scale(1) rotate('+((Math.random()-.5)*540).toFixed(0)+'deg)', opacity:1, offset:.6},
+        {transform:'translate(calc(-50% + '+(Math.cos(ang)*d*1.1).toFixed(0)+'px), calc(-50% + '+(Math.sin(ang)*d + 90).toFixed(0)+'px)) scale(.8) rotate('+((Math.random()-.5)*720).toFixed(0)+'deg)', opacity:0}
+      ], {duration:900 + Math.random()*400, easing:'cubic-bezier(.2,.8,.3,1)'});
+      a.onfinish = (function(el){ return function(){ el.remove(); }; })(p);
+    }
+  }
+
+  /* ---------- faixa que acelera com a rolagem ---------- */
+  var faixa = $('#faixa'), ultimo = window.scrollY, sk = 0, skAlvo = 0;
+  window.addEventListener('scroll', function(){ var v = window.scrollY - ultimo; ultimo = window.scrollY; skAlvo = Math.max(-14, Math.min(14, v*.35)); }, {passive:true});
+  if (!reduzido) (function loop(){ sk += (skAlvo - sk)*.12; skAlvo *= .9; faixa.style.transform = 'skewX('+(-sk).toFixed(2)+'deg)'; requestAnimationFrame(loop); })();
+
+  /* ---------- protótipo: base visual do site (nome, área, cores, fonte, arte) ---------- */
+  var CLARAS  = [['#F3E9D2','Creme'],['#E0CFB3','Areia'],['#F4CDB4','Pêssego'],['#EBC3C6','Rosé'],['#D6CDE8','Lavanda'],['#BFD7EA','Azul céu'],['#C6D8C0','Sálvia'],['#D3D2CD','Pedra']];
+  var ESCURAS = [['#26282B','Grafite'],['#1C2B45','Marinho'],['#1F3B33','Pinheiro'],['#3B2A22','Café'],['#4B1F2F','Vinho'],['#124A55','Petróleo'],['#3B2A4F','Berinjela'],['#6B2D18','Ferrugem']];
+  /* k = ajuste de tamanho do nome (fontes largas ficam menores, estreitas maiores) */
+  var FONTES  = [
+    {n:'Playfair Display', c:'"Playfair Display",Georgia,serif',     p:700, up:'uppercase', ls:'.16em', k:1},
+    {n:'Montserrat',       c:'"Montserrat",system-ui,sans-serif',    p:800, up:'uppercase', ls:'.18em', k:.88},
+    {n:'Bebas Neue',       c:'"Bebas Neue",Impact,sans-serif',       p:400, up:'uppercase', ls:'.22em', k:1.3},
+    {n:'Dancing Script',   c:'"Dancing Script",cursive',             p:700, up:'none',      ls:'.03em', k:1.2},
+    {n:'Space Mono',       c:'"Space Mono",ui-monospace,monospace',  p:700, up:'uppercase', ls:'.08em', k:.74},
+    {n:'Abril Fatface',    c:'"Abril Fatface",Georgia,serif',        p:400, up:'uppercase', ls:'.14em', k:.92}
+  ];
+  var pNome = $('#p-nome'), pArea = $('#p-area'), pBase = $('#p-base'), pArte = $('#p-arte'), pZap = $('#p-zap');
+  var pArq = $('#p-arq'), pArqNome = $('#p-arq-nome'), pArqX = $('#p-arq-x'), pErro = $('#p-erro'), pBaixar = $('#p-baixar');
+  var pCampos = $('#seu-cartaz .campos');
+  var pSel = {claro:1, escuro:1, fonte:0, seed:11, artUrl:null, arquivo:null, fileObj:null, ehImagem:false, msg:''};
+  var pSaida = null, pUrlBaixar = null, pTimer = null;   /* pSaida = arquivo que vai junto no celular (a arte anexada ou a prévia gerada) */
+
+  function desenharBase(svg, seed, escuro){
+    var r = rng(seed), h = '', i;
+    var cantos = [[0,0],[300,0],[0,300],[300,300]];
+    var a = Math.floor(r()*4), b = (a + 1 + Math.floor(r()*3)) % 4;
+    h += '<circle cx="'+cantos[a][0]+'" cy="'+cantos[a][1]+'" r="'+(95+r()*38).toFixed(0)+'" fill="'+escuro+'" fill-opacity=".12"/>';
+    h += '<circle cx="'+cantos[b][0]+'" cy="'+cantos[b][1]+'" r="'+(55+r()*32).toFixed(0)+'" fill="'+escuro+'" fill-opacity=".2"/>';
+    var c = (a + 2) % 4;
+    h += '<circle cx="'+(cantos[c][0] === 0 ? 20 : 280)+'" cy="'+(cantos[c][1] === 0 ? 20 : 280)+'" r="'+(10+r()*8).toFixed(0)+'" fill="'+escuro+'" fill-opacity=".85"/>';
+    h += '<path d="M 24 '+(46+r()*18).toFixed(0)+' C 90 '+(10+r()*20).toFixed(0)+', 170 '+(70+r()*20).toFixed(0)+', 276 '+(34+r()*22).toFixed(0)+'" fill="none" stroke="'+escuro+'" stroke-opacity=".5" stroke-width="1.8" stroke-linecap="round"/>';
+    h += '<path d="M 24 '+(250+r()*16).toFixed(0)+' C 100 '+(280+r()*14).toFixed(0)+', 190 '+(228+r()*16).toFixed(0)+', 276 '+(262+r()*16).toFixed(0)+'" fill="none" stroke="'+escuro+'" stroke-opacity=".5" stroke-width="1.8" stroke-linecap="round"/>';
+    for (i=0;i<3;i++) h += '<circle cx="'+(30+r()*240).toFixed(0)+'" cy="'+(r()<.5 ? 22+r()*20 : 258+r()*20).toFixed(0)+'" r="'+(2.5+r()*3).toFixed(1)+'" fill="'+escuro+'" fill-opacity=".7"/>';
+    h += '<rect x="11" y="11" width="278" height="278" rx="4" fill="none" stroke="'+escuro+'" stroke-opacity=".38" stroke-width="1.2"/>';
+    svg.innerHTML = h;
+  }
+
+  function marcarOpcoes(el){
+    var chave = el.getAttribute('data-chave');
+    Array.prototype.forEach.call(el.children, function(b,i){ b.setAttribute('aria-checked', i === pSel[chave] ? 'true' : 'false'); });
+  }
+  function montarOpcoes(id, lista, tipo){
+    var el = $(id);
+    lista.forEach(function(it, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('role','radio');
+      if (tipo === 'cor'){ b.style.background = it[0]; b.setAttribute('aria-label', it[1]); b.title = it[1]; }
+      else { b.setAttribute('aria-label', it.n); b.title = it.n; b.innerHTML = '<b style="font-family:'+it.c.replace(/"/g,"'")+';font-weight:'+it.p+'">Aa</b><span>'+it.n+'</span>'; }
+      b.addEventListener('click', function(){ pSel[el.getAttribute('data-chave')] = i; marcarOpcoes(el); atualizarBase(true); });
+      el.appendChild(b);
+    });
+    marcarOpcoes(el);
+  }
+
+  function popBase(){
+    var p = $('.gc .papel'); if (!p || reduzido) return;
+    p.classList.remove('pop'); void p.offsetWidth; p.classList.add('pop');
+  }
+
+  function atualizarBase(pop){
+    var nome = pNome.value.trim(), area = pArea.value.trim();
+    var cl = CLARAS[pSel.claro], es = ESCURAS[pSel.escuro], fo = FONTES[pSel.fonte];
+    var t = nome || 'Dra. Ana Souza';
+    var comArte = pSel.ehImagem && !!pSel.artUrl;
+    pBase.style.setProperty('--claro', cl[0]);
+    pBase.style.setProperty('--escuro', es[0]);
+    pBase.style.setProperty('--fonte', fo.c);
+    pBase.style.setProperty('--peso', fo.p);
+    pBase.style.setProperty('--up', fo.up);
+    pBase.style.setProperty('--ls', fo.ls);
+    pBase.style.setProperty('--k', fo.k);
+    pBase.style.setProperty('--ns', (t.length > 26 ? 7.4 : t.length > 18 ? 8.8 : t.length > 12 ? 10 : 11.4) + 'cqw');
+    pBase.classList.toggle('com-arte', comArte);
+    pBase.style.setProperty('--arte', comArte ? 'url("' + pSel.artUrl + '")' : 'none');
+    if (pCampos) pCampos.classList.toggle('tem-arte', comArte);
+    $('#p-t-nome').textContent = t;
+    $('#p-t-area').textContent = area || 'Nutricionista';
+    desenharBase(pArte, pSel.seed, es[0]);
+
+    var linhas = ['Oi, Caio! Vim pelo seu portfólio e quero solicitar o meu protótipo sem compromisso.',
+      'Nome: ' + (nome || '(vou informar aqui)'),
+      'Área: ' + (area || '(vou informar aqui)')];
+    if (comArte){ linhas.push('Arte: ' + pSel.arquivo + ' (em anexo).'); }
+    else {
+      linhas.push('Cores: fundo ' + cl[1] + ' (' + cl[0] + ') e destaque ' + es[1] + ' (' + es[0] + ')');
+      linhas.push('Fonte: ' + fo.n);
+      linhas.push(pSel.arquivo ? 'Logo/arte: ' + pSel.arquivo + ' (em anexo).' : 'Segue a prévia da base visual (em anexo).');
+    }
+    pSel.msg = linhas.join('\n');
+    pZap.href = 'https://wa.me/5516997011841?text=' + encodeURIComponent(pSel.msg);
+    if (pop) popBase();
+    agendarSaida();
+  }
+
+  /* ---- arquivo que vai junto: a arte anexada, ou a prévia desenhada num PNG ---- */
+  function carregarImagem(src){
+    return new Promise(function(res, rej){ var i = new Image(); i.onload = function(){ res(i); }; i.onerror = rej; i.src = src; });
+  }
+  function quebrarTexto(ctx, texto, largura){
+    var palavras = texto.split(/\s+/), linhas = [], atual = '';
+    palavras.forEach(function(p){
+      var teste = atual ? atual + ' ' + p : p;
+      if (ctx.measureText(teste).width > largura && atual){ linhas.push(atual); atual = p; } else { atual = teste; }
+    });
+    if (atual) linhas.push(atual);
+    return linhas;
+  }
+  async function gerarPNG(){
+    var S = 1080, c = document.createElement('canvas'); c.width = c.height = S;
+    var x = c.getContext('2d');
+    var cl = CLARAS[pSel.claro][0], es = ESCURAS[pSel.escuro][0], fo = FONTES[pSel.fonte];
+    x.fillStyle = cl; x.fillRect(0, 0, S, S);
+    try {
+      var clone = pArte.cloneNode(true); clone.setAttribute('width', S); clone.setAttribute('height', S);
+      var img = await carregarImagem('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(clone)));
+      x.drawImage(img, 0, 0, S, S);
+    } catch(e){}
+    try { await document.fonts.load(fo.p + ' 40px ' + fo.c); } catch(e){}
+    var nome = pNome.value.trim() || 'Dra. Ana Souza', area = pArea.value.trim() || 'Nutricionista';
+    var ns = (nome.length > 26 ? 7.4 : nome.length > 18 ? 8.8 : nome.length > 12 ? 10 : 11.4) * fo.k * S / 100;
+    var as = S * .048;
+    x.fillStyle = es; x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.font = fo.p + ' ' + ns + 'px ' + fo.c;
+    var linhas = quebrarTexto(x, nome, S * .76), lh = ns * 1.05;
+    var gap = S * .032, fio = S * .008;
+    var total = linhas.length * lh + gap + fio + gap + as * 1.2;
+    var y = (S - total) / 2;
+    linhas.forEach(function(l, i){ x.fillText(l, S/2, y + lh * (i + .5)); });
+    y += linhas.length * lh + gap;
+    x.globalAlpha = .75; x.fillRect(S/2 - S*.07, y, S*.14, fio); x.globalAlpha = 1;
+    y += fio + gap;
+    x.font = fo.p + ' ' + as + 'px ' + fo.c;
+    if ('letterSpacing' in x) x.letterSpacing = (parseFloat(fo.ls) * as).toFixed(1) + 'px';
+    x.globalAlpha = .9;
+    x.fillText(fo.up === 'uppercase' ? area.toUpperCase() : area, S/2, y + as * .6);
+    x.globalAlpha = 1;
+    var blob = await new Promise(function(r){ c.toBlob(r, 'image/png'); });
+    return blob ? new File([blob], 'previa-prototipo.png', {type:'image/png'}) : null;
+  }
+  function agendarSaida(){ clearTimeout(pTimer); pTimer = setTimeout(prepararSaida, 350); }
+  async function prepararSaida(){
+    var f = pSel.fileObj || await gerarPNG();
+    if (!f) return;
+    pSaida = f;
+    if (pUrlBaixar) URL.revokeObjectURL(pUrlBaixar);
+    pUrlBaixar = URL.createObjectURL(f);
+    pBaixar.href = pUrlBaixar; pBaixar.setAttribute('download', f.name);
+  }
+
+  function limparArquivo(){
+    if (pSel.artUrl) URL.revokeObjectURL(pSel.artUrl);
+    pSel.artUrl = null; pSel.arquivo = null; pSel.fileObj = null; pSel.ehImagem = false;
+    pArqNome.textContent = 'Nenhum arquivo escolhido'; pArqX.hidden = true;
+  }
+  pArq.addEventListener('change', function(){
+    var f = pArq.files && pArq.files[0];
+    limparArquivo();
+    if (f){
+      pSel.arquivo = f.name; pSel.fileObj = f; pArqX.hidden = false;
+      pSel.ehImagem = /^image\//.test(f.type) || /\.svg$/i.test(f.name);
+      if (pSel.ehImagem){ pSel.artUrl = URL.createObjectURL(f); pArqNome.textContent = f.name; }
+      else { pArqNome.textContent = f.name + ' (sem prévia: vai junto no envio)'; }
+    }
+    atualizarBase(!!f);
+  });
+  pArqX.addEventListener('click', function(){ pArq.value = ''; limparArquivo(); atualizarBase(false); });
+
+  pNome.addEventListener('input', function(){ pNome.classList.remove('invalido'); pErro.hidden = true; atualizarBase(false); });
+  pArea.addEventListener('input', function(){ pArea.classList.remove('invalido'); pErro.hidden = true; atualizarBase(false); });
+
+  /* nome e área são obrigatórios para enviar */
+  pZap.addEventListener('click', function(e){
+    var faltaNome = !pNome.value.trim(), faltaArea = !pArea.value.trim();
+    if (!faltaNome && !faltaArea) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    pNome.classList.toggle('invalido', faltaNome); pArea.classList.toggle('invalido', faltaArea);
+    pErro.hidden = false;
+    (faltaNome ? pNome : pArea).focus();
+  });
+  /* No celular, abre a lista de aplicativos (Web Share) já com a arte/prévia e a mensagem.
+     O link normal do WhatsApp (wa.me) não aceita anexo, por isso é o plano B (computador ou aparelho sem suporte). */
+  pZap.addEventListener('click', function(e){
+    if (!pSaida || !navigator.share || !navigator.canShare) return;
+    if (!(window.matchMedia && matchMedia('(pointer:coarse)').matches)) return;
+    var dados = {files:[pSaida], text:pSel.msg, title:'Protótipo sem compromisso'};
+    try { if (!navigator.canShare(dados)) return; } catch(err){ return; }
+    e.preventDefault();
+    navigator.share(dados).catch(function(err){
+      if (err && err.name === 'AbortError') return;
+      window.open(pZap.href, '_blank', 'noopener');
+    });
+  });
+  montarOpcoes('#p-claras', CLARAS, 'cor');
+  montarOpcoes('#p-escuras', ESCURAS, 'cor');
+  montarOpcoes('#p-fontes', FONTES, 'fonte');
+  atualizarBase(false);
+
+  /* ===================== evolução: mais movimento ===================== */
+
+  /* cortina de entrada some do caminho */
+  var cort = $('#cortina');
+  if (cort){ if (reduzido) cort.remove(); else setTimeout(function(){ cort.remove(); }, 2500); }
+
+  /* títulos e textos entram ao rolar (e o marca-texto se desenha) */
+  var revs = $$('.titulo h2, .titulo p, .fim h2, .fim p, .fim .zap, .sobre-txt h2, .sobre-txt p, .sobre-txt .tags, .foto-caio');
+  revs.forEach(function(el, i){ el.classList.add('rev'); if (el.tagName === 'P') el.style.transitionDelay = '.15s'; });
+  if ('IntersectionObserver' in window && !reduzido){
+    var io3 = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('dentro'); io3.unobserve(e.target); } });
+    }, {threshold:.2});
+    revs.forEach(function(el){ io3.observe(el); });
+  } else { revs.forEach(function(el){ el.classList.add('dentro'); }); }
+
+  /* letras do título pulam quando o mouse chega perto */
+  var h1 = $('.hero h1');
+  if (h1 && fino && !reduzido){
+    h1.setAttribute('aria-label', h1.textContent.replace(/\s+/g,' ').trim());
+    var tw = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT), nos = [], nn;
+    while ((nn = tw.nextNode())) nos.push(nn);
+    nos.forEach(function(no){
+      if (!no.nodeValue.trim()) return;
+      var frag = document.createDocumentFragment();
+      no.nodeValue.split('').forEach(function(ch){
+        if (ch === ' '){ frag.appendChild(document.createTextNode(' ')); return; }
+        var s = document.createElement('span'); s.className = 'l'; s.textContent = ch; s.setAttribute('aria-hidden','true'); frag.appendChild(s);
+      });
+      no.parentNode.replaceChild(frag, no);
+    });
+    setTimeout(function(){ h1.classList.add('pronto'); }, 2600);
+    var letras = $$('.l', h1);
+    window.addEventListener('pointermove', function(e){
+      if (window.scrollY > window.innerHeight) return;
+      letras.forEach(function(l){
+        var r = l.getBoundingClientRect(), dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2);
+        var k = Math.max(0, 1 - Math.hypot(dx,dy)/210);
+        l.style.transform = k > .01 ? 'translateY('+(-k*16).toFixed(1)+'px) rotate('+((dx < 0 ? 1 : -1)*k*9).toFixed(1)+'deg) scale('+(1+k*.1).toFixed(3)+')' : '';
+        l.style.color = k > .5 ? 'var(--laranja)' : '';
+      });
+    });
+  }
+
+  /* cartazes do mural se mexem em profundidade ao rolar */
+  var vels = [.06,-.05,.09,-.08,.04,-.06,.07,-.04,.05,-.07,.08];
+  var pars = $$('.cartaz').map(function(el,i){ return {p:el, v:vels[i % vels.length]}; });
+  var parPend = false;
+  function parallax(){
+    parPend = false;
+    if (window.innerWidth <= 860 || reduzido) return;
+    var r = limite.getBoundingClientRect(), off = r.top + r.height/2 - window.innerHeight/2;
+    pars.forEach(function(o){ if (o.p) o.p.style.setProperty('--par', (off*o.v).toFixed(1)+'px'); });
+  }
+  window.addEventListener('scroll', function(){ if (!parPend){ parPend = true; requestAnimationFrame(parallax); } }, {passive:true});
+  parallax();
+
+  /* sites rolam sozinhos dentro dos cartazes; com o mouse em cima, a rolagem segue o mouse */
+  var rolantes = $$('.cartaz.site').map(function(el){
+    return {el:el, img:$('.rolante',el), vp:$('.vp',el), p:0, u:0, alvo:null, vivo:false, hover:false, vh:0, ih:0};
+  });
+  function medirRolantes(){ rolantes.forEach(function(r){ r.vh = r.vp.clientHeight; r.ih = r.img.offsetHeight; }); }
+  rolantes.forEach(function(r){
+    r.img.addEventListener('load', medirRolantes);
+    r.el.addEventListener('pointermove', function(e){
+      if (e.pointerType === 'touch' || r.el.classList.contains('pegado')) return;
+      var b = r.vp.getBoundingClientRect();
+      r.hover = true; r.alvo = Math.max(0, Math.min(1, (e.clientY - b.top) / b.height));
+    });
+    r.el.addEventListener('pointerleave', function(){
+      if (!r.hover) return;
+      r.hover = false; r.alvo = null;
+      r.u = Math.acos(1 - 2*r.p) / Math.PI;      /* volta a rolar sozinho de onde parou */
+    });
+  });
+  window.addEventListener('resize', medirRolantes);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirRolantes);
+  medirRolantes();
+  if ('IntersectionObserver' in window){
+    var io4 = new IntersectionObserver(function(es){
+      es.forEach(function(e){ rolantes.forEach(function(r){ if (r.el === e.target) r.vivo = e.isIntersecting; }); });
+    }, {threshold:.1});
+    rolantes.forEach(function(r){ io4.observe(r.el); });
+  } else { rolantes.forEach(function(r){ r.vivo = true; }); }
+  var tRol = performance.now();
+  (function rolar(ts){
+    var dt = Math.min(.05, ((ts || performance.now()) - tRol) / 1000); tRol = ts || performance.now();
+    rolantes.forEach(function(r){
+      if (!r.vivo) return;
+      if (!r.ih || !r.vh){ medirRolantes(); if (!r.ih) return; }
+      var dy = Math.min(0, r.vh - r.ih);
+      if (!dy) return;
+      if (r.hover && r.alvo !== null) r.p += (r.alvo - r.p) * Math.min(1, dt*9);
+      else if (!reduzido){ r.u += dt * (95 / Math.abs(dy)); r.p = .5 - .5*Math.cos(Math.PI*r.u); }
+      r.img.style.transform = 'translateY(' + (r.p*dy).toFixed(1) + 'px)';
+      var bar = Math.max(18, r.vh*r.vh/r.ih);
+      r.vp.style.setProperty('--p', r.p.toFixed(3));
+      r.vp.style.setProperty('--bar', bar.toFixed(1));
+      r.vp.style.setProperty('--trk', (r.vh - bar - 8).toFixed(1));
+    });
+    requestAnimationFrame(rolar);
+  })();
+
+})();
+</script>
+</body>
+</html>

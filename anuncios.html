@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anúncios | Sites e anúncios</title>
+<meta name="description" content="Google Ads e tráfego pago para profissionais e prestadores de serviço. Aqui o assunto fica um pouco mais sério.">
+<meta property="og:title" content="Anúncios no Google | Caio Martins">
+<meta property="og:description" content="Campanhas no Google para o seu negócio ser encontrado na hora em que as pessoas procuram.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12100D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noite:#12100D;
+    --noite-2:#1B1814;
+    --papel:#EDE7DB;
+    --tenue:rgba(237,231,219,.68);
+    --linha:rgba(237,231,219,.16);
+    --laranja:#FF6A13;
+    --salmao:#F0877A;
+    --sans:"Bricolage Grotesque",system-ui,sans-serif;
+    --mono:"DM Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--noite);color:var(--papel);font-family:var(--sans);font-size:17px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  ::selection{background:var(--laranja);color:var(--noite)}
+  :focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
+
+  /* fundo: grade que desliza devagar + brilho laranja (o oposto do mural claro) */
+  body::before{content:"";position:fixed;inset:-64px;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(237,231,219,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(237,231,219,.05) 1px,transparent 1px);
+    background-size:64px 64px;animation:grade 26s linear infinite}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(55% 45% at 8% 0%,rgba(255,106,19,.2),transparent 62%),radial-gradient(45% 40% at 96% 100%,rgba(240,135,122,.1),transparent 60%)}
+  @keyframes grade{to{transform:translate(64px,64px)}}
+  header,main,footer{position:relative;z-index:1}
+
+  /* cabeçalho (igual ao do mural, em versão escura) */
+  .barra{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,3vw,36px);pointer-events:none}
+  .barra > *{pointer-events:auto}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-.03em;text-decoration:none;padding:5px 14px;border:1.5px solid var(--papel);border-radius:999px;background:rgba(18,16,13,.82);backdrop-filter:blur(8px)}
+  .logo span{color:var(--laranja)}
+  .menu{display:flex;align-items:center;gap:clamp(12px,2.6vw,28px);background:rgba(18,16,13,.82);backdrop-filter:blur(8px);border:1.5px solid var(--papel);border-radius:999px;padding:6px 6px 6px 20px}
+  .menu a{font-weight:700;font-size:15px;text-decoration:none;position:relative;padding:4px 0}
+  .menu a:not(.menu-zap)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2.5px;background:var(--laranja);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .menu a:not(.menu-zap):hover::after,.menu a[aria-current="page"]::after{transform:scaleX(1)}
+  .menu .menu-zap{background:var(--papel);color:var(--noite);padding:9px 18px;border-radius:999px;transition:background .25s}
+  .menu .menu-zap:hover{background:var(--laranja)}
+
+  /* revelar ao rolar */
+  .rev{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .9s cubic-bezier(.2,1,.3,1)}
+  .rev.dentro{opacity:1;transform:none}
+
+  .etq{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);display:flex;align-items:center;gap:12px;justify-content:flex-end}
+  .etq::after{content:"";width:34px;height:1px;background:var(--laranja)}
+  .btn-o{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border:1.5px solid var(--laranja);color:var(--laranja);font-weight:700;text-decoration:none;border-radius:4px;transition:background .25s,color .25s}
+  .btn-o:hover{background:var(--laranja);color:var(--noite)}
+
+  /* ---------- herói: visual à esquerda, texto à direita ---------- */
+  .hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:center;gap:clamp(28px,5vw,84px);max-width:1360px;margin:0 auto;padding:120px clamp(18px,5vw,72px) 90px}
+  .hero-txt{display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+  .hero h1{font-weight:800;font-size:clamp(42px,6.6vw,104px);line-height:.94;letter-spacing:-.045em;margin:20px 0 22px}
+  .hero h1 em{font-style:normal;color:var(--laranja)}
+  .lead{font-size:clamp(17px,1.8vw,21px);color:var(--tenue);max-width:44ch;line-height:1.55}
+  .selo{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--linha);padding:7px 14px;border-radius:999px;margin-top:22px;color:var(--tenue)}
+  .hero .btn-o{margin-top:30px;min-width:min(100%,340px);justify-content:center;padding:17px 64px;font-size:18px}
+
+  /* busca de exemplo: o anúncio sobe para o topo */
+  .busca{border:1px solid var(--linha);border-radius:18px;padding:20px;background:rgba(255,255,255,.035)}
+  .busca-barra{display:flex;align-items:center;gap:12px;background:rgba(237,231,219,.08);border:1px solid rgba(237,231,219,.14);border-radius:999px;padding:12px 18px;font-size:17px;min-height:50px}
+  .busca-barra svg{width:18px;height:18px;opacity:.7;flex:none}
+  .busca-barra i{width:2px;height:20px;background:var(--laranja);animation:pisca 1s steps(1) infinite}
+  @keyframes pisca{50%{opacity:0}}
+  .lista-res{position:relative;height:324px;margin-top:18px}
+  .res{position:absolute;left:0;right:0;top:0;height:96px;padding:14px 16px;border-radius:12px;border:1px solid var(--linha);transform:translateY(var(--y,0px));transition:transform 1.2s cubic-bezier(.6,0,.2,1),opacity .6s,background .6s,border-color .6s;overflow:hidden}
+  .res small{font-family:var(--mono);font-size:11px;letter-spacing:.06em;opacity:.85;display:block}
+  .res small b{background:var(--laranja);color:var(--noite);padding:1px 7px;border-radius:4px;margin-right:8px;font-weight:700;display:none}
+  .res h3{font-size:18px;letter-spacing:-.02em;margin:4px 0 2px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .res p{font-size:14px;color:var(--tenue);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .res.o1{--y:0px;opacity:.5}
+  .res.o2{--y:114px;opacity:.5}
+  .res.ad{--y:228px;opacity:.55}
+  .lista-res.com .res.o1{--y:114px}
+  .lista-res.com .res.o2{--y:228px}
+  .lista-res.com .res.ad{--y:0px;opacity:1;background:rgba(255,106,19,.12);border-color:rgba(255,106,19,.55)}
+  .lista-res.com .res.ad small b{display:inline}
+  .busca-leg{margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--tenue);min-height:1.4em}
+  .busca-leg b{color:var(--laranja);font-weight:500}
+
+  /* ---------- seções ---------- */
+  .sec{max-width:1360px;margin:0 auto;padding:clamp(70px,9vw,130px) clamp(18px,5vw,72px);border-top:1px solid var(--linha)}
+  .espelho{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,84px);align-items:center}
+  .sec h2{font-weight:800;font-size:clamp(32px,5vw,70px);line-height:.98;letter-spacing:-.04em;text-align:right;margin:16px 0 0}
+  .sec h2 em{font-style:normal;color:var(--laranja)}
+  .sec-txt{display:flex;flex-direction:column;align-items:flex-end}
+  .sec-txt .lead{text-align:right;margin-top:18px}
+
+  /* caminho do cliente */
+  .fluxo{position:relative;display:grid;gap:18px;padding:10px 0}
+  .fluxo::before{content:"";position:absolute;left:27px;top:var(--topo,40px);bottom:var(--base,40px);width:2px;background:var(--linha)}
+  .fluxo i.dot{position:absolute;left:21px;top:30px;width:14px;height:14px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 6px rgba(255,106,19,.18);animation:desce 5.5s cubic-bezier(.6,0,.4,1) infinite}
+  @keyframes desce{0%{transform:translateY(0)}45%,55%{transform:translateY(calc(var(--h,240px)))}100%{transform:translateY(0)}}
+  .no{position:relative;display:flex;align-items:center;gap:20px;padding:12px 0}
+  .no b{flex:none;width:56px;height:56px;border-radius:50%;border:1.5px solid var(--linha);background:var(--noite-2);display:grid;place-items:center;font-family:var(--mono);font-size:13px;color:var(--laranja);z-index:1}
+  .no span{font-weight:700;font-size:22px;letter-spacing:-.02em}
+  .passos{list-style:none;margin-top:30px;width:100%}
+  .passos li{padding:18px 0;border-top:1px solid var(--linha);display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+  .passos li:last-child{border-bottom:1px solid var(--linha)}
+  .passos h3{font-size:21px;letter-spacing:-.02em;font-weight:600;color:#fff}
+  .passos p{font-size:16px;color:var(--tenue);max-width:42ch;margin-top:4px}
+
+  /* o que eu cuido */
+  .cab-dir{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:clamp(30px,4vw,56px)}
+  .cab-dir h2{text-align:center}
+  .cab-dir .etq{justify-content:center}
+  .cab-dir .etq::before{content:"";width:34px;height:1px;background:var(--laranja)}
+  .grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .card{border:1px solid var(--linha);border-radius:14px;padding:24px 22px 26px;background:rgba(255,255,255,.025);transition:transform .35s cubic-bezier(.2,1.4,.4,1),border-color .3s,background .3s}
+  .card:hover{transform:translateY(-6px);border-color:rgba(255,106,19,.6);background:rgba(255,106,19,.06)}
+  .card .n{font-family:var(--mono);font-size:12px;color:var(--laranja);letter-spacing:.1em}
+  .card h3{font-size:21px;letter-spacing:-.02em;font-weight:600;color:#fff;margin:10px 0 6px}
+  .card p{font-size:16px;color:var(--tenue)}
+
+  /* pago + orgânico */
+  .duplo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,3vw,36px);margin-top:10px}
+  .lado{border:1px solid var(--linha);border-radius:16px;padding:clamp(22px,3vw,36px)}
+  .lado.pago{background:rgba(255,106,19,.07);border-color:rgba(255,106,19,.4)}
+  .lado h3{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;font-weight:700;color:#fff}
+  .lado .sub{color:var(--tenue);margin:6px 0 16px}
+  .lado ul{list-style:none;display:grid;gap:10px}
+  .lado li{display:flex;gap:12px;align-items:baseline;font-size:17px}
+  .lado li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--laranja);transform:translateY(-1px)}
+  .ponte{text-align:right;margin-top:26px;font-size:clamp(18px,2vw,24px);font-weight:600;letter-spacing:-.02em}
+  .ponte em{font-style:normal;color:var(--laranja)}
+
+  /* chamada final */
+  .final{display:flex;justify-content:center;text-align:center}
+  .final-cartao{position:relative;width:min(100%,980px);margin:0 auto;border:1px solid var(--linha);border-radius:24px;padding:clamp(34px,5vw,72px) clamp(20px,4vw,64px);display:flex;flex-direction:column;align-items:center;overflow:hidden;
+    background:radial-gradient(70% 90% at 50% 0%,rgba(255,106,19,.15),transparent 70%),rgba(255,255,255,.03)}
+  .etq-c{justify-content:center}
+  .etq-c::before{content:"";width:34px;height:1px;background:var(--laranja)}
+  .final h2{text-align:center;max-width:none;margin:16px auto 0}
+  .final-lead{color:var(--tenue);font-size:clamp(17px,1.6vw,20px);max-width:46ch;margin:18px auto 0}
+  .final-passos{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:34px 0 36px;width:100%;text-align:left}
+  .final-passos li{border-top:1px solid var(--linha);padding-top:16px}
+  .final-passos .n{font-family:var(--mono);font-size:12px;color:var(--laranja);letter-spacing:.1em}
+  .final-passos h3{font-size:20px;letter-spacing:-.02em;font-weight:600;color:#fff;margin:8px 0 4px}
+  .final-passos p{font-size:15px;color:var(--tenue)}
+  .btn-cheio{background:var(--laranja);color:var(--noite);min-width:min(100%,280px);justify-content:center;font-size:18px}
+  .btn-cheio:hover{background:var(--papel);border-color:var(--papel);color:var(--noite)}
+  .final-zap{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--tenue);margin-top:16px}
+  .voltar{margin-top:18px;font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--papel);padding-bottom:2px;transition:color .2s,border-color .2s}
+  .voltar:hover{color:var(--laranja);border-color:var(--laranja)}
+
+  /* rodapé */
+  .rodape{border-top:1px solid var(--linha);padding:clamp(40px,5vw,64px) clamp(18px,5vw,72px) 22px}
+  .rodape-grade{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:clamp(24px,4vw,56px)}
+  .rodape a{text-decoration:none;transition:color .2s}
+  .rodape a:hover{color:var(--laranja)}
+  .rodape .logo-r{font-weight:800;font-size:26px;letter-spacing:-.04em}
+  .rodape .logo-r span{color:var(--laranja)}
+  .rodape p{margin-top:12px;font-size:15px;line-height:1.5;color:var(--tenue);max-width:32ch}
+  .rodape h4{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);margin-bottom:14px}
+  .rodape ul{list-style:none;display:grid;gap:9px;font-size:15px}
+  .rodape li{color:rgba(237,231,219,.85)}
+  .rodape-base{max-width:1360px;margin:clamp(30px,4vw,48px) auto 0;padding-top:18px;border-top:1px solid var(--linha);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(237,231,219,.55)}
+
+  /* abertura: uma busca digitando, como no próprio Google */
+  .cortina{position:fixed;inset:0;z-index:200;display:grid;place-content:center;justify-items:center;gap:18px;background:var(--noite);pointer-events:none;animation:introSai .6s ease 1.8s forwards}
+  .cortina::before{content:"";position:absolute;inset:0;background:radial-gradient(45% 40% at 50% 50%,rgba(255,106,19,.16),transparent 70%)}
+  .intro-busca{position:relative;width:min(660px,88vw);display:flex;align-items:center;gap:14px;background:rgba(237,231,219,.08);border:1px solid rgba(237,231,219,.22);border-radius:999px;padding:16px 24px;font-size:clamp(16px,2.4vw,24px);animation:introEnter .4s ease 1.55s}
+  .intro-busca svg{width:22px;height:22px;opacity:.75;flex:none}
+  .intro-busca .digita{display:inline-block;white-space:nowrap;clip-path:inset(0 100% 0 0);animation:introDigita 1.15s steps(31,end) .4s forwards}
+  .intro-busca i{width:2px;height:1.2em;background:var(--laranja);animation:pisca 1s steps(1) infinite}
+  .intro-nome{position:relative;font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--tenue)}
+  .intro-nome span{color:var(--laranja)}
+  @keyframes introDigita{to{clip-path:inset(0 0 0 0)}}
+  @keyframes introEnter{50%{box-shadow:0 0 0 7px rgba(255,106,19,.35);border-color:var(--laranja)}}
+  @keyframes introSai{to{opacity:0;visibility:hidden}}
+
+  /* escala única de títulos (igual à do mural) */
+  .hero h1{font-size:clamp(36px,4.9vw,74px);line-height:1.02;letter-spacing:-.045em;margin:18px 0 18px;text-wrap:balance}
+  .frase{font-weight:600;font-size:clamp(20px,2vw,28px);letter-spacing:-.025em;line-height:1.15;margin-bottom:14px}
+  .frase em{font-style:normal;color:var(--laranja)}
+  .sec h2{font-size:clamp(30px,4vw,56px);line-height:1.06;letter-spacing:-.035em;text-wrap:balance}
+  .lead{font-size:clamp(17px,1.6vw,20px)}
+  .hero .lead{max-width:42ch}
+
+  /* celular */
+  @media (max-width:860px){
+    body{font-size:16px}
+    .logo{font-size:15px}
+    .menu{gap:12px;padding:5px 5px 5px 14px}
+    .menu a{font-size:13px}
+    .menu .menu-zap{padding:8px 12px}
+    .hero{grid-template-columns:1fr;padding-top:100px;min-height:0}
+    .hero-txt{order:-1}
+    /* caminho do cliente: título em cima; embaixo, bolinhas e passos lado a lado */
+    .espelho{grid-template-columns:50px minmax(0,1fr);grid-template-areas:"etq etq" "tit tit" "fluxo passos";column-gap:14px;row-gap:0;align-items:start}
+    .espelho .sec-txt{display:contents}
+    .espelho .sec-txt .etq{grid-area:etq;justify-content:flex-end}
+    .espelho .sec-txt h2{grid-area:tit;margin-bottom:22px}
+    .espelho .fluxo{grid-area:fluxo;gap:0;padding:0}
+    .espelho .passos{grid-area:passos;margin-top:0}
+    .fluxo::before{left:21px}
+    .fluxo i.dot{left:15px}
+    .no{height:108px;padding:0;gap:0}
+    .no b{width:44px;height:44px;font-size:12px}
+    .no span{display:none}
+    .passos li{height:108px;padding:0;justify-content:center;align-items:flex-start;text-align:left;border-top:0;border-bottom:0}
+    .passos li:last-child{border-bottom:0}
+    .passos h3{font-size:17px}
+    .passos p{font-size:14px;line-height:1.4}
+    .grade{grid-template-columns:1fr}
+    .duplo{grid-template-columns:1fr}
+    .final-passos{grid-template-columns:1fr}
+    .rodape-grade{grid-template-columns:1fr 1fr}
+    .rodape-grade > :first-child{grid-column:1 / -1}
+    .lista-res{height:300px}
+    .res{height:88px}
+    .res.o2{--y:106px}.lista-res.com .res.o1{--y:106px}
+    .res.ad{--y:212px}.lista-res.com .res.o2{--y:212px}
+  }
+</style>
+</head>
+<body>
+
+<div class="cortina" id="cortina" aria-hidden="true">
+  <div class="intro-busca">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+    <span class="digita">como aparecer no topo do google</span><i></i>
+  </div>
+  <p class="intro-nome">Anúncios<span>.</span></p>
+</div>
+
+<div class="barra">
+  <a class="logo" href="mural.html">Sites e anúncios<span>.</span></a>
+  <nav class="menu" aria-label="Principal">
+    <a href="mural.html">Sites</a>
+    <a href="anuncios.html" aria-current="page">Anúncios</a>
+    <a class="menu-zap" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20an%C3%BAncios%20no%20Google%20Ads." target="_blank" rel="noopener">Contato</a>
+  </nav>
+</div>
+
+<header class="hero" id="topo">
+  <div class="busca rev" aria-hidden="true">
+    <div class="busca-barra">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+      <span id="busca-txt"></span><i></i>
+    </div>
+    <div class="lista-res" id="lista-res">
+      <div class="res o1"><small>www.outrosite.com.br</small><h3>Um resultado qualquer da lista</h3><p>Quem não anuncia depende de ser encontrado sozinho.</p></div>
+      <div class="res o2"><small>www.maisumsite.com.br</small><h3>Outro resultado, mais abaixo</h3><p>Aparece só para quem rola a página.</p></div>
+      <div class="res ad"><small><b>Anúncio</b>www.seunegocio.com.br</small><h3>Seu Negócio | Sua Área de Atuação</h3><p>Atendimento rápido, direto pelo WhatsApp.</p></div>
+    </div>
+    <p class="busca-leg" id="busca-leg"></p>
+  </div>
+
+  <div class="hero-txt">
+    <span class="etq rev">Tráfego pago · Google Ads</span>
+    <h1 class="rev">Eu te coloco no <em>jogo!</em></h1>
+    <p class="lead rev">Design chama atenção. Anúncio traz as pessoas certas até ele. Eu cuido da parte que coloca o seu negócio na frente do seu nicho.</p>
+    <a class="btn-o rev" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20an%C3%BAncios%20no%20Google%20Ads." target="_blank" rel="noopener">Falar comigo</a>
+  </div>
+</header>
+
+<main>
+  <section class="sec" id="caminho">
+    <div class="espelho">
+      <div class="fluxo rev" id="fluxo" aria-hidden="true">
+        <i class="dot"></i>
+        <div class="no"><b>01</b><span>Pesquisa</span></div>
+        <div class="no"><b>02</b><span>Anúncio</span></div>
+        <div class="no"><b>03</b><span>Site</span></div>
+        <div class="no"><b>04</b><span>WhatsApp</span></div>
+      </div>
+      <div class="sec-txt">
+        <span class="etq rev">O caminho do cliente</span>
+        <h2 class="rev">Da pesquisa até a <em>sua mensagem.</em></h2>
+        <ol class="passos rev">
+          <li><h3>A pessoa pesquisa</h3><p>No Google, com a necessidade na ponta da língua.</p></li>
+          <li><h3>O anúncio aparece</h3><p>No topo da lista, na hora em que ela está procurando.</p></li>
+          <li><h3>O site convence</h3><p>A página continua a conversa que o anúncio começou.</p></li>
+          <li><h3>A mensagem chega</h3><p>No seu WhatsApp, pronta para virar atendimento.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="cuido">
+    <div class="cab-dir">
+      <span class="etq rev">Do que eu cuido</span>
+      <h2 class="rev">Cada detalhe da <em>campanha.</em></h2>
+    </div>
+    <div class="grade">
+      <div class="card rev"><span class="n">01</span><h3>Palavras-chave</h3><p>O que o seu cliente digita no Google antes de escolher alguém.</p></div>
+      <div class="card rev"><span class="n">02</span><h3>Campanhas na Pesquisa</h3><p>Anúncios no topo para quem já está procurando o seu serviço.</p></div>
+      <div class="card rev"><span class="n">03</span><h3>Textos dos anúncios</h3><p>Títulos e descrições escritos para atrair o clique certo.</p></div>
+      <div class="card rev"><span class="n">04</span><h3>Página de destino</h3><p>O site que recebe o clique precisa continuar a conversa.</p></div>
+      <div class="card rev"><span class="n">05</span><h3>Medição de contatos</h3><p>Contar mensagens, ligações e formulários, não só cliques.</p></div>
+      <div class="card rev"><span class="n">06</span><h3>Ajustes constantes</h3><p>Cortar o que não funciona e investir no que traz contato.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="juntos">
+    <div class="cab-dir">
+      <span class="etq rev">Pago + orgânico</span>
+      <h2 class="rev">Dois caminhos, <em>uma presença.</em></h2>
+    </div>
+    <div class="duplo">
+      <div class="lado rev">
+        <h3>Tráfego orgânico</h3>
+        <p class="sub">Constrói presença, sem pagar por clique.</p>
+        <ul><li>Google Meu Negócio</li><li>SEO, sitemap e indexação</li><li>Site bem configurado no Google</li></ul>
+      </div>
+      <div class="lado pago rev">
+        <h3>Tráfego pago</h3>
+        <p class="sub">Aparece rápido, enquanto o anúncio está ativo.</p>
+        <ul><li>Campanhas no Google Ads</li><li>Anúncios no topo da pesquisa</li><li>Medição de cada contato</li></ul>
+      </div>
+    </div>
+    <p class="ponte rev">Os dois juntos formam uma <em>presença digital completa.</em></p>
+  </section>
+
+  <section class="sec final" id="contato">
+    <div class="final-cartao rev">
+      <span class="etq etq-c">Contato</span>
+      <h2>É tão <em>simples</em> quanto parece!</h2>
+      <p class="final-lead">Me chama no WhatsApp, conta da sua área e eu te explico tudo como funciona.</p>
+      <ol class="final-passos">
+        <li><span class="n">01</span><h3>Você conta</h3><p>Qual é a sua área e o que você quer alcançar.</p></li>
+        <li><span class="n">02</span><h3>Eu explico</h3><p>Anúncios, site e presença digital, em linguagem simples.</p></li>
+        <li><span class="n">03</span><h3>Você decide</h3><p>Se fizer sentido para você, seguimos para o próximo passo.</p></li>
+      </ol>
+      <a class="btn-o btn-cheio" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20an%C3%BAncios%20no%20Google%20Ads." target="_blank" rel="noopener">Falar comigo</a>
+      <p class="final-zap">WhatsApp · (16) 99701-1841</p>
+      <a class="voltar" href="mural.html">← Voltar para os sites</a>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="rodape-grade">
+    <div>
+      <a class="logo-r" href="mural.html">Sites e anúncios<span>.</span></a>
+      <p>Designer gráfico e gestor de tráfego. Sites e anúncios para profissionais e prestadores de serviço que querem ser encontrados.</p>
+    </div>
+    <nav aria-label="Navegar">
+      <h4>Navegue</h4>
+      <ul>
+        <li><a href="mural.html">Sites</a></li>
+        <li><a href="anuncios.html">Anúncios</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h4>Anúncios</h4>
+      <ul><li>Google Ads</li><li>Campanhas na Pesquisa</li><li>Medição de contatos</li></ul>
+    </div>
+    <div>
+      <h4>Presença digital</h4>
+      <ul><li>Google Meu Negócio</li><li>SEO</li><li>Sitemap e indexação</li></ul>
+    </div>
+  </div>
+  <div class="rodape-base">
+    <span>© 2026 Caio Martins. Todos os direitos reservados.</span>
+    <a href="#topo">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<noscript>
+  <p style="position:fixed;inset:auto 0 0 0;background:#EDE7DB;color:#12100D;padding:14px;z-index:200">
+    <a href="mural.html">Voltar para os sites</a> ·
+    <a href="https://wa.me/5516997011841">Falar no WhatsApp</a>
+  </p>
+</noscript>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+
+  /* a cortina sai do caminho depois de abrir */
+  var cort = $('#cortina');
+  if (cort) setTimeout(function(){ cort.remove(); }, 2600);
+
+  /* aparecer ao rolar */
+  var rev = $$('.rev');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('dentro'); io.unobserve(e.target); } });
+    }, {threshold:.15, rootMargin:'0px 0px -5% 0px'});
+    /* espera a cortina abrir antes de começar a revelar os textos */
+    setTimeout(function(){ rev.forEach(function(el, i){ el.style.transitionDelay = ((i % 4) * 70) + 'ms'; io.observe(el); }); }, 1700);
+  } else { rev.forEach(function(el){ el.classList.add('dentro'); }); }
+
+  /* barra de busca "digita" pesquisas de exemplo */
+  var txt = $('#busca-txt'), busca = $('.busca'), visivel = false;
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ visivel = e.isIntersecting; }); }, {threshold:.2}).observe(busca);
+  } else { visivel = true; }
+  var frases = ['psicólogo perto de mim', 'nutricionista online', 'advogado trabalhista', 'dentista de urgência', 'personal trainer perto de mim'];
+  var fi = 0, ci = 0, apagando = false;
+  (function digitar(){
+    if (!visivel){ setTimeout(digitar, 400); return; }
+    var f = frases[fi];
+    if (!apagando){ ci++; txt.textContent = f.slice(0, ci); if (ci === f.length){ apagando = true; setTimeout(digitar, 1900); return; } }
+    else { ci--; txt.textContent = f.slice(0, ci); if (ci === 0){ apagando = false; fi = (fi + 1) % frases.length; } }
+    setTimeout(digitar, apagando ? 26 : 68);
+  })();
+
+  /* o anúncio sobe para o topo da lista, e volta, em ciclo */
+  var lista = $('#lista-res'), leg = $('#busca-leg');
+  var textos = ['<b>Sem anúncio:</b> o seu negócio aparece lá embaixo.', '<b>Com anúncio:</b> o seu negócio aparece no topo.'];
+  function ciclo(com){
+    lista.classList.toggle('com', com);
+    leg.innerHTML = textos[com ? 1 : 0];
+  }
+  var com = false;
+  ciclo(false);
+  setInterval(function(){ if (!visivel) return; com = !com; ciclo(com); }, 3800);
+
+  /* a bolinha do caminho percorre o tamanho real da lista */
+  function medirFluxo(){
+    var f = $('#fluxo'), nos = $$('.no', f);
+    if (nos.length < 2) return;
+    var a = nos[0].offsetTop + nos[0].offsetHeight/2, b = nos[nos.length-1].offsetTop + nos[nos.length-1].offsetHeight/2;
+    f.style.setProperty('--h', (b - a) + 'px');
+    $('.dot', f).style.top = (a - 7) + 'px';
+    f.style.setProperty('--topo', a + 'px');
+    f.style.setProperty('--base', (f.offsetHeight - b) + 'px');
+  }
+  window.addEventListener('resize', medirFluxo);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirFluxo);
+  medirFluxo();
+})();
+</script>
+</body>
+</html>
