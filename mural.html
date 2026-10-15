@@ -434,18 +434,18 @@
     .hero-txt .btn{pointer-events:auto}
     .hero.h-ads .hero-txt{opacity:.25;transform:translateX(-5%) scale(.96)}
     .fio{display:none}    /* PC: sem a bola de espelhos (ela fica só no celular) */
-    .lado-sites{display:block;position:absolute;top:0;bottom:0;left:0;width:var(--s);z-index:4;cursor:pointer;clip-path:polygon(0 0,100% 0,calc(100% - 4vw) 100%,0 100%);transition:width .75s cubic-bezier(.22,.8,.2,1)}
+    .lado-sites{display:block;position:absolute;top:0;bottom:0;left:0;width:var(--s);z-index:4;cursor:pointer;clip-path:polygon(0 0,100% 0,calc(100% - var(--dx,4vw)) 100%,0 100%);transition:width .75s cubic-bezier(.22,.8,.2,1)}
     .faixa{pointer-events:none}   /* a faixa não "rouba" o mouse das duas metades */
 
     /* lado direito (Anúncios) */
-    .lado-ads{display:block;position:absolute;top:0;bottom:0;right:0;left:calc(var(--s) - 4vw);z-index:4;color:#EDE7DB;text-decoration:none;cursor:pointer;
-      transition:left .75s cubic-bezier(.22,.8,.2,1);animation:adsEntra .9s cubic-bezier(.2,1,.3,1) 1.45s both;filter:drop-shadow(-14px 0 26px rgba(22,19,15,.3))}
+    /* o painel é um retângulo comum que começa na divisória; o fundo dele é inclinado por skew (a diagonal) e leva uma sombra comum */
+    .lado-ads{display:block;position:absolute;top:0;bottom:0;right:0;left:var(--s);z-index:4;color:#EDE7DB;text-decoration:none;cursor:pointer;
+      transition:left .75s cubic-bezier(.22,.8,.2,1);animation:adsEntra .9s cubic-bezier(.2,1,.3,1) 1.45s both}
     @keyframes adsEntra{from{transform:translateX(40%);opacity:0}}
-    .ads-fundo{position:absolute;inset:0;overflow:hidden;clip-path:polygon(4vw 0,100% 0,100% 100%,0 100%);transition:clip-path .6s cubic-bezier(.7,0,.2,1);
+    .ads-fundo{position:absolute;top:0;bottom:0;left:0;right:-6vw;overflow:hidden;transform-origin:0 0;transform:skewX(calc(-1 * var(--sk,.065rad)));box-shadow:-14px 0 26px rgba(22,19,15,.3);
       background:radial-gradient(60% 55% at 90% 8%,rgba(255,106,19,.22),transparent 62%),radial-gradient(50% 45% at 12% 96%,rgba(240,135,122,.1),transparent 60%),#12100D}
     .ads-fundo::before{content:"";position:absolute;inset:-64px;pointer-events:none;
-      background-image:linear-gradient(rgba(237,231,219,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(237,231,219,.05) 1px,transparent 1px);background-size:64px 64px;animation:adsGrade 26s linear infinite}
-    @keyframes adsGrade{to{transform:translate(64px,64px)}}
+      background-image:linear-gradient(rgba(237,231,219,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(237,231,219,.05) 1px,transparent 1px);background-size:64px 64px}
     .ads-conteudo{position:absolute;right:clamp(28px,4.5vw,72px);top:50%;transform:translateY(-50%);width:min(500px,calc(100% - 4vw - 40px));display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:16px;transition:opacity .5s,transform .6s cubic-bezier(.22,.8,.2,1)}
     .hero.h-sites .ads-conteudo{opacity:.35;transform:translateY(-50%) translateX(6%)}
     .ads-etq{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);display:flex;align-items:center;gap:12px}
@@ -468,7 +468,6 @@
 
     /* clique: a porta de Anúncios abre até ocupar a tela, depois a página muda */
     .lado-ads.abre{left:0;z-index:20;transition-duration:.75s}
-    .lado-ads.abre .ads-fundo{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
   }
   @media (min-width:861px) and (max-height:760px){ .ads-res{display:none} }
   /* telas baixas (notebooks): o texto continua, só fica mais compacto */
@@ -486,7 +485,7 @@
   .sobre-txt p.destaque{font-weight:800;color:var(--tinta);font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;max-width:34ch}
 
   /* o alto da pagina para de animar quando sai da tela */
-  .hero.fora .luzes i,.hero.fora .faixa .corre,.hero.fora .planta .p-folhas,.hero.fora .fio,.hero.fora .fio .bola::before,.hero.fora .ads-fundo::before,.hero.fora .ads-busca i{animation-play-state:paused}
+  .hero.fora .luzes i,.hero.fora .faixa .corre,.hero.fora .planta .p-folhas,.hero.fora .fio,.hero.fora .fio .bola::before,.hero.fora .ads-busca i{animation-play-state:paused}
 
   :focus-visible{outline:3px solid var(--azul);outline-offset:3px}
 
@@ -554,8 +553,8 @@
   <!-- abertura dividida (só no computador): Sites à esquerda, Anúncios à direita -->
   <a class="lado-sites" id="ladoSites" href="#mural" aria-label="Ver os trabalhos"></a>
   <a class="lado-ads" id="ladoAds" href="anuncios.html" aria-label="Ir para a página de Anúncios (Google Ads)">
-    <div class="ads-fundo">
-      <div class="ads-conteudo">
+    <div class="ads-fundo"></div>
+    <div class="ads-conteudo">
         <span class="ads-etq">Anúncios · Google Ads</span>
         <p class="ads-t">Eu te coloco no <em>jogo!</em></p>
         <p class="ads-lead">Design chama atenção. Anúncio traz as pessoas certas até ele. Eu cuido da parte que coloca o seu negócio na frente do seu nicho.</p>
@@ -568,7 +567,6 @@
           <strong>Seu Negócio | Sua Área de Atuação</strong>
         </div>
         <span class="ads-cta">Ver anúncios <span aria-hidden="true">→</span></span>
-      </div>
     </div>
   </a>
 
@@ -1271,6 +1269,14 @@
     var heroEl = $('.hero'), ads = $('#ladoAds'), sites = $('#ladoSites');
     if (!heroEl || !ads || !sites || !window.matchMedia) return;
     var larga = window.matchMedia('(min-width:861px)');
+    /* a diagonal desloca a divisória 4vw ao longo da altura real do alto: calcula o ângulo exato */
+    function ajustarDiagonal(){
+      var h = heroEl.offsetHeight || 1, dx = window.innerWidth * 0.04;
+      heroEl.style.setProperty('--sk', Math.atan(dx / h).toFixed(5) + 'rad');
+      heroEl.style.setProperty('--dx', dx.toFixed(1) + 'px');
+    }
+    ajustarDiagonal(); window.addEventListener('resize', ajustarDiagonal);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarDiagonal);
     function estado(c){ heroEl.classList.remove('h-ads','h-sites'); if (c) heroEl.classList.add(c); }
     /* o lado de Anúncios só abre quando o mouse encosta na parte preta (e fica ali um instante) */
     var espera = 0;
@@ -1317,24 +1323,23 @@
     }
   })();
 
-  /* sites rolam sozinhos dentro dos cartazes; com o mouse em cima, a rolagem segue o mouse */
+  /* os sites dentro dos cartazes só rolam quando o mouse está em cima (seguem o mouse); ao sair, voltam ao topo */
   var rolantes = $$('.cartaz.site').map(function(el){
     var vp = $('.vp',el), bar = document.createElement('i'); bar.className = 'rbar'; bar.setAttribute('aria-hidden','true'); vp.appendChild(bar);
-    return {el:el, img:$('.rolante',el), vp:vp, bar:bar, trk:0, p:0, u:0, alvo:null, vivo:false, hover:false, vh:0, ih:0};
+    return {el:el, img:$('.rolante',el), vp:vp, bar:bar, trk:0, p:0, alvo:0, vivo:false, hover:false, vh:0, ih:0, ultPx:''};
   });
+  var rolando = false, tRol = 0;
   function medirRolantes(){ rolantes.forEach(function(r){ r.vh = r.vp.clientHeight; r.ih = r.img.offsetHeight; r.barra = false; }); }
+  function acordarRolagem(){ if (!rolando){ rolando = true; tRol = performance.now(); requestAnimationFrame(rolar); } }
   rolantes.forEach(function(r){
     r.img.addEventListener('load', medirRolantes);
     r.el.addEventListener('pointermove', function(e){
       if (e.pointerType === 'touch' || r.el.classList.contains('pegado')) return;
       var b = r.vp.getBoundingClientRect();
       r.hover = true; r.alvo = Math.max(0, Math.min(1, (e.clientY - b.top) / b.height));
+      acordarRolagem();
     });
-    r.el.addEventListener('pointerleave', function(){
-      if (!r.hover) return;
-      r.hover = false; r.alvo = null;
-      r.u = Math.acos(1 - 2*r.p) / Math.PI;      /* volta a rolar sozinho de onde parou */
-    });
+    r.el.addEventListener('pointerleave', function(){ r.hover = false; r.alvo = 0; acordarRolagem(); });
   });
   window.addEventListener('resize', medirRolantes);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(medirRolantes);
@@ -1345,16 +1350,17 @@
     }, {threshold:.1});
     rolantes.forEach(function(r){ io4.observe(r.el); });
   } else { rolantes.forEach(function(r){ r.vivo = true; }); }
-  var tRol = performance.now();
-  (function rolar(ts){
+  function rolar(ts){
     var dt = Math.min(.05, ((ts || performance.now()) - tRol) / 1000); tRol = ts || performance.now();
+    var mexendo = false;
     rolantes.forEach(function(r){
-      if (!r.vivo) return;
+      if (!r.vivo && !r.hover) return;
       if (!r.ih || !r.vh){ medirRolantes(); if (!r.ih) return; }
       var dy = Math.min(0, r.vh - r.ih);
       if (!dy) return;
-      if (r.hover && r.alvo !== null) r.p += (r.alvo - r.p) * Math.min(1, dt*9);
-      else if (!reduzido){ r.u += dt * (95 / Math.abs(dy)); r.p = .5 - .5*Math.cos(Math.PI*r.u); }
+      var falta = r.alvo - r.p;
+      if (Math.abs(falta) < .0008){ r.p = r.alvo; }
+      else { r.p += falta * Math.min(1, dt * (r.hover ? 9 : 5)); mexendo = true; }
       var px = (r.p*dy).toFixed(1);
       if (px === r.ultPx) return;                       // nada mudou: não mexe no estilo
       r.ultPx = px;
@@ -1362,8 +1368,8 @@
       if (!r.barra){ var bh = Math.max(18, r.vh*r.vh/r.ih); r.trk = r.vh - bh - 8; r.bar.style.height = bh.toFixed(1) + 'px'; r.barra = true; }
       r.bar.style.transform = 'translate3d(0,' + (r.p*r.trk).toFixed(1) + 'px,0)';
     });
-    requestAnimationFrame(rolar);
-  })();
+    if (mexendo || rolantes.some(function(r){ return r.hover; })) requestAnimationFrame(rolar); else rolando = false;   // dorme quando nada se move
+  }
 
 })();
 </script>
