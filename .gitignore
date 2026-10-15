@@ -11,5 +11,5 @@ Thumbs.db
 .DS_Store
 desktop.ini
 
-# Imagens de celular que não são usadas em nenhuma página
-prints/m_*.jpg
+# Imagens antigas (JPG) que nenhuma página usa mais; o site usa só os .webp
+prints/*.jpg

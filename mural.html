@@ -9,9 +9,10 @@
 <meta property="og:description" content="Entre no meu mural: cartazes, sites no ar e um jeito de montar o seu.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#F1EDE4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2316130F'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%23FF6A13'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700&family=Montserrat:wght@800&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Space+Mono:wght@700&family=Abril+Fatface&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
   /* animações sempre ligadas, mesmo se o aparelho pedir menos movimento (a pedido do Caio) */
   document.documentElement.classList.add('animar');
@@ -29,31 +30,21 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--parede);color:var(--tinta);font-family:var(--sans);font-size:17px;line-height:1.45;overflow-x:hidden;transition:background .6s ease;-webkit-font-smoothing:antialiased}
-  body.com-cursor, body.com-cursor a, body.com-cursor button{cursor:none}
   img,svg{display:block;max-width:100%}
   a{color:inherit}
   button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   ::selection{background:var(--amarelo)}
 
   /* grão de papel por cima de tudo */
-  .grao{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.35;mix-blend-mode:multiply;
+  .grao{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.35;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-
-  /* cursor */
-  .cursor{position:fixed;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--laranja);mix-blend-mode:multiply;pointer-events:none;z-index:100;opacity:0;transition:width .2s,height .2s,opacity .3s,background .2s;margin:-11px 0 0 -11px}
-  .cursor.on{opacity:.9}
-  .cursor.grande{width:56px;height:56px;margin:-28px 0 0 -28px;background:var(--azul)}
 
   /* barra do topo */
   .barra{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,3vw,36px);pointer-events:none}
   .barra > *{pointer-events:auto}
   .logo{font-weight:800;font-size:20px;letter-spacing:-.03em;text-decoration:none;background:var(--parede);padding:4px 12px;border:2.5px solid var(--tinta);border-radius:999px;transition:background .6s}
-  .logo span{color:var(--laranja)}
-  .tintas{display:flex;gap:7px;align-items:center;background:var(--parede);border:2.5px solid var(--tinta);border-radius:999px;padding:6px 10px;transition:background .6s}
-  .tintas small{font-family:var(--mono);font-size:11px;margin-right:4px;letter-spacing:.04em}
-  .tintas button{width:20px;height:20px;border-radius:50%;border:2px solid var(--tinta);transition:transform .2s}
-  .tintas button:hover{transform:scale(1.25) rotate(8deg)}
-  .tintas button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--parede),0 0 0 5px var(--tinta)}
+  .logo .pt{color:var(--laranja)}
+  .logo .lg-s{display:none}
   .topo-zap{font-weight:700;font-size:14px;text-decoration:none;background:var(--tinta);color:var(--parede);padding:9px 16px;border-radius:999px;transition:background .25s,transform .25s}
   .topo-zap:hover{background:var(--laranja);color:var(--tinta);transform:rotate(-3deg) scale(1.05)}
 
@@ -76,33 +67,22 @@
   .btn.cheio{background:var(--laranja)}
   .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--tinta)}
 
-  /* arte flutuante */
-  .flut{position:absolute;width:var(--w);z-index:2;transform:translate(0,0) rotate(var(--r,0deg));transition:transform .3s ease-out}
-  .flut .papel{padding:.45rem}
-  .flut-a{--w:clamp(130px,17vw,260px);--r:-7deg;right:21%;bottom:17%}
-  .flut-b{--w:clamp(110px,13vw,200px);--r:6deg;right:27%;top:14%}
-  .flut-c{--w:clamp(130px,16vw,250px);--r:4deg;right:3%;bottom:20%}
-  .flut-d{--w:clamp(90px,10vw,150px);--r:-5deg;left:49%;bottom:15%}
-
   /* globo de espelhos */
   .fio{position:absolute;right:11%;top:0;width:3px;height:clamp(90px,17vh,170px);background:var(--tinta);z-index:3;transform-origin:top center;animation:balanca 5s ease-in-out infinite alternate}
   .fio .bola{position:absolute;left:50%;top:100%;margin-left:-60px;width:120px;height:120px;border-radius:50%;
     background:radial-gradient(circle at 34% 30%,#fff 0,#dfe5ec 14%,#9aa5b2 52%,#4b535d 100%);box-shadow:0 18px 30px -12px rgba(0,0,0,.5);overflow:hidden}
-  .fio .bola::before{content:"";position:absolute;inset:0;border-radius:50%;
+  .fio .bola::before{content:"";position:absolute;top:0;bottom:0;left:0;right:-26px;
     background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.34) 0 1.5px,transparent 1.5px 13px),repeating-linear-gradient(90deg,rgba(0,0,0,.34) 0 1.5px,transparent 1.5px 13px);
     animation:roda 5s linear infinite}
   .fio .bola::after{content:"";position:absolute;inset:0;border-radius:50%;
     background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.95) 0,rgba(255,255,255,0) 22%),radial-gradient(circle at 72% 78%,rgba(88,192,232,.5),transparent 30%),radial-gradient(circle at 20% 70%,rgba(240,135,122,.5),transparent 28%)}
-  body.festa .fio .bola::before{animation-duration:.9s}
-  @keyframes roda{to{background-position:26px 0,26px 0}}
+  @keyframes roda{to{transform:translateX(-26px)}}
   @keyframes balanca{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
-  .dica-bola{position:absolute;right:calc(11% + 78px);top:clamp(130px,24vh,230px);font-family:var(--mao);font-size:22px;rotate:8deg;z-index:3;pointer-events:none}
-  .dica-bola svg{display:inline-block;width:40px;vertical-align:middle}
-  .luz{position:fixed;border-radius:50%;pointer-events:none;z-index:70;mix-blend-mode:multiply;filter:blur(2px)}
 
   /* planta */
-  .planta{position:absolute;left:clamp(-30px,1vw,10px);bottom:-6px;width:clamp(110px,12vw,190px);z-index:4;pointer-events:none}
-  .planta .folhas{transform-origin:50% 100%;animation:vento 6s ease-in-out infinite alternate}
+  .planta{position:absolute;left:clamp(-30px,1vw,10px);bottom:-6px;width:clamp(110px,12vw,190px);aspect-ratio:300/380;z-index:4;pointer-events:none}
+  .planta svg{position:absolute;inset:0;width:100%;height:100%;max-width:none}
+  .planta .p-folhas{transform-origin:50% 100%;animation:vento 6s ease-in-out infinite alternate;will-change:transform}
   @keyframes vento{from{transform:rotate(-1.6deg)}to{transform:rotate(1.8deg)}}
 
   /* faixa rolando */
@@ -123,7 +103,8 @@
   /* mural de cartazes */
   .mural{position:relative;width:min(1200px,100% - 32px);margin:0 auto;height:1620px}
   .cartaz{position:absolute;left:var(--l);top:var(--t);width:var(--w);rotate:var(--r,0deg);translate:var(--dx,0px) var(--dy,0px);
-    transform:translateY(50px) scale(.9);opacity:0;transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s);will-change:transform;user-select:none;-webkit-user-select:none}
+    transform:translateY(50px) scale(.9);opacity:0;transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s);user-select:none;-webkit-user-select:none}
+  .cartaz:not(.dentro){will-change:transform,opacity}
   .cartaz.dentro{transform:none;opacity:1}
   .cartaz.pegado{z-index:50}
   .cartaz .papel{background:#fff;padding:.5rem .5rem .75rem;position:relative;box-shadow:1px 2px 0 rgba(22,19,15,.12),0 16px 26px -14px rgba(22,19,15,.55);
@@ -139,10 +120,7 @@
   .tela .bar{height:15px;display:flex;align-items:center;gap:4px;padding:0 6px;background:var(--tinta)}
   .tela .bar i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45)}
   .tela .vp{position:relative;aspect-ratio:4/5;overflow:hidden;background:#fff}
-  .rolante{position:absolute;left:0;top:0;width:100%;height:auto;animation:rolar var(--dur,20s) ease-in-out .3s infinite alternate;animation-play-state:paused}
-  .cartaz:hover .rolante,.cartaz.pegado .rolante{animation-play-state:running}
-  @media (hover:none){.cartaz.ativa .rolante{animation-play-state:running}}
-  @keyframes rolar{from{transform:translateY(0)}to{transform:translateY(var(--dy2,0px))}}
+  .rolante{position:absolute;left:0;top:0;width:100%;height:auto}
   .leg{display:flex;flex-direction:column;gap:2px;padding:.65rem .2rem 0}
   .leg b{font-weight:800;font-size:1.05rem;letter-spacing:-.025em;line-height:1.1}
   .leg span{font-family:var(--mono);font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;opacity:.7}
@@ -172,19 +150,11 @@
   .campos label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;display:flex;flex-direction:column;gap:6px}
   .campos input{font:inherit;font-family:var(--sans);font-weight:700;font-size:26px;letter-spacing:-.03em;padding:12px 16px;border:3px solid var(--tinta);border-radius:14px;background:#fff;color:var(--tinta);outline:none;transition:box-shadow .2s,transform .2s}
   .campos input:focus{box-shadow:6px 6px 0 var(--azul);transform:translate(-2px,-2px)}
-  .cores{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .cores button{width:38px;height:38px;border-radius:50%;border:3px solid var(--tinta);transition:transform .25s cubic-bezier(.2,1.6,.4,1)}
-  .cores button:hover{transform:scale(1.18) rotate(10deg)}
-  .cores button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--parede),0 0 0 6px var(--tinta)}
   .gc-palco{display:flex;justify-content:center}
   .gc{width:min(100%,340px);rotate:3deg;transition:rotate .4s cubic-bezier(.2,1.6,.4,1)}
   .gc:hover{rotate:-1deg}
   .gc .papel{background:#fff;padding:.6rem;box-shadow:0 26px 34px -16px rgba(22,19,15,.6);position:relative}
   .gc svg{width:100%;height:auto;aspect-ratio:3/4}
-  .gc-txt{position:absolute;left:.6rem;right:.6rem;bottom:.6rem;background:#fff;border-top:3px solid var(--tinta);padding:12px 14px 14px}
-  .gc-txt small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
-  .gc-txt h3{font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.045em;line-height:.95;word-break:break-word}
-  .gc-txt p{font-weight:600;font-size:17px;margin-top:2px}
   .gc .fita{--fita:var(--laranja)}
 
   /* rodapé */
@@ -208,11 +178,6 @@
   /* ===================== evolução: mais movimento ===================== */
   /* cortina de entrada */
   .cortina{position:fixed;inset:0;z-index:200;display:flex;pointer-events:none}
-  .cortina i{flex:1;background:var(--c);animation:cortina .85s cubic-bezier(.75,0,.2,1) forwards;animation-delay:calc(.5s + var(--i) * .08s)}
-  .cortina b{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:clamp(38px,8vw,110px);letter-spacing:-.05em;color:var(--tinta);animation:cortinaTxt .5s ease .32s forwards}
-  .cortina b span{color:var(--laranja)}
-  @keyframes cortina{to{transform:translateY(-101%)}}
-  @keyframes cortinaTxt{to{opacity:0;transform:translateY(-34px)}}
   .hero h1 .linha > span{animation-delay:1.45s}
   .hero h1 .linha:nth-child(2) > span{animation-delay:1.57s}
   .hero h1 .linha:nth-child(3) > span{animation-delay:1.69s}
@@ -233,20 +198,17 @@
   .rev{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .9s cubic-bezier(.2,1.3,.4,1)}
   .rev.dentro{opacity:1;transform:none}
 
-  /* luzes de fundo e cartazes que flutuam */
+  /* luzes de fundo */
   .luzes{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none}
-  .luzes i{position:absolute;width:42vw;height:42vw;border-radius:50%;filter:blur(64px);opacity:.34;mix-blend-mode:multiply;background:var(--c);animation:orbita var(--t,20s) ease-in-out infinite alternate}
+  .luzes i{position:absolute;width:56vw;height:56vw;border-radius:50%;opacity:.4;background:radial-gradient(circle,var(--c) 0,transparent 66%);animation:orbita var(--t,20s) ease-in-out infinite alternate;will-change:transform}
   @keyframes orbita{from{transform:translate(-8vw,-4vw) scale(.9)}to{transform:translate(10vw,6vw) scale(1.14)}}
-  .flut-a{--i:1}.flut-b{--i:2}.flut-c{--i:3}.flut-d{--i:4}
-  .flut .papel{animation:flutua 6.5s ease-in-out infinite alternate;animation-delay:calc(var(--i,0) * -1.7s)}
-  @keyframes flutua{from{translate:0 -7px;rotate:-1deg}to{translate:0 9px;rotate:1.4deg}}
-  .hero h1 .l{display:inline-block;transition:transform .2s cubic-bezier(.2,1.5,.4,1),color .2s}
+  .hero h1 .l{display:inline-block;will-change:transform;transition:transform .2s cubic-bezier(.2,1.5,.4,1),color .2s}
   .hero h1.pronto .linha{overflow:visible}
 
   /* parallax dos cartazes */
   .cartaz .papel,.cartaz .fita{translate:0 var(--par,0px)}
-  .cartaz{transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s),filter .3s ease}
-  .mural:has(.cartaz.site:hover) .cartaz:not(:hover){filter:saturate(.7) brightness(.97)}
+  .cartaz{transition:transform .8s cubic-bezier(.2,1.5,.4,1) var(--d,0s),opacity .5s ease var(--d,0s)}
+  .mural:has(.cartaz.site:hover) .cartaz:not(:hover){opacity:.82}
 
   /* sobre mim (foto) */
   .sobre{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:clamp(28px,6vw,90px);align-items:center;width:min(1100px,100% - 32px);margin:clamp(60px,9vw,120px) auto}
@@ -289,20 +251,10 @@
   }
 
   /* sites rolando dentro dos cartazes (motor em JavaScript) */
-  .rolante{animation:none;will-change:transform}
-  .vp::after{content:"";position:absolute;right:3px;top:4px;width:4px;height:calc(var(--bar,0) * 1px);border-radius:4px;background:rgba(22,19,15,.42);transform:translateY(calc(var(--p,0) * var(--trk,0) * 1px));pointer-events:none}
-
-  /* cursor com texto */
-  .cursor{display:grid;place-items:center}
-  .cursor span{font:700 11px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--tinta);opacity:0;transition:opacity .2s}
-  .cursor.rotulo{width:84px;height:84px;margin:-42px 0 0 -42px;background:var(--amarelo)}
-  .cursor.rotulo span{opacity:1}
-
-  /* rabisco do mouse */
-  #rabisco{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:85;mix-blend-mode:multiply}
-  .tintas .lapis[aria-pressed]{width:auto;height:20px;padding:0 7px;border-radius:999px;font-size:12px;line-height:1;background:var(--amarelo);box-shadow:none}
-  .tintas .lapis[aria-pressed="false"]{background:transparent;text-decoration:line-through;opacity:.6}
-  @media (hover:none){.lapis{display:none}}
+  .rolante{backface-visibility:hidden}
+  .cartaz.vivo .rolante{will-change:transform}
+  .rbar{position:absolute;right:3px;top:4px;width:4px;height:18px;border-radius:4px;background:rgba(22,19,15,.42);pointer-events:none;will-change:transform}
+  .cartaz.vis .papel,.cartaz.vis .fita{will-change:translate}
 
   /* gerador e botão final */
   .gc .papel.pop{animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
@@ -371,7 +323,7 @@
     .menu{gap:12px;padding:5px 5px 5px 14px}
     .menu a{font-size:13px}
     .menu .menu-zap{padding:8px 12px}
-    .logo{font-size:15px!important}
+    .logo{font-size:17px!important}
   }
 
   /* protótipo: a arte anexada vira o fundo e o nome/área saem do quadro */
@@ -386,22 +338,6 @@
   /* link da caixa "Google Ads" para a página de anúncios */
   .nota .nota-link{display:inline-block;margin-top:12px;font-weight:700;font-size:15px;text-decoration:none;border-bottom:2.5px solid var(--tinta);transition:color .2s,border-color .2s}
   .nota .nota-link:hover{color:var(--parede);border-color:var(--parede)}
-
-  /* cortina vermelha de teatro (abre para os lados) */
-  .cortina .painel{flex:1;position:relative;will-change:transform;
-    background:
-      linear-gradient(to bottom,rgba(40,3,7,.85) 0,rgba(40,3,7,0) 90px),
-      repeating-linear-gradient(90deg,#6A0B13 0,#A91C27 13px,#D8343F 24px,#A91C27 35px,#6A0B13 48px);
-    box-shadow:inset 0 -120px 140px -70px rgba(0,0,0,.6)}
-  .cortina .painel::after{content:"";position:absolute;top:0;bottom:0;width:7px;background:linear-gradient(to right,#B8902F,#F2D27A,#B8902F)}
-  .cortina .esq::after{right:0}
-  .cortina .dir::after{left:0}
-  .cortina .esq{animation:abreEsq 1.25s cubic-bezier(.7,0,.2,1) .8s forwards}
-  .cortina .dir{animation:abreDir 1.25s cubic-bezier(.7,0,.2,1) .8s forwards}
-  @keyframes abreEsq{to{transform:translateX(-101%)}}
-  @keyframes abreDir{to{transform:translateX(101%)}}
-  .cortina b{z-index:2;color:#F6DFA8;text-shadow:0 3px 18px rgba(0,0,0,.55);animation:cortinaTxt .55s ease .5s forwards}
-  .cortina b span{color:#fff}
 
   /* escala única de títulos: mesmos tamanhos e alinhamento em toda a página */
   .hero h1{font-size:clamp(36px,4.9vw,74px);line-height:1.02;letter-spacing:-.045em;margin:0 0 24px;text-wrap:balance}
@@ -422,7 +358,7 @@
   .cortina .fl{position:absolute;inset:-7%;background:var(--c);border:14px solid #fff;box-shadow:0 30px 80px rgba(22,19,15,.35);transform:rotate(var(--r));animation:folhaSai .85s cubic-bezier(.65,0,.25,1) var(--d) forwards;display:grid;place-items:center}
   .cortina .fl::before{content:"";position:absolute;top:9%;left:50%;width:130px;height:34px;margin-left:-65px;background:rgba(244,196,48,.85);rotate:-3deg;clip-path:polygon(0 8%,4% 0,8% 10%,13% 0,100% 0,97% 50%,100% 100%,92% 92%,86% 100%,0 100%,3% 50%)}
   @keyframes folhaSai{to{transform:translate(var(--x),var(--y)) rotate(calc(var(--r) + var(--g)))}}
-  .cortina .papel-i b{position:static;inset:auto;display:block;font-weight:800;font-size:clamp(64px,13vw,200px);letter-spacing:-.05em;line-height:1;color:var(--tinta);text-shadow:none;animation:none}
+  .cortina .papel-i b{display:block;font-weight:800;font-size:clamp(64px,13vw,200px);letter-spacing:-.05em;line-height:1;color:var(--tinta)}
   .cortina .papel-i b span{color:var(--laranja)}
 
   /* prototipo mais compacto (menos rolagem) */
@@ -486,24 +422,85 @@
     .campos input{font-size:20px}
   }
 
+  /* ===== abertura dividida: Sites | Anúncios (só no computador) ===== */
+  .lado-sites,.lado-ads{display:none}
+  @media (min-width:861px){
+    .hero{--s:56vw}
+    .hero.h-sites{--s:63vw}
+    .hero.h-ads{--s:38vw}
+
+    /* lado esquerdo (Sites): o texto deixa o clique passar para a área "ver os trabalhos" */
+    .hero-txt{pointer-events:none;will-change:transform,opacity;transition:opacity .6s,transform .75s cubic-bezier(.22,.8,.2,1)}
+    .hero-txt .btn{pointer-events:auto}
+    .hero.h-ads .hero-txt{opacity:.25;transform:translateX(-5%) scale(.96)}
+    .fio{display:none}    /* PC: sem a bola de espelhos (ela fica só no celular) */
+    .lado-sites{display:block;position:absolute;top:0;bottom:0;left:0;width:var(--s);z-index:4;cursor:pointer;clip-path:polygon(0 0,100% 0,calc(100% - 4vw) 100%,0 100%);transition:width .75s cubic-bezier(.22,.8,.2,1)}
+    .faixa{pointer-events:none}   /* a faixa não "rouba" o mouse das duas metades */
+
+    /* lado direito (Anúncios) */
+    /* o painel tem tamanho fixo e se move só por transform (roda na placa de vídeo, sem recalcular o layout) */
+    .lado-ads{display:block;position:absolute;top:0;bottom:0;right:0;left:34vw;z-index:4;color:#EDE7DB;text-decoration:none;cursor:pointer;
+      transform:translateX(calc(var(--s) - 38vw));will-change:transform;
+      transition:transform .75s cubic-bezier(.22,.8,.2,1);animation:adsEntra .9s cubic-bezier(.2,1,.3,1) 1.45s backwards;filter:drop-shadow(-14px 0 26px rgba(22,19,15,.3))}
+    @keyframes adsEntra{from{transform:translateX(calc(var(--s) - 38vw + 40%));opacity:0}}
+    .ads-fundo{position:absolute;inset:0;overflow:hidden;clip-path:polygon(4vw 0,100% 0,100% 100%,0 100%);transition:clip-path .6s cubic-bezier(.7,0,.2,1);
+      background:radial-gradient(60% 55% at 90% 8%,rgba(255,106,19,.22),transparent 62%),radial-gradient(50% 45% at 12% 96%,rgba(240,135,122,.1),transparent 60%),#12100D}
+    .ads-fundo::before{content:"";position:absolute;inset:-64px;pointer-events:none;
+      background-image:linear-gradient(rgba(237,231,219,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(237,231,219,.05) 1px,transparent 1px);background-size:64px 64px;animation:adsGrade 26s linear infinite}
+    @keyframes adsGrade{to{transform:translate(64px,64px)}}
+    .ads-conteudo{position:absolute;right:clamp(28px,4.5vw,72px);top:50%;transform:translate(calc(38vw - var(--s)),-50%);width:min(500px,calc(100% - 4vw - 40px));display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:16px;transition:opacity .5s,transform .75s cubic-bezier(.22,.8,.2,1)}
+    .hero.h-sites .ads-conteudo{opacity:.35;transform:translate(calc(41vw - var(--s)),-50%)}
+    .ads-etq{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);display:flex;align-items:center;gap:12px}
+    .ads-etq::after{content:"";width:34px;height:1px;background:var(--laranja)}
+    .ads-t{font-weight:800;font-size:clamp(34px,3.9vw,62px);line-height:1;letter-spacing:-.045em;margin:0}
+    .ads-t em{font-style:normal;color:var(--laranja)}
+    .ads-lead{margin:0;font-size:17px;line-height:1.5;color:rgba(237,231,219,.72);max-width:44ch}
+    .ads-busca{width:100%;display:flex;align-items:center;gap:12px;background:rgba(237,231,219,.08);border:1px solid rgba(237,231,219,.18);border-radius:999px;padding:12px 18px;font-size:17px;min-height:50px;text-align:left;transition:border-color .4s,box-shadow .4s}
+    .ads-busca svg{width:18px;height:18px;opacity:.7;flex:none}
+    .ads-busca i{width:2px;height:20px;background:var(--laranja);animation:pisca 1s steps(1) infinite}
+    @keyframes pisca{50%{opacity:0}}
+    .ads-res{width:100%;text-align:left;padding:13px 16px;border-radius:12px;border:1px solid rgba(255,106,19,.35);background:rgba(255,106,19,.08);transition:background .4s,border-color .4s,transform .5s cubic-bezier(.2,1.4,.4,1)}
+    .ads-res small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;opacity:.85}
+    .ads-res small b{background:var(--laranja);color:#12100D;padding:1px 7px;border-radius:4px;margin-right:8px;font-weight:700}
+    .ads-res strong{display:block;font-size:18px;letter-spacing:-.02em;color:#fff;font-weight:600;margin-top:4px}
+    .ads-cta{margin-top:6px;border:1.5px solid var(--laranja);color:var(--laranja);padding:14px 26px;border-radius:4px;font-weight:700;transition:background .3s,color .3s,transform .4s cubic-bezier(.2,1.5,.4,1)}
+    .hero.h-ads .ads-busca{border-color:var(--laranja);box-shadow:0 0 0 6px rgba(255,106,19,.18)}
+    .hero.h-ads .ads-res{background:rgba(255,106,19,.18);border-color:var(--laranja);transform:translateX(-6px) scale(1.03)}
+    .hero.h-ads .ads-cta{background:var(--laranja);color:#12100D;transform:translateX(-8px)}
+
+    /* clique: a porta de Anúncios abre até ocupar a tela, depois a página muda */
+    .lado-ads.abre{z-index:20;transform:translateX(-34vw)}
+    .lado-ads.abre .ads-conteudo{transform:translate(34vw,-50%)}
+    .lado-ads.abre .ads-fundo{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+  }
+  @media (min-width:861px) and (max-height:760px){ .ads-res{display:none} }
+  /* telas baixas (notebooks): o texto continua, só fica mais compacto */
+  @media (min-width:861px) and (max-height:760px){
+    .ads-conteudo{gap:11px}
+    .ads-t{font-size:clamp(30px,min(3.9vw,6.2vh),62px)}
+    .ads-lead{font-size:15.5px;line-height:1.42}
+    .ads-busca{min-height:44px;padding:9px 16px;font-size:16px}
+    .ads-cta{padding:11px 22px;margin-top:2px}
+  }
+
   /* texto da abertura e do "Prazer, Caio" */
   .hero p.sub{max-width:46ch}
   .hero p.sub .sub-titulo{display:block;font-weight:800;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.025em;line-height:1.15;margin-bottom:8px}
   .sobre-txt p.destaque{font-weight:800;color:var(--tinta);font-size:clamp(19px,1.9vw,24px);letter-spacing:-.02em;max-width:34ch}
+
+  /* o alto da pagina para de animar quando sai da tela */
+  .hero.fora .luzes i,.hero.fora .faixa .corre,.hero.fora .planta .p-folhas,.hero.fora .fio,.hero.fora .fio .bola::before,.hero.fora .ads-fundo::before,.hero.fora .ads-busca i{animation-play-state:paused}
 
   :focus-visible{outline:3px solid var(--azul);outline-offset:3px}
 
   /* ---------- celular ---------- */
   @media (max-width:860px){
     body{font-size:16px}
-    .tintas small{display:none}
-    .logo{font-size:16px;padding:4px 10px;white-space:nowrap}
-    .tintas{gap:5px;padding:5px 8px}
-    .tintas button{width:16px;height:16px}
+    .logo{font-size:17px;padding:4px 14px;white-space:nowrap}
+    .logo .lg-f{display:none}
+    .logo .lg-s{display:inline}
     .topo-zap{padding:7px 11px;font-size:12px}
     .hero{padding:100px 18px 130px;align-items:flex-start}
-    .flut-a{left:auto;right:-5%;top:auto;bottom:150px;--w:32vw}
-    .flut-b,.flut-c,.flut-d{display:none}
     .fio{right:9%;height:84px}
     .fio .bola{width:64px;height:64px;margin-left:-32px}
     .dica-bola{display:none}
@@ -537,7 +534,7 @@
 </div>
 
 <div class="barra">
-  <a class="logo" href="#topo">Sites e anúncios<span>.</span></a>
+  <a class="logo" href="#topo" aria-label="Sites e anúncios"><span class="lg-f">Sites e anúncios<span class="pt">.</span></span><span class="lg-s" aria-hidden="true">S<span class="pt">.</span>A</span></a>
   <nav class="menu" aria-label="Principal">
     <a href="#topo" aria-current="page">Sites</a>
     <a href="anuncios.html">Anúncios</a>
@@ -557,10 +554,27 @@
     <div class="bola" id="bola"></div>
   </div>
 
-  <div class="flut flut-a" data-prof="22"><div class="papel"><svg class="arte" data-seed="7" data-bg="#F0877A" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em tons de salmão"></svg></div></div>
-  <div class="flut flut-b" data-prof="-30"><div class="papel"><svg class="arte" data-seed="21" data-bg="#58C0E8" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em azul"></svg></div></div>
-  <div class="flut flut-c" data-prof="34"><div class="papel"><svg class="arte" data-seed="13" data-bg="#F4C430" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em amarelo"></svg></div></div>
-  <div class="flut flut-d" data-prof="-18"><div class="papel"><svg class="arte" data-seed="3" data-bg="#E9B6DA" viewBox="0 0 300 400" role="img" aria-label="Cartaz ilustrado em rosa"></svg></div></div>
+  <!-- abertura dividida (só no computador): Sites à esquerda, Anúncios à direita -->
+  <a class="lado-sites" id="ladoSites" href="#mural" aria-label="Ver os trabalhos"></a>
+  <a class="lado-ads" id="ladoAds" href="anuncios.html" aria-label="Ir para a página de Anúncios (Google Ads)">
+    <div class="ads-fundo">
+      <div class="ads-conteudo">
+        <span class="ads-etq">Anúncios · Google Ads</span>
+        <p class="ads-t">Eu te coloco no <em>jogo!</em></p>
+        <p class="ads-lead">Design chama atenção. Anúncio traz as pessoas certas até ele. Eu cuido da parte que coloca o seu negócio na frente do seu nicho.</p>
+        <div class="ads-busca" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+          <span id="adsDigita"></span><i></i>
+        </div>
+        <div class="ads-res" aria-hidden="true">
+          <small><b>Anúncio</b>www.seunegocio.com.br</small>
+          <strong>Seu Negócio | Sua Área de Atuação</strong>
+        </div>
+        <span class="ads-cta">Ver anúncios <span aria-hidden="true">→</span></span>
+      </div>
+    </div>
+  </a>
+
 
   <div class="hero-txt">
     <h1>
@@ -574,18 +588,20 @@
     </div>
   </div>
 
-  <svg class="planta" viewBox="0 0 300 380" aria-hidden="true">
-    <g class="folhas">
+  <div class="planta" aria-hidden="true">
+    <svg class="p-folhas" viewBox="0 0 300 380">
       <path d="M150 300 C 90 250, 40 170, 60 90 C 120 120, 150 200, 150 300Z" fill="#1E7B4B" stroke="#16130F" stroke-width="4"/>
       <path d="M150 300 C 210 250, 262 170, 240 90 C 180 120, 150 200, 150 300Z" fill="#2A9560" stroke="#16130F" stroke-width="4"/>
       <path d="M150 300 C 120 220, 100 130, 130 40 C 170 100, 175 200, 150 300Z" fill="#1E7B4B" stroke="#16130F" stroke-width="4"/>
       <path d="M150 300 C 60 290, 10 240, 8 190 C 70 190, 130 230, 150 300Z" fill="#2A9560" stroke="#16130F" stroke-width="4"/>
       <path d="M150 300 C 240 290, 290 240, 292 190 C 230 190, 170 230, 150 300Z" fill="#1E7B4B" stroke="#16130F" stroke-width="4"/>
       <path d="M150 300 C 98 240, 78 170, 66 100 M150 300 C 205 240, 224 170, 236 100 M150 300 C 132 220, 130 120, 130 48" fill="none" stroke="#16130F" stroke-width="3" stroke-linecap="round" opacity=".55"/>
-    </g>
+    </svg>
+    <svg class="p-vaso" viewBox="0 0 300 380">
     <path d="M78 296 L222 296 L206 372 L94 372Z" fill="#C86B3C" stroke="#16130F" stroke-width="4" stroke-linejoin="round"/>
     <rect x="70" y="284" width="160" height="22" rx="5" fill="#D9824F" stroke="#16130F" stroke-width="4"/>
-  </svg>
+    </svg>
+  </div>
 
   <div class="faixa" id="faixa" aria-hidden="true">
     <div class="corre">
@@ -608,7 +624,7 @@
     <article class="cartaz site" style="--l:22%;--t:70px;--w:25%;--r:2deg;--d:.1s;--tag:#F4C430" data-sp="gisela">
       <i class="fita" style="--fita:#58C0E8"></i>
       <div class="papel">
-        <a class="tela" href="https://www.giselamottin.com.br" target="_blank" rel="noopener" aria-label="Abrir o site da Gisela Mottin"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="gisela" data-src="prints/full_gisela.jpg" alt="Página inteira do site da psicóloga Gisela Mottin" loading="lazy" decoding="async"></div></a>
+        <a class="tela" href="https://www.giselamottin.com.br" target="_blank" rel="noopener" aria-label="Abrir o site da Gisela Mottin"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" src="prints/full_gisela.webp" width="600" height="3620" alt="Página inteira do site da psicóloga Gisela Mottin" loading="lazy" decoding="async"></div></a>
         <div class="leg"><b>Gisela Mottin</b><span>Psicologia · Porto Alegre, RS</span><a href="https://www.giselamottin.com.br" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
       </div>
     </article>
@@ -618,7 +634,7 @@
     <article class="cartaz site so-pc" style="--l:72%;--t:90px;--w:25%;--r:-2.5deg;--d:.2s;--tag:#58C0E8" data-sp="balbino">
       <i class="fita"></i>
       <div class="papel">
-        <a class="tela" href="https://www.dreduardobalbino.com.br" target="_blank" rel="noopener" aria-label="Abrir o site do Dr. Eduardo Balbino"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="balbino" data-src="prints/full_balbino.jpg" alt="Página inteira do site do Dr. Eduardo Balbino" loading="lazy" decoding="async"></div></a>
+        <a class="tela" href="https://www.dreduardobalbino.com.br" target="_blank" rel="noopener" aria-label="Abrir o site do Dr. Eduardo Balbino"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" src="prints/full_balbino.webp" width="600" height="2529" alt="Página inteira do site do Dr. Eduardo Balbino" loading="lazy" decoding="async"></div></a>
         <div class="leg"><b>Dr. Eduardo Balbino</b><span>Odontologia · Recreio, RJ</span><a href="https://www.dreduardobalbino.com.br" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
       </div>
     </article>
@@ -626,7 +642,7 @@
     <article class="cartaz site" style="--l:5%;--t:600px;--w:25%;--r:-1.5deg;--d:.05s;--tag:#E9B6DA" data-sp="porto">
       <i class="fita" style="--fita:#C8A6E6"></i>
       <div class="papel">
-        <a class="tela" href="https://www.drmarceloporto.com" target="_blank" rel="noopener" aria-label="Abrir o site do Dr. Marcelo Porto"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="porto" data-src="prints/full_porto.jpg" alt="Página inteira do site do Dr. Marcelo Porto" loading="lazy" decoding="async"></div></a>
+        <a class="tela" href="https://www.drmarceloporto.com" target="_blank" rel="noopener" aria-label="Abrir o site do Dr. Marcelo Porto"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" src="prints/full_porto.webp" width="600" height="4474" alt="Página inteira do site do Dr. Marcelo Porto" loading="lazy" decoding="async"></div></a>
         <div class="leg"><b>Dr. Marcelo Porto</b><span>Odontologia estética · Florianópolis, SC</span><a href="https://www.drmarceloporto.com" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
       </div>
     </article>
@@ -638,7 +654,7 @@
     <article class="cartaz site" style="--l:56%;--t:560px;--w:25%;--r:2.5deg;--d:.2s;--tag:#F0877A" data-sp="mauricio">
       <i class="fita" style="--fita:#FF6A13"></i>
       <div class="papel">
-        <a class="tela" href="https://www.mauriciodamasceno.com.br" target="_blank" rel="noopener" aria-label="Abrir o site do Maurício Damasceno"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="mauricio" data-src="prints/full_mauricio.jpg" alt="Página inteira do site do psicólogo Maurício Damasceno" loading="lazy" decoding="async"></div></a>
+        <a class="tela" href="https://www.mauriciodamasceno.com.br" target="_blank" rel="noopener" aria-label="Abrir o site do Maurício Damasceno"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" src="prints/full_mauricio.webp" width="600" height="3424" alt="Página inteira do site do psicólogo Maurício Damasceno" loading="lazy" decoding="async"></div></a>
         <div class="leg"><b>Maurício Damasceno</b><span>Psicologia · Belo Horizonte, MG</span><a href="https://www.mauriciodamasceno.com.br" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
       </div>
     </article>
@@ -650,7 +666,7 @@
     <article class="cartaz site so-pc" style="--l:20%;--t:1130px;--w:25%;--r:2deg;--d:.1s;--tag:#F4C430" data-sp="ana">
       <i class="fita" style="--fita:#58C0E8"></i>
       <div class="papel">
-        <a class="tela" href="https://draanaclarafonseca.com/" target="_blank" rel="noopener" aria-label="Abrir o site da Dra. Ana Clara"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="ana" data-src="prints/full_ana.jpg" alt="Página inteira do site da psiquiatra Dra. Ana Clara" loading="lazy" decoding="async"></div></a>
+        <a class="tela" href="https://draanaclarafonseca.com/" target="_blank" rel="noopener" aria-label="Abrir o site da Dra. Ana Clara"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" src="prints/full_ana.webp" width="600" height="2586" alt="Página inteira do site da psiquiatra Dra. Ana Clara" loading="lazy" decoding="async"></div></a>
         <div class="leg"><b>Dra. Ana Clara</b><span>Psiquiatria · Online e presencial</span><a href="https://draanaclarafonseca.com/" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
       </div>
     </article>
@@ -658,7 +674,7 @@
     <article class="cartaz site" style="--l:72%;--t:1150px;--w:25%;--r:-2deg;--d:.15s;--tag:#C8A6E6" data-sp="jennifer">
       <i class="fita" style="--fita:#F4C430"></i>
       <div class="papel">
-        <a class="tela" href="https://www.jenniferlago.com" target="_blank" rel="noopener" aria-label="Abrir o site da Jennifer Lago"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" data-key="jennifer" data-src="prints/full_jennifer.jpg" alt="Página inteira do site da psicóloga Jennifer Lago" loading="lazy" decoding="async"></div></a>
+        <a class="tela" href="https://www.jenniferlago.com" target="_blank" rel="noopener" aria-label="Abrir o site da Jennifer Lago"><div class="bar"><i></i><i></i><i></i></div><div class="vp"><img class="rolante" src="prints/full_jennifer.webp" width="600" height="4467" alt="Página inteira do site da psicóloga Jennifer Lago" loading="lazy" decoding="async"></div></a>
         <div class="leg"><b>Jennifer Lago</b><span>Psicologia · Brasília, DF</span><a href="https://www.jenniferlago.com" target="_blank" rel="noopener">ver ao vivo ↗</a></div>
       </div>
     </article>
@@ -672,7 +688,7 @@
   <div class="sobre">
     <figure class="foto-caio">
       <i class="fita"></i>
-      <img src="prints/caio.jpg" alt="Caio Martins sentado na mesa de trabalho, com cartazes ilustrados na parede ao fundo" width="1125" height="1330" loading="lazy" decoding="async">
+      <img src="prints/caio.webp" alt="Caio Martins sentado na mesa de trabalho, com cartazes ilustrados na parede ao fundo" width="880" height="1040" loading="lazy" decoding="async">
     </figure>
     <div class="sobre-txt">
       <span class="etiq">Quem faz</span>
@@ -857,12 +873,6 @@
   var TINTA = '#16130F';
   var PAL = ['#F0877A','#FF6A13','#F4C430','#58C0E8','#C8A6E6','#E9B6DA','#1E7B4B','#A9C3E1'];
 
-  /* ---------- imagens dos sites (embutidas no arquivo; se faltarem, usa a pasta prints) ---------- */
-  $$('.rolante').forEach(function(img){
-    var k = img.getAttribute('data-key');
-    img.src = (window.IMGS && window.IMGS[k]) || img.getAttribute('data-src');
-  });
-
   /* ---------- arte gerada (cartazes ilustrados) ---------- */
   function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   function blob(cx,cy,rad,r){
@@ -897,15 +907,6 @@
   }
   $$('svg.arte').forEach(function(s){ desenharArte(s, parseInt(s.getAttribute('data-seed'),10), s.getAttribute('data-bg')); });
 
-  /* ---------- cor da parede ---------- */
-  var chips = $$('.tintas button[data-cor]');
-  function parede(cor, btn){
-    document.documentElement.style.setProperty('--parede', cor);
-    var meta = $('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', cor);
-    chips.forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
-  }
-  chips.forEach(function(b){ b.addEventListener('click', function(){ parede(b.getAttribute('data-cor'), b); }); });
-
   /* ---------- aparecer ao rolar ---------- */
   var alvos = $$('.cartaz, .recado, .nota');
   if ('IntersectionObserver' in window && !reduzido){
@@ -916,14 +917,6 @@
     }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
     alvos.forEach(function(a){ io.observe(a); });
   } else { alvos.forEach(function(a){ a.classList.add('dentro'); }); }
-
-  /* no celular, o site rola sozinho quando o cartaz está na tela */
-  if ('IntersectionObserver' in window){
-    var io2 = new IntersectionObserver(function(es){
-      es.forEach(function(e){ e.target.classList.toggle('ativa', e.isIntersecting); });
-    }, {threshold:.5});
-    $$('.cartaz.site').forEach(function(a){ io2.observe(a); });
-  }
 
   /* quanto cada print deve rolar dentro da janelinha */
   function medirPrints(){
@@ -977,40 +970,20 @@
   });
   document.addEventListener('click', function(e){ if (suprimir){ e.preventDefault(); e.stopPropagation(); } }, true);
 
-  /* ---------- parallax do herói ---------- */
-  var flut = $$('[data-prof]');
-  window.addEventListener('pointermove', function(e){
-    if (e.pointerType === 'touch' || reduzido) return;
-    var nx = e.clientX/innerWidth - .5, ny = e.clientY/innerHeight - .5;
-    flut.forEach(function(f){
-      var p = parseFloat(f.getAttribute('data-prof'));
-      f.style.transform = 'translate('+(nx*p).toFixed(1)+'px,'+(ny*p).toFixed(1)+'px) rotate(var(--r,0deg))';
-    });
-  });
-
-  /* ---------- confete ---------- */
-  function confete(x, y, qtd, forca){
-    if (reduzido || !document.body.animate) return;
-    for (var i=0;i<qtd;i++){
-      var p = document.createElement('i');
-      var s = 8 + Math.random()*14, c = PAL[Math.floor(Math.random()*PAL.length)], f = Math.random();
-      p.style.cssText = 'position:fixed;left:'+x+'px;top:'+y+'px;width:'+s+'px;height:'+s+'px;background:'+c+';border:2px solid '+TINTA+';pointer-events:none;z-index:95;'+
-        (f<.35 ? 'border-radius:50%' : f<.7 ? 'border-radius:3px' : 'clip-path:polygon(50% 0,100% 100%,0 100%);border:0');
-      document.body.appendChild(p);
-      var ang = Math.random()*Math.PI*2, d = (forca||70) * (.5 + Math.random());
-      var a = p.animate([
-        {transform:'translate(-50%,-50%) scale(.3) rotate(0deg)', opacity:1},
-        {transform:'translate(calc(-50% + '+(Math.cos(ang)*d).toFixed(0)+'px), calc(-50% + '+(Math.sin(ang)*d + 30).toFixed(0)+'px)) scale(1) rotate('+((Math.random()-.5)*540).toFixed(0)+'deg)', opacity:1, offset:.6},
-        {transform:'translate(calc(-50% + '+(Math.cos(ang)*d*1.1).toFixed(0)+'px), calc(-50% + '+(Math.sin(ang)*d + 90).toFixed(0)+'px)) scale(.8) rotate('+((Math.random()-.5)*720).toFixed(0)+'deg)', opacity:0}
-      ], {duration:900 + Math.random()*400, easing:'cubic-bezier(.2,.8,.3,1)'});
-      a.onfinish = (function(el){ return function(){ el.remove(); }; })(p);
-    }
-  }
-
   /* ---------- faixa que acelera com a rolagem ---------- */
-  var faixa = $('#faixa'), ultimo = window.scrollY, sk = 0, skAlvo = 0;
-  window.addEventListener('scroll', function(){ var v = window.scrollY - ultimo; ultimo = window.scrollY; skAlvo = Math.max(-14, Math.min(14, v*.35)); }, {passive:true});
-  if (!reduzido) (function loop(){ sk += (skAlvo - sk)*.12; skAlvo *= .9; faixa.style.transform = 'skewX('+(-sk).toFixed(2)+'deg)'; requestAnimationFrame(loop); })();
+  var faixa = $('#faixa'), ultimo = window.scrollY, sk = 0, skAlvo = 0, faixaRodando = false;
+  function loopFaixa(){
+    sk += (skAlvo - sk)*.12; skAlvo *= .9;
+    if (Math.abs(sk) < .02 && Math.abs(skAlvo) < .05){ sk = 0; skAlvo = 0; faixa.style.transform = ''; faixaRodando = false; return; }
+    faixa.style.transform = 'skewX('+(-sk).toFixed(2)+'deg)';
+    requestAnimationFrame(loopFaixa);
+  }
+  window.addEventListener('scroll', function(){
+    var v = window.scrollY - ultimo; ultimo = window.scrollY;
+    if (window.scrollY > window.innerHeight * 1.3) return;      // a faixa só aparece no alto
+    skAlvo = Math.max(-14, Math.min(14, v*.35));
+    if (!faixaRodando){ faixaRodando = true; requestAnimationFrame(loopFaixa); }
+  }, {passive:true});
 
   /* ---------- protótipo: base visual do site (nome, área, cores, fonte, arte) ---------- */
   var CLARAS  = [['#F3E9D2','Creme'],['#E0CFB3','Areia'],['#F4CDB4','Pêssego'],['#EBC3C6','Rosé'],['#D6CDE8','Lavanda'],['#BFD7EA','Azul céu'],['#C6D8C0','Sálvia'],['#D3D2CD','Pedra']];
@@ -1147,7 +1120,7 @@
     var blob = await new Promise(function(r){ c.toBlob(r, 'image/png'); });
     return blob ? new File([blob], 'previa-prototipo.png', {type:'image/png'}) : null;
   }
-  function agendarSaida(){ clearTimeout(pTimer); pTimer = setTimeout(prepararSaida, 350); }
+  function agendarSaida(){ if (!protoPronto) return; clearTimeout(pTimer); pTimer = setTimeout(prepararSaida, 350); }
   async function prepararSaida(){
     var f = pSel.fileObj || await gerarPNG();
     if (!f) return;
@@ -1200,6 +1173,19 @@
       window.open(pZap.href, '_blank', 'noopener');
     });
   });
+  /* as 6 fontes do protótipo só são baixadas quando a seção está perto de aparecer */
+  var secProto = $('#seu-cartaz'), protoPronto = false;
+  function prepararProto(){
+    if (protoPronto) return; protoPronto = true;
+    var l = document.createElement('link'); l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@800&family=Bebas+Neue&family=Dancing+Script:wght@700&family=Space+Mono:wght@700&family=Abril+Fatface&display=swap';
+    document.head.appendChild(l);
+    agendarSaida();
+  }
+  if ('IntersectionObserver' in window && secProto){
+    var ioProto = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ prepararProto(); ioProto.disconnect(); } }); }, {rootMargin:'900px 0px'});
+    ioProto.observe(secProto);
+  } else { prepararProto(); }
   montarOpcoes('#p-claras', CLARAS, 'cor');
   montarOpcoes('#p-escuras', ESCURAS, 'cor');
   montarOpcoes('#p-fontes', FONTES, 'fonte');
@@ -1237,36 +1223,109 @@
       no.parentNode.replaceChild(frag, no);
     });
     setTimeout(function(){ h1.classList.add('pronto'); }, 2600);
-    var letras = $$('.l', h1);
-    window.addEventListener('pointermove', function(e){
-      if (window.scrollY > window.innerHeight) return;
-      letras.forEach(function(l){
-        var r = l.getBoundingClientRect(), dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2);
+    var letras = $$('.l', h1), centros = [], medidas = false, ultX = 0, ultY = 0, quadroPendente = false, heroEl0 = $('.hero');
+    function medirLetras(){
+      var sy = window.scrollY;
+      centros = letras.map(function(l){ var r = l.getBoundingClientRect(); return {x: r.left + r.width/2, y: r.top + sy + r.height/2, t:''}; });
+      medidas = true;
+    }
+    setTimeout(medirLetras, 3000);                                // depois da abertura, com as linhas já no lugar
+    window.addEventListener('resize', function(){ medidas = false; setTimeout(medirLetras, 200); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if (medidas) medirLetras(); });
+    function pintarLetras(){
+      quadroPendente = false;
+      var sy = window.scrollY;
+      for (var i = 0; i < letras.length; i++){
+        var c = centros[i], dx = ultX - c.x, dy = ultY - (c.y - sy);
         var k = Math.max(0, 1 - Math.hypot(dx,dy)/210);
-        l.style.transform = k > .01 ? 'translateY('+(-k*16).toFixed(1)+'px) rotate('+((dx < 0 ? 1 : -1)*k*9).toFixed(1)+'deg) scale('+(1+k*.1).toFixed(3)+')' : '';
-        l.style.color = k > .5 ? 'var(--laranja)' : '';
-      });
-    });
+        var tr = k > .01 ? 'translateY('+(-k*16).toFixed(1)+'px) rotate('+((dx < 0 ? 1 : -1)*k*9).toFixed(1)+'deg) scale('+(1+k*.1).toFixed(3)+')' : '';
+        var cor = k > .5 ? 'var(--laranja)' : '';
+        if (c.t !== tr + '|' + cor){ c.t = tr + '|' + cor; letras[i].style.transform = tr; letras[i].style.color = cor; }
+      }
+    }
+    window.addEventListener('pointermove', function(e){
+      if (!medidas || window.scrollY > window.innerHeight || (heroEl0 && heroEl0.classList.contains('h-ads'))) return;
+      ultX = e.clientX; ultY = e.clientY;
+      if (!quadroPendente){ quadroPendente = true; requestAnimationFrame(pintarLetras); }   // no máximo 1 vez por quadro
+    }, {passive:true});
   }
 
   /* cartazes do mural se mexem em profundidade ao rolar */
   var vels = [.06,-.05,.09,-.08,.04,-.06,.07,-.04,.05,-.07,.08];
-  var pars = $$('.cartaz').map(function(el,i){ return {p:el, v:vels[i % vels.length]}; });
+  var pars = $$('.cartaz').map(function(el,i){ return {p:el, v:vels[i % vels.length], on:true}; });
   var parPend = false;
+  if ('IntersectionObserver' in window){
+    var ioPar = new IntersectionObserver(function(es){
+      es.forEach(function(e){ pars.forEach(function(o){ if (o.p === e.target){ o.on = e.isIntersecting; o.p.classList.toggle('vis', o.on); } }); });
+    }, {rootMargin:'200px 0px'});
+    pars.forEach(function(o){ o.on = false; ioPar.observe(o.p); });
+  }
   function parallax(){
     parPend = false;
     if (window.innerWidth <= 860 || reduzido) return;
     var r = limite.getBoundingClientRect(), off = r.top + r.height/2 - window.innerHeight/2;
-    pars.forEach(function(o){ if (o.p) o.p.style.setProperty('--par', (off*o.v).toFixed(1)+'px'); });
+    pars.forEach(function(o){ if (o.on){ var v = (off*o.v).toFixed(1)+'px'; if (o.u !== v){ o.u = v; o.p.style.setProperty('--par', v); } } });
   }
   window.addEventListener('scroll', function(){ if (!parPend){ parPend = true; requestAnimationFrame(parallax); } }, {passive:true});
   parallax();
 
+  /* ---------- abertura dividida (computador) ---------- */
+  (function(){
+    var heroEl = $('.hero'), ads = $('#ladoAds'), sites = $('#ladoSites');
+    if (!heroEl || !ads || !sites || !window.matchMedia) return;
+    var larga = window.matchMedia('(min-width:861px)');
+    function estado(c){ heroEl.classList.remove('h-ads','h-sites'); if (c) heroEl.classList.add(c); }
+    /* o lado de Anúncios só abre quando o mouse encosta na parte preta (e fica ali um instante) */
+    var espera = 0;
+    ads.addEventListener('pointerenter', function(e){
+      if (!larga.matches || e.pointerType === 'touch') return;
+      clearTimeout(espera);
+      espera = setTimeout(function(){ estado('h-ads'); }, 140);
+    });
+    ads.addEventListener('pointerleave', function(){ clearTimeout(espera); });
+    sites.addEventListener('pointerenter', function(e){
+      if (!larga.matches || e.pointerType === 'touch') return;
+      clearTimeout(espera); estado('h-sites');
+    });
+    heroEl.addEventListener('pointerleave', function(){ clearTimeout(espera); estado(''); });
+    ads.addEventListener('focus', function(){ estado('h-ads'); });
+    sites.addEventListener('focus', function(){ estado('h-sites'); });
+    ads.addEventListener('blur', function(){ estado(''); });
+    sites.addEventListener('blur', function(){ estado(''); });
+    ads.addEventListener('click', function(e){
+      if (!larga.matches || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      try { sessionStorage.setItem('sa_veio_do_mural', '1'); } catch(err){}   /* a página de Anúncios pula a própria abertura */
+      estado('h-ads'); ads.classList.add('abre');
+      setTimeout(function(){ window.location.href = ads.getAttribute('href'); }, 760);
+    });
+    window.addEventListener('pageshow', function(){ ads.classList.remove('abre'); estado(''); });
+
+    /* a barra de busca do lado de Anúncios "digita" pesquisas de exemplo */
+    var visivelHero = true;
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){ visivelHero = e.isIntersecting; heroEl.classList.toggle('fora', !e.isIntersecting); }); }).observe(heroEl);
+    }
+    var dig = $('#adsDigita');
+    if (dig){
+      var frases = ['psicólogo perto de mim', 'nutricionista online', 'dentista de urgência', 'advogado trabalhista', 'personal trainer perto de mim'];
+      var fi = 0, ci = 0, apagando = false;
+      (function digitar(){
+        if (!visivelHero || !larga.matches){ setTimeout(digitar, 600); return; }
+        var f = frases[fi];
+        if (!apagando){ ci++; dig.textContent = f.slice(0, ci); if (ci === f.length){ apagando = true; setTimeout(digitar, 1900); return; } }
+        else { ci--; dig.textContent = f.slice(0, ci); if (ci === 0){ apagando = false; fi = (fi + 1) % frases.length; } }
+        setTimeout(digitar, apagando ? 26 : 70);
+      })();
+    }
+  })();
+
   /* sites rolam sozinhos dentro dos cartazes; com o mouse em cima, a rolagem segue o mouse */
   var rolantes = $$('.cartaz.site').map(function(el){
-    return {el:el, img:$('.rolante',el), vp:$('.vp',el), p:0, u:0, alvo:null, vivo:false, hover:false, vh:0, ih:0};
+    var vp = $('.vp',el), bar = document.createElement('i'); bar.className = 'rbar'; bar.setAttribute('aria-hidden','true'); vp.appendChild(bar);
+    return {el:el, img:$('.rolante',el), vp:vp, bar:bar, trk:0, p:0, u:0, alvo:null, vivo:false, hover:false, vh:0, ih:0};
   });
-  function medirRolantes(){ rolantes.forEach(function(r){ r.vh = r.vp.clientHeight; r.ih = r.img.offsetHeight; }); }
+  function medirRolantes(){ rolantes.forEach(function(r){ r.vh = r.vp.clientHeight; r.ih = r.img.offsetHeight; r.barra = false; }); }
   rolantes.forEach(function(r){
     r.img.addEventListener('load', medirRolantes);
     r.el.addEventListener('pointermove', function(e){
@@ -1285,7 +1344,7 @@
   medirRolantes();
   if ('IntersectionObserver' in window){
     var io4 = new IntersectionObserver(function(es){
-      es.forEach(function(e){ rolantes.forEach(function(r){ if (r.el === e.target) r.vivo = e.isIntersecting; }); });
+      es.forEach(function(e){ rolantes.forEach(function(r){ if (r.el === e.target){ r.vivo = e.isIntersecting; r.el.classList.toggle('vivo', r.vivo); } }); });
     }, {threshold:.1});
     rolantes.forEach(function(r){ io4.observe(r.el); });
   } else { rolantes.forEach(function(r){ r.vivo = true; }); }
@@ -1299,11 +1358,12 @@
       if (!dy) return;
       if (r.hover && r.alvo !== null) r.p += (r.alvo - r.p) * Math.min(1, dt*9);
       else if (!reduzido){ r.u += dt * (95 / Math.abs(dy)); r.p = .5 - .5*Math.cos(Math.PI*r.u); }
-      r.img.style.transform = 'translateY(' + (r.p*dy).toFixed(1) + 'px)';
-      var bar = Math.max(18, r.vh*r.vh/r.ih);
-      r.vp.style.setProperty('--p', r.p.toFixed(3));
-      r.vp.style.setProperty('--bar', bar.toFixed(1));
-      r.vp.style.setProperty('--trk', (r.vh - bar - 8).toFixed(1));
+      var px = (r.p*dy).toFixed(1);
+      if (px === r.ultPx) return;                       // nada mudou: não mexe no estilo
+      r.ultPx = px;
+      r.img.style.transform = 'translate3d(0,' + px + 'px,0)';
+      if (!r.barra){ var bh = Math.max(18, r.vh*r.vh/r.ih); r.trk = r.vh - bh - 8; r.bar.style.height = bh.toFixed(1) + 'px'; r.barra = true; }
+      r.bar.style.transform = 'translate3d(0,' + (r.p*r.trk).toFixed(1) + 'px,0)';
     });
     requestAnimationFrame(rolar);
   })();

@@ -9,9 +9,21 @@
 <meta property="og:description" content="Campanhas no Google para o seu negócio ser encontrado na hora em que as pessoas procuram.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#12100D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2316130F'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%23FF6A13'/%3E%3C/svg%3E">
+<script>
+  /* veio do clique no lado "Anúncios" da página de sites: pula a abertura e entra suavemente */
+  (function(){
+    try {
+      if (sessionStorage.getItem('sa_veio_do_mural') === '1') {
+        sessionStorage.removeItem('sa_veio_do_mural');
+        document.documentElement.classList.add('sem-intro');
+      }
+    } catch(e){}
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --noite:#12100D;
@@ -25,7 +37,10 @@
     --mono:"DM Mono",ui-monospace,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;background:#12100D}
+  html.sem-intro .cortina{display:none}
+  html.sem-intro body{animation:chegaSuave 1s ease both}
+  @keyframes chegaSuave{from{opacity:0}}
   body{background:var(--noite);color:var(--papel);font-family:var(--sans);font-size:17px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
   a{color:inherit}
   button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -45,7 +60,8 @@
   .barra{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,3vw,36px);pointer-events:none}
   .barra > *{pointer-events:auto}
   .logo{font-weight:800;font-size:20px;letter-spacing:-.03em;text-decoration:none;padding:5px 14px;border:1.5px solid var(--papel);border-radius:999px;background:rgba(18,16,13,.82);backdrop-filter:blur(8px)}
-  .logo span{color:var(--laranja)}
+  .logo .pt{color:var(--laranja)}
+  .logo .lg-s{display:none}
   .menu{display:flex;align-items:center;gap:clamp(12px,2.6vw,28px);background:rgba(18,16,13,.82);backdrop-filter:blur(8px);border:1.5px solid var(--papel);border-radius:999px;padding:6px 6px 6px 20px}
   .menu a{font-weight:700;font-size:15px;text-decoration:none;position:relative;padding:4px 0}
   .menu a:not(.menu-zap)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2.5px;background:var(--laranja);transform:scaleX(0);transform-origin:left;transition:transform .3s}
@@ -68,7 +84,6 @@
   .hero h1{font-weight:800;font-size:clamp(42px,6.6vw,104px);line-height:.94;letter-spacing:-.045em;margin:20px 0 22px}
   .hero h1 em{font-style:normal;color:var(--laranja)}
   .lead{font-size:clamp(17px,1.8vw,21px);color:var(--tenue);max-width:44ch;line-height:1.55}
-  .selo{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--linha);padding:7px 14px;border-radius:999px;margin-top:22px;color:var(--tenue)}
   .hero .btn-o{margin-top:30px;min-width:min(100%,340px);justify-content:center;padding:17px 64px;font-size:18px}
 
   /* busca de exemplo: o anúncio sobe para o topo */
@@ -186,8 +201,6 @@
 
   /* escala única de títulos (igual à do mural) */
   .hero h1{font-size:clamp(36px,4.9vw,74px);line-height:1.02;letter-spacing:-.045em;margin:18px 0 18px;text-wrap:balance}
-  .frase{font-weight:600;font-size:clamp(20px,2vw,28px);letter-spacing:-.025em;line-height:1.15;margin-bottom:14px}
-  .frase em{font-style:normal;color:var(--laranja)}
   .sec h2{font-size:clamp(30px,4vw,56px);line-height:1.06;letter-spacing:-.035em;text-wrap:balance}
   .lead{font-size:clamp(17px,1.6vw,20px)}
   .hero .lead{max-width:42ch}
@@ -195,7 +208,9 @@
   /* celular */
   @media (max-width:860px){
     body{font-size:16px}
-    .logo{font-size:15px}
+    .logo{font-size:17px;padding:5px 14px;white-space:nowrap}
+    .logo .lg-f{display:none}
+    .logo .lg-s{display:inline}
     .menu{gap:12px;padding:5px 5px 5px 14px}
     .menu a{font-size:13px}
     .menu .menu-zap{padding:8px 12px}
@@ -240,7 +255,7 @@
 </div>
 
 <div class="barra">
-  <a class="logo" href="mural.html">Sites e anúncios<span>.</span></a>
+  <a class="logo" href="mural.html" aria-label="Sites e anúncios"><span class="lg-f">Sites e anúncios<span class="pt">.</span></span><span class="lg-s" aria-hidden="true">S<span class="pt">.</span>A</span></a>
   <nav class="menu" aria-label="Principal">
     <a href="mural.html">Sites</a>
     <a href="anuncios.html" aria-current="page">Anúncios</a>
@@ -388,8 +403,9 @@
   var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
 
   /* a cortina sai do caminho depois de abrir */
+  var semIntro = document.documentElement.classList.contains('sem-intro');
   var cort = $('#cortina');
-  if (cort) setTimeout(function(){ cort.remove(); }, 2600);
+  if (cort){ if (semIntro) cort.remove(); else setTimeout(function(){ cort.remove(); }, 2600); }
 
   /* aparecer ao rolar */
   var rev = $$('.rev');
@@ -398,7 +414,7 @@
       es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('dentro'); io.unobserve(e.target); } });
     }, {threshold:.15, rootMargin:'0px 0px -5% 0px'});
     /* espera a cortina abrir antes de começar a revelar os textos */
-    setTimeout(function(){ rev.forEach(function(el, i){ el.style.transitionDelay = ((i % 4) * 70) + 'ms'; io.observe(el); }); }, 1700);
+    setTimeout(function(){ rev.forEach(function(el, i){ el.style.transitionDelay = ((i % 4) * 70) + 'ms'; io.observe(el); }); }, semIntro ? 250 : 1700);
   } else { rev.forEach(function(el){ el.classList.add('dentro'); }); }
 
   /* barra de busca "digita" pesquisas de exemplo */
