@@ -174,17 +174,21 @@
   .voltar:hover{color:var(--laranja);border-color:var(--laranja)}
 
   /* rodapé */
-  .rodape{border-top:1px solid var(--linha);padding:clamp(40px,5vw,64px) clamp(18px,5vw,72px) 22px}
-  .rodape-grade{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:clamp(24px,4vw,56px)}
+  .rodape{border-top:1px solid var(--linha);padding:clamp(30px,4vw,44px) clamp(18px,5vw,72px) 18px}
+  .rodape-grade{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.1fr;gap:clamp(18px,3vw,44px)}
   .rodape a{text-decoration:none;transition:color .2s}
   .rodape a:hover{color:var(--laranja)}
   .rodape .logo-r{font-weight:800;font-size:26px;letter-spacing:-.04em}
   .rodape .logo-r span{color:var(--laranja)}
   .rodape p{margin-top:12px;font-size:15px;line-height:1.5;color:var(--tenue);max-width:32ch}
-  .rodape h4{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);margin-bottom:14px}
-  .rodape ul{list-style:none;display:grid;gap:9px;font-size:15px}
+  .rodape h4{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);margin-bottom:10px}
+  .rodape ul{list-style:none;display:grid;gap:7px;font-size:15px}
   .rodape li{color:rgba(237,231,219,.85)}
-  .rodape-base{max-width:1360px;margin:clamp(30px,4vw,48px) auto 0;padding-top:18px;border-top:1px solid var(--linha);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(237,231,219,.55)}
+  .rodape-contato{display:flex;flex-direction:column;align-items:flex-end;text-align:right}   /* contato e botão do WhatsApp no canto direito */
+  .rodape-zap{display:inline-grid;place-items:center;margin-top:12px;width:50px;height:50px;border-radius:50%;background:#25D366;color:#fff!important;border:2px solid var(--papel);transition:transform .25s cubic-bezier(.2,1.6,.4,1),background .2s}
+  .rodape-zap svg{width:27px;height:27px}
+  .rodape-zap:hover{background:var(--laranja);color:#fff!important;transform:scale(1.1) rotate(-6deg)}
+  .rodape-base{max-width:1360px;margin:clamp(22px,3vw,32px) auto 0;padding-top:14px;border-top:1px solid var(--linha);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(237,231,219,.55)}
 
   /* abertura: uma busca digitando, como no próprio Google */
   .cortina{position:fixed;inset:0;z-index:200;display:grid;place-content:center;justify-items:center;gap:18px;background:var(--noite);pointer-events:none;animation:introSai .6s ease 1.8s forwards}
@@ -214,7 +218,7 @@
     .menu{gap:12px;padding:5px 5px 5px 14px}
     .menu a{font-size:13px}
     .menu .menu-zap{padding:8px 12px}
-    .hero{grid-template-columns:1fr;padding-top:100px;min-height:0}
+    .hero{grid-template-columns:1fr;padding-top:136px;min-height:0}   /* celular: mais respiro abaixo do cabeçalho */
     .hero-txt{order:-1}
     /* caminho do cliente: título em cima; embaixo, bolinhas e passos lado a lado */
     .espelho{grid-template-columns:50px minmax(0,1fr);grid-template-areas:"etq etq" "tit tit" "fluxo passos";column-gap:14px;row-gap:0;align-items:start}
@@ -235,8 +239,17 @@
     .grade{grid-template-columns:1fr}
     .duplo{grid-template-columns:1fr}
     .final-passos{grid-template-columns:1fr}
-    .rodape-grade{grid-template-columns:1fr 1fr}
+    /* rodapé compacto no celular: marca em cima; abaixo, 2 x 2 (esquerda / direita, com o WhatsApp no canto) */
+    .rodape{padding:26px 18px 14px}
+    .rodape-grade{grid-template-columns:1fr 1fr;gap:18px 14px}
     .rodape-grade > :first-child{grid-column:1 / -1}
+    .rodape-grade > :nth-child(3){text-align:right}
+    .rodape-grade > :first-child p{display:none}   /* o resumo da marca já aparece no alto da página */
+    .rodape h4{margin-bottom:7px}
+    .rodape ul{gap:5px;font-size:14px}
+    .rodape-zap{margin-top:8px}
+    .so-pc{display:none}
+    .rodape-base{margin-top:16px;padding-top:12px;font-size:12px;flex-wrap:nowrap;justify-content:space-between}
     .lista-res{height:300px}
     .res{height:88px}
     .res.o2{--y:106px}.lista-res.com .res.o1{--y:106px}
@@ -254,9 +267,8 @@
     .lado li{justify-content:center}
     .ponte{text-align:center}
     .final-passos{text-align:center}
-    .rodape-grade > *{text-align:center}
-    .rodape p{margin-left:auto;margin-right:auto}
-    .rodape-base{justify-content:center;text-align:center}
+    .rodape-grade > :first-child{text-align:center}
+    .rodape-grade > :first-child p{margin-left:auto;margin-right:auto}
   }
 </style>
 </head>
@@ -398,9 +410,14 @@
       <h4>Presença digital</h4>
       <ul><li>Google Meu Negócio</li><li>SEO</li><li>Sitemap e indexação</li></ul>
     </div>
+    <div class="rodape-contato">
+      <h4>Contato</h4>
+      <ul><li>(16) 99701-1841</li><li class="so-pc">Atendimento pelo WhatsApp</li></ul>
+      <a class="rodape-zap" href="https://wa.me/5516997011841?text=Ol%C3%A1%2C%20Caio!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20an%C3%BAncios%20no%20Google%20Ads." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp" title="Chamar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.9-4.5-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg></a>
+    </div>
   </div>
   <div class="rodape-base">
-    <span>© 2026 Caio Martins. Todos os direitos reservados.</span>
+    <span>© 2026 Caio Martins.<span class="so-pc"> Todos os direitos reservados.</span></span>
     <a href="#topo">Voltar ao topo ↑</a>
   </div>
 </footer>

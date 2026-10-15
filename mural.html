@@ -232,7 +232,7 @@
   .rodape{background:var(--tinta);color:#F1EDE4;padding:clamp(48px,6vw,80px) clamp(18px,5vw,72px) 22px}
   .rodape a{text-decoration:none;transition:color .2s}
   .rodape a:hover{color:var(--amarelo)}
-  .rodape-grade{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr 1.2fr;gap:clamp(24px,4vw,56px);max-width:1200px;margin:0 auto}
+  .rodape-grade{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr 1.2fr;gap:clamp(24px,4vw,56px);max-width:1360px;margin:0 auto}
   .rodape-marca .logo-r{font-weight:800;font-size:28px;letter-spacing:-.04em}
   .rodape-marca .logo-r span{color:var(--laranja)}
   .rodape-marca p{margin-top:12px;font-size:15px;line-height:1.5;color:rgba(241,237,228,.72);max-width:32ch}
@@ -240,9 +240,10 @@
   .rodape ul{list-style:none;display:grid;gap:9px;font-size:15px}
   .rodape li{color:rgba(241,237,228,.85)}
   .rodape-zap{display:inline-grid;place-items:center;margin-top:16px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff!important;border:2px solid #F1EDE4;transition:transform .25s cubic-bezier(.2,1.6,.4,1),background .2s}
+  .rodape-contato{display:flex;flex-direction:column;align-items:flex-end;text-align:right}   /* coluna de contato e botão do WhatsApp no canto direito */
   .rodape-zap svg{width:30px;height:30px}
   .rodape-zap:hover{background:var(--laranja);color:#fff!important;transform:scale(1.1) rotate(-6deg)}
-  .rodape-base{max-width:1200px;margin:clamp(34px,5vw,56px) auto 0;padding-top:18px;border-top:1px solid rgba(241,237,228,.2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(241,237,228,.6)}
+  .rodape-base{max-width:1360px;margin:clamp(34px,5vw,56px) auto 0;padding-top:18px;border-top:1px solid rgba(241,237,228,.2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(241,237,228,.6)}
   @media (max-width:860px){
     .sobre{grid-template-columns:1fr}
     .foto-caio{width:min(78%,340px);margin:0 auto}
@@ -499,7 +500,7 @@
     .logo .lg-f{display:none}
     .logo .lg-s{display:inline}
     .topo-zap{padding:7px 11px;font-size:12px}
-    .hero{min-height:0;padding:100px 18px 150px;align-items:flex-start}   /* celular: o alto acompanha o conteúdo; faixa e planta ficam logo abaixo do botão */
+    .hero{min-height:100svh;padding:116px 18px 150px;align-items:center}   /* celular: conteúdo centralizado na altura, mais longe do cabeçalho; "Trabalhos no ar" fica fora da 1ª tela */
     .fio{right:9%;height:84px}
     .fio .bola{width:64px;height:64px;margin-left:-32px}
     .dica-bola{display:none}
@@ -559,7 +560,7 @@
     <div class="an-fundo"></div>
     <div class="an-conteudo">
         <span class="an-etq">Anúncios · Google Ads</span>
-        <p class="an-t">Eu te coloco no <em>jogo!</em></p>
+        <p class="an-t">Eu te coloco<br>no <em>jogo!</em></p>
         <p class="an-lead">Design chama atenção. Anúncio traz as pessoas certas até ele. Eu cuido da parte que coloca o seu negócio na frente do seu nicho.</p>
         <div class="an-busca" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
@@ -835,7 +836,7 @@
           <li>Sitemap e indexação</li>
         </ul>
       </div>
-      <div>
+      <div class="rodape-contato">
         <h4>Contato</h4>
         <ul>
           <li>WhatsApp: (16) 99701-1841</li>
