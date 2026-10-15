@@ -219,7 +219,7 @@
     /* caminho do cliente: título em cima; embaixo, bolinhas e passos lado a lado */
     .espelho{grid-template-columns:50px minmax(0,1fr);grid-template-areas:"etq etq" "tit tit" "fluxo passos";column-gap:14px;row-gap:0;align-items:start}
     .espelho .sec-txt{display:contents}
-    .espelho .sec-txt .etq{grid-area:etq;justify-content:flex-end}
+    .espelho .sec-txt .etq{grid-area:etq;justify-content:center}
     .espelho .sec-txt h2{grid-area:tit;margin-bottom:22px}
     .espelho .fluxo{grid-area:fluxo;gap:0;padding:0}
     .espelho .passos{grid-area:passos;margin-top:0}
@@ -241,6 +241,22 @@
     .res{height:88px}
     .res.o2{--y:106px}.lista-res.com .res.o1{--y:106px}
     .res.ad{--y:212px}.lista-res.com .res.o2{--y:212px}
+
+    /* celular: títulos e textos centralizados */
+    .hero-txt{align-items:center;text-align:center}
+    .hero h1,.sec h2{text-align:center}
+    .etq{justify-content:center}
+    .etq::before{content:"";width:34px;height:1px;background:var(--laranja)}
+    .lead,.sec-txt .lead{text-align:center;margin-left:auto;margin-right:auto}
+    .busca-leg{text-align:center}
+    .card{text-align:center}
+    .lado{text-align:center}
+    .lado li{justify-content:center}
+    .ponte{text-align:center}
+    .final-passos{text-align:center}
+    .rodape-grade > *{text-align:center}
+    .rodape p{margin-left:auto;margin-right:auto}
+    .rodape-base{justify-content:center;text-align:center}
   }
 </style>
 </head>
